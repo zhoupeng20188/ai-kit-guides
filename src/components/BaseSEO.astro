@@ -5,11 +5,15 @@ interface Props {
   title?: string;
   description?: string;
   image?: string;
+  imageAlt?: string;
+  keywords?: string[];
   noindex?: boolean;
   type?: "website" | "article";
   publishedTime?: string;
   modifiedTime?: string;
   author?: string;
+  section?: string;
+  tags?: string[];
   faqJsonLd?: object[];
 }
 
@@ -17,17 +21,22 @@ const {
   title,
   description = SITE.description,
   image = SITE.defaultOgImage,
+  imageAlt = title ?? SITE.name,
+  keywords = [],
   noindex = false,
   type = "website",
   publishedTime,
   modifiedTime,
   author = SITE.author,
+  section,
+  tags = [],
   faqJsonLd = [],
 } = Astro.props;
 
 const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.description.split(".")[0]}`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
+const logoUrl = new URL("/icon-512x512.png", Astro.site);
 ---
 
 <meta charset="utf-8" />
@@ -35,9 +44,14 @@ const ogImage = new URL(image, Astro.site);
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={author} />
+{keywords.length > 0 && <meta name="keywords" content={keywords.join(", ")} />}
 <link rel="canonical" href={canonicalURL} />
 
-{noindex && <meta name="robots" content="noindex,nofollow" />}
+{noindex ? (
+  <meta name="robots" content="noindex,nofollow" />
+) : (
+  <meta name="robots" content="index,follow,max-image-preview:large" />
+)}
 
 <!-- Open Graph -->
 <meta property="og:type" content={type} />
@@ -46,6 +60,7 @@ const ogImage = new URL(image, Astro.site);
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonicalURL} />
 <meta property="og:image" content={ogImage} />
+<meta property="og:image:alt" content={imageAlt} />
 <meta property="og:locale" content={SITE.locale} />
 
 {type === "article" && publishedTime && (
@@ -55,21 +70,27 @@ const ogImage = new URL(image, Astro.site);
   <meta property="article:modified_time" content={modifiedTime} />
 )}
 {type === "article" && <meta property="article:author" content={author} />}
+{type === "article" && section && <meta property="article:section" content={section} />}
+{type === "article" && tags.map((tag) => (
+  <meta property="article:tag" content={tag} />
+))}
 
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image" />
-<meta name="twitter:site" content={SITE.twitter} />
+{SITE.twitter && <meta name="twitter:site" content={SITE.twitter} />}
 <meta name="twitter:title" content={title ?? SITE.name} />
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
+<meta name="twitter:image:alt" content={imageAlt} />
 
 <!-- RSS -->
 <link rel="alternate" type="application/rss+xml" title={SITE.name} href={new URL("/rss.xml", Astro.site)} />
 
-<!-- Favicon -->
+<!-- Favicon & PWA -->
 <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
 <link rel="manifest" href="/site.webmanifest" />
+<meta name="theme-color" content="#0ea5e9" />
 
 <!-- Fonts -->
 <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -80,6 +101,19 @@ const ogImage = new URL(image, Astro.site);
 />
 
 <!-- Structured Data -->
+<script
+  type="application/ld+json"
+  set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    name: SITE.name,
+    url: SITE.url,
+    logo: logoUrl.toString(),
+    email: SITE.email,
+    sameAs: [SITE.social.github, SITE.social.rss].filter(Boolean),
+  })}
+/>
+
 {type === "website" && (
   <script
     type="application/ld+json"
@@ -115,9 +149,15 @@ const ogImage = new URL(image, Astro.site);
         "@type": "Organization",
         name: SITE.name,
         url: SITE.url,
+        logo: {
+          "@type": "ImageObject",
+          url: logoUrl.toString(),
+        },
       },
       datePublished: publishedTime,
       dateModified: modifiedTime ?? publishedTime,
+      articleSection: section,
+      keywords: tags.join(", "),
       mainEntityOfPage: {
         "@type": "WebPage",
         "@id": canonicalURL.toString(),

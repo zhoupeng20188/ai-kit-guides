@@ -3,6 +3,10 @@ Allow: /
 
 # Block development/staging
 Disallow: /*?*draft=
+Disallow: /_astro/
+
+# Host directive
+Host: https://aikitguides.com
 
 # Sitemap
 Sitemap: https://aikitguides.com/sitemap-index.xml

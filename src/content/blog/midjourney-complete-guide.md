@@ -5,6 +5,8 @@ pubDate: 2026-06-25
 category: "ai-art"
 tags: ["midjourney", "ai-art", "tutorial", "image-generation"]
 author: "AI Kit Guides Team"
+image: "/og-midjourney-complete-guide.png"
+imageAlt: "Midjourney Complete Guide: Create Stunning AI Art from Text"
 faq:
   - question: "How much does Midjourney cost?"
     answer: "Midjourney offers four plans: Basic ($10/month), Standard ($30/month), Pro ($60/month), and Mega ($120/month). The Standard plan is recommended for most users."

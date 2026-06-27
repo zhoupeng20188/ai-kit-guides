@@ -19,6 +19,13 @@ const { post, relatedPosts, headings = [] } = Astro.props;
 const { title, description, pubDate, updatedDate, category, tags, author, image, imageAlt, faq } = post.data;
 const cat = getCategoryBySlug(category);
 
+const breadcrumbJsonLd = [
+  { name: "Home", url: "/" },
+  { name: "Blog", url: "/blog" },
+  ...(cat ? [{ name: cat.name, url: `/categories/${cat.slug}` }] : []),
+  { name: title, url: `/blog/${post.id}` },
+];
+
 const formattedDate = pubDate.toLocaleDateString("en-US", {
   year: "numeric",
   month: "long",
@@ -39,18 +46,36 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
     <BaseSEO
       title={title}
       description={description}
+      image={image}
+      imageAlt={imageAlt}
+      keywords={[category, ...tags]}
       type="article"
       publishedTime={pubDate.toISOString()}
       modifiedTime={updatedDate?.toISOString()}
       author={author}
+      section={cat?.name}
+      tags={tags}
       faqJsonLd={faq}
+    />
+    <script
+      type="application/ld+json"
+      set:html={JSON.stringify({
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        itemListElement: breadcrumbJsonLd.map((item, index) => ({
+          "@type": "ListItem",
+          position: index + 1,
+          name: item.name,
+          item: new URL(item.url, SITE.url).toString(),
+        })),
+      })}
     />
   </head>
   <body class="min-h-screen flex flex-col bg-white">
     <Header />
 
     <main class="flex-1">
-      <div class="max-w-3xl mx-auto px-4 pt-8">
+      <div class="max-w-3xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 pt-8">
         <!-- Breadcrumb -->
         <nav class="flex items-center gap-2 text-sm text-ink-500 mb-6" aria-label="Breadcrumb">
           <a href="/" class="hover:text-brand-600">Home</a>
@@ -95,6 +120,9 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
             </div>
           </header>
 
+          <!-- Top Ad -->
+          <InContentAd label="Advertisement" />
+
           <!-- Article Body with TOC -->
           <div class="flex gap-8">
             <div class="prose flex-1 min-w-0">
@@ -114,9 +142,20 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
               )}
             </div>
 
-            <TableOfContents headings={headings} />
+            <!-- Sidebar: TOC + Ad -->
+            <div class="hidden lg:block w-64 flex-shrink-0">
+              <div class="sticky top-24 space-y-6">
+                <TableOfContents headings={headings} />
+                <InContentAd slot="2222222222" label="Advertisement" />
+              </div>
+            </div>
           </div>
         </article>
+
+        <!-- Bottom Ad -->
+        <div class="my-10">
+          <InContentAd label="Advertisement" />
+        </div>
 
         <RelatedPosts posts={relatedPosts} currentId={post.id} />
 

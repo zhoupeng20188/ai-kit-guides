@@ -1,6 +1,7 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
+import InContentAd from "../components/InContentAd.astro";
 import { getCollection } from "astro:content";
 import { CATEGORIES } from "../config/site";
 
@@ -41,6 +42,11 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
         </a>
       </div>
     </div>
+  </section>
+
+  <!-- Homepage Top Ad -->
+  <section class="max-w-6xl mx-auto px-4 pt-8">
+    <InContentAd label="Advertisement" />
   </section>
 
   <!-- Categories Grid -->
@@ -96,12 +102,17 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
     </section>
   )}
 
+  <!-- Homepage Bottom Ad -->
+  <section class="max-w-6xl mx-auto px-4 py-8">
+    <InContentAd label="Advertisement" />
+  </section>
+
   <!-- CTA Section -->
   <section class="bg-ink-900 text-white">
     <div class="max-w-4xl mx-auto px-4 py-16 text-center">
       <h2 class="text-3xl font-bold mb-4">Never Miss an AI Tool Review</h2>
       <p class="text-ink-300 max-w-xl mx-auto mb-8">
-        Subscribe to our RSS feed or follow us on Twitter for the latest AI tool tutorials, comparisons, and industry insights.
+        Subscribe to our RSS feed for the latest AI tool tutorials, comparisons, and industry insights.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a
@@ -109,12 +120,6 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
           class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 transition-colors"
         >
           Subscribe via RSS
-        </a>
-        <a
-          href="https://twitter.com/aikitguides"
-          class="inline-flex items-center px-6 py-3 rounded-lg border border-ink-600 text-white font-medium hover:border-brand-400 transition-colors"
-        >
-          Follow on Twitter
         </a>
       </div>
     </div>

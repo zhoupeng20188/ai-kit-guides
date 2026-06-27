@@ -5,10 +5,10 @@ export const SITE = {
     "AI tool tutorials, honest comparisons, and beginner-friendly guides. Helping you find and master the best AI tools — ChatGPT, Midjourney, Claude, and more.",
   url: "https://aikitguides.com",
   author: "AI Kit Guides Team",
-  email: "contact@aikitguides.com",
+  email: "foreverzhy1252@gmail.com",
   locale: "en_US",
   lang: "en",
-  twitter: "@aikitguides",
+  twitter: "", // No Twitter account
   defaultOgImage: "/og-default.png",
   nav: [
     { label: "Home", href: "/" },
@@ -17,7 +17,6 @@ export const SITE = {
     { label: "About", href: "/about" },
   ],
   social: {
-    twitter: "https://twitter.com/aikitguides",
     github: "https://github.com/zhoupeng20188/ai-kit-guides",
     rss: "/rss.xml",
   },
