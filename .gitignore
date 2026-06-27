@@ -28,3 +28,15 @@ pnpm-debug.log*
 
 # Cloudflare
 .wrangler/
+
+# deployment platforms
+.vercel/
+.netlify/
+
+# caches
+.cache/
+.temp/
+*.log
+
+# workbuddy project memory
+.workbuddy/
