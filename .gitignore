@@ -40,3 +40,7 @@ pnpm-debug.log*
 
 # workbuddy project memory
 .workbuddy/
+
+# project notes and guides (keep locally)
+PROJECT_SUMMARY.md
+PUSH_GUIDE.md
