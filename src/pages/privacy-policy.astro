@@ -1,0 +1,110 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { SITE } from "../config/site";
+
+const lastUpdated = "June 27, 2026";
+---
+
+<MainLayout
+  title="Privacy Policy"
+  description="Privacy Policy for AI Kit Guides. Learn how we handle your data, cookies, and advertising."
+  noindex={true}
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-extrabold text-ink-900 mb-4">Privacy Policy</h1>
+    <p class="text-sm text-ink-400 mb-8">Last updated: {lastUpdated}</p>
+
+    <div class="prose max-w-none">
+      <p>
+        At AI Kit Guides, accessible from {SITE.url}, your privacy is important to us. This Privacy Policy explains what information we collect and how we use it.
+      </p>
+
+      <h2>Information We Collect</h2>
+      <p>
+        We collect minimal personal information. Specifically:
+      </p>
+      <ul>
+        <li><strong>Log data:</strong> Like many websites, we collect information that your browser sends automatically, including your IP address, browser type, and the pages you visit. This is used for analytics and security purposes.</li>
+        <li><strong>Cookies:</strong> We use cookies to improve your browsing experience and to serve relevant advertisements.</li>
+        <li><strong>Contact information:</strong> If you email us directly, we receive your email address and any information you include in your message.</li>
+      </ul>
+
+      <h2>How We Use Your Information</h2>
+      <p>
+        We use the information we collect to:
+      </p>
+      <ul>
+        <li>Operate and maintain our website</li>
+        <li>Analyze website traffic and user behavior to improve our content</li>
+        <li>Serve relevant advertisements through Google AdSense</li>
+        <li>Respond to your inquiries and communications</li>
+        <li>Protect against fraud and abuse</li>
+      </ul>
+
+      <h2>Google AdSense and Advertising</h2>
+      <p>
+        We use Google AdSense to display advertisements on this website. Google, as a third-party vendor, uses cookies to serve ads based on your prior visits to this and other websites.
+      </p>
+      <ul>
+        <li>Google's use of advertising cookies enables it and its partners to serve ads to you based on your visit to our site and/or other sites on the Internet.</li>
+        <li>You may opt out of personalized advertising by visiting <a href="https://www.google.com/settings/ads" rel="noopener" target="_blank">Google Ads Settings</a>.</li>
+        <li>You can also opt out of a third-party vendor's use of cookies for personalized advertising by visiting <a href="https://www.aboutads.info" rel="noopener" target="_blank">www.aboutads.info</a>.</li>
+      </ul>
+
+      <h2>Third-Party Services</h2>
+      <p>
+        We may use third-party services that collect information used to identify you. These include:
+      </p>
+      <ul>
+        <li><strong>Google Analytics:</strong> For understanding website traffic and user behavior.</li>
+        <li><strong>Google AdSense:</strong> For displaying advertisements.</li>
+      </ul>
+      <p>
+        These third-party services have their own privacy policies governing the use of your information.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        We use the following types of cookies:
+      </p>
+      <ul>
+        <li><strong>Essential cookies:</strong> Necessary for the website to function properly.</li>
+        <li><strong>Analytics cookies:</strong> Help us understand how visitors interact with the website.</li>
+        <li><strong>Advertising cookies:</strong> Used by Google AdSense to display personalized ads.</li>
+      </ul>
+      <p>
+        You can control cookies through your browser settings. Disabling cookies may affect website functionality.
+      </p>
+
+      <h2>Your Rights</h2>
+      <p>
+        Depending on your location, you may have the following rights regarding your personal data:
+      </p>
+      <ul>
+        <li>The right to access the personal data we hold about you</li>
+        <li>The right to request correction of inaccurate data</li>
+        <li>The right to request deletion of your data</li>
+        <li>The right to object to processing of your data</li>
+        <li>The right to data portability</li>
+      </ul>
+      <p>
+        To exercise these rights, please contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+
+      <h2>Children's Privacy</h2>
+      <p>
+        Our website is not directed to children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us so we can delete it.
+      </p>
+
+      <h2>Changes to This Privacy Policy</h2>
+      <p>
+        We may update our Privacy Policy from time to time. We will notify you of any changes by posting the new Privacy Policy on this page and updating the "Last updated" date. You are advised to review this Privacy Policy periodically for any changes.
+      </p>
+
+      <h2>Contact Us</h2>
+      <p>
+        If you have any questions about this Privacy Policy, please contact us at <a href={`mailto:${SITE.email}`}>{SITE.email}</a>.
+      </p>
+    </div>
+  </div>
+</MainLayout>

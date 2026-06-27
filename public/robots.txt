@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+# Block development/staging
+Disallow: /*?*draft=
+
+# Sitemap
+Sitemap: https://aikitguides.com/sitemap-index.xml

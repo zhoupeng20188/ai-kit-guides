@@ -1,0 +1,55 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import ArticleCard from "../../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import { CATEGORIES, getCategoryBySlug } from "../../config/site";
+
+export async function getStaticPaths() {
+  return CATEGORIES.map((cat) => ({
+    params: { category: cat.slug },
+  }));
+}
+
+const { category } = Astro.params;
+const cat = getCategoryBySlug(category!);
+
+const posts = await getCollection("blog", ({ data }) => !data.draft && data.category === category);
+const sortedPosts = posts.sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime());
+---
+
+<MainLayout
+  title={`${cat?.name} Articles`}
+  description={cat?.description}
+>
+  <div class="max-w-6xl mx-auto px-4 py-12">
+    <!-- Breadcrumb -->
+    <nav class="flex items-center gap-2 text-sm text-ink-500 mb-6">
+      <a href="/" class="hover:text-brand-600">Home</a>
+      <span>/</span>
+      <a href="/categories" class="hover:text-brand-600">Categories</a>
+      <span>/</span>
+      <span class="text-ink-700">{cat?.name}</span>
+    </nav>
+
+    <header class="mb-10">
+      <h1 class="text-4xl font-extrabold text-ink-900 mb-3">{cat?.name}</h1>
+      <p class="text-lg text-ink-600 max-w-2xl">{cat?.description}</p>
+      <p class="mt-2 text-sm text-ink-400">{sortedPosts.length} article{sortedPosts.length !== 1 ? "s" : ""}</p>
+    </header>
+
+    {sortedPosts.length > 0 ? (
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {sortedPosts.map((post) => (
+          <ArticleCard post={post} />
+        ))}
+      </div>
+    ) : (
+      <div class="text-center py-20 text-ink-400">
+        <p class="text-lg">No articles in this category yet.</p>
+        <a href="/blog" class="mt-4 inline-block text-brand-600 hover:text-brand-700 font-medium">
+          Browse all articles &rarr;
+        </a>
+      </div>
+    )}
+  </div>
+</MainLayout>

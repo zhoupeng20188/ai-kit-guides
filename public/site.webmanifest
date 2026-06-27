@@ -1,0 +1,16 @@
+{
+  "name": "AI Kit Guides",
+  "short_name": "AI Kit",
+  "description": "AI tool tutorials, honest comparisons, and beginner-friendly guides.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0ea5e9",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

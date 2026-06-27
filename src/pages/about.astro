@@ -1,0 +1,58 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import { SITE } from "../config/site";
+---
+
+<MainLayout
+  title="About"
+  description="Learn about AI Kit Guides — our mission, our team, and why we created this blog to help you navigate the world of AI tools."
+>
+  <div class="max-w-3xl mx-auto px-4 py-12">
+    <h1 class="text-4xl font-extrabold text-ink-900 mb-6">About AI Kit Guides</h1>
+
+    <div class="prose max-w-none">
+      <h2>Our Mission</h2>
+      <p>
+        AI Kit Guides was created with one simple goal: to help everyday people navigate the rapidly evolving world of AI tools. The AI landscape moves fast — new tools launch every week, existing ones get major updates, and it's hard to know which ones are worth your time and money.
+      </p>
+      <p>
+        We cut through the hype and provide honest, practical, and beginner-friendly guides. No jargon. No fluff. Just clear, actionable advice you can use today.
+      </p>
+
+      <h2>What We Cover</h2>
+      <p>
+        Our content focuses on the AI tools that matter most in 2026:
+      </p>
+      <ul>
+        <li><strong>ChatGPT &amp; OpenAI tools</strong> — from basic usage to advanced workflows</li>
+        <li><strong>Claude by Anthropic</strong> — when to use it, how it compares, and best practices</li>
+        <li><strong>AI image generators</strong> — Midjourney, DALL-E, Stable Diffusion guides</li>
+        <li><strong>Prompt engineering</strong> — techniques to get better results from any AI</li>
+        <li><strong>AI tool comparisons</strong> — head-to-head reviews to help you choose</li>
+      </ul>
+
+      <h2>Our Approach</h2>
+      <p>
+        Every article we publish follows three principles:
+      </p>
+      <ol>
+        <li><strong>Honesty first.</strong> If a tool isn't worth your time, we'll tell you. If a competitor is better, we'll say so.</li>
+        <li><strong>Practical over theoretical.</strong> We focus on real-world use cases, not academic discussions.</li>
+        <li><strong>Accessible to everyone.</strong> You don't need a PhD in machine learning to use AI tools effectively.</li>
+      </ol>
+
+      <h2>Who We Are</h2>
+      <p>
+        AI Kit Guides is written by a team of developers, designers, and AI enthusiasts who use these tools every day. We're not affiliated with any AI company — our reviews and recommendations are independent.
+      </p>
+
+      <h2>Get in Touch</h2>
+      <p>
+        Have a question, suggestion, or just want to say hi? We'd love to hear from you. Visit our <a href="/contact">contact page</a> to reach out.
+      </p>
+      <p>
+        You can also follow us on <a href={SITE.social.twitter}>Twitter</a> or subscribe to our <a href="/rss.xml">RSS feed</a> for the latest updates.
+      </p>
+    </div>
+  </div>
+</MainLayout>

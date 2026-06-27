@@ -1,0 +1,29 @@
+---
+import { SITE } from "../config/site";
+import BaseSEO from "../components/BaseSEO.astro";
+import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  noindex?: boolean;
+  type?: "website" | "article";
+  publishedTime?: string;
+  modifiedTime?: string;
+  author?: string;
+  faqJsonLd?: object[];
+}
+
+const props = Astro.props;
+---
+
+<!doctype html>
+<html lang={SITE.lang}>
+  <head>
+    <BaseSEO {...props} />
+  </head>
+  <body class="min-h-screen flex flex-col bg-white">
+    <slot />
+  </body>
+</html>

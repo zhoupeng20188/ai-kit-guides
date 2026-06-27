@@ -1,0 +1,65 @@
+---
+import { getCollection, render, type CollectionEntry } from "astro:content";
+import BlogPostLayout from "../../layouts/BlogPostLayout.astro";
+import InContentAd from "../../components/InContentAd.astro";
+import { SITE } from "../../config/site";
+
+export async function getStaticPaths() {
+  const posts = await getCollection("blog", ({ data }) => !data.draft);
+  return posts.map((post) => ({
+    params: { slug: post.id },
+    props: { post },
+  }));
+}
+
+interface Props {
+  post: CollectionEntry<"blog">;
+}
+
+const { post } = Astro.props;
+const { Content, headings } = await render(post);
+
+// Get related posts (same category, exclude current)
+const allPosts = await getCollection("blog", ({ data }) => !data.draft);
+const relatedPosts = allPosts
+  .filter((p) => p.id !== post.id && p.data.category === post.data.category)
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+// If not enough same-category posts, fill with other recent posts
+if (relatedPosts.length < 3) {
+  const fillers = allPosts
+    .filter((p) => p.id !== post.id && p.data.category !== post.data.category)
+    .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+    .slice(0, 3 - relatedPosts.length);
+  relatedPosts.push(...fillers);
+}
+
+const wordCount = post.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.ceil(wordCount / 225));
+---
+
+<BlogPostLayout post={post} relatedPosts={relatedPosts} headings={headings}>
+  <div class="mb-4 text-sm text-ink-400">
+    {readingTime} min read &middot; {wordCount} words
+  </div>
+
+  <Content />
+
+  <InContentAd label="Advertisement" />
+
+  <!-- Author Bio -->
+  <div class="mt-12 p-6 rounded-xl bg-ink-50 border border-ink-100">
+    <div class="flex items-start gap-4">
+      <div class="w-12 h-12 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold flex-shrink-0">
+        AI
+      </div>
+      <div>
+        <p class="font-semibold text-ink-900">{post.data.author}</p>
+        <p class="text-sm text-ink-600 mt-1">
+          AI Kit Guides is dedicated to helping you navigate the world of AI tools with honest, practical, and beginner-friendly content.
+        </p>
+      </div>
+    </div>
+  </div>
+</BlogPostLayout>

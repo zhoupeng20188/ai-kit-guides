@@ -1,0 +1,20 @@
+---
+import { ADSENSE } from "../config/site";
+
+const showAds = ADSENSE.enabled;
+---
+
+{showAds && (
+  <script
+    is:inline
+    async
+    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${ADSENSE.client}`}
+    crossorigin="anonymous"
+  />
+)}
+
+{showAds && (
+  <script is:inline>
+    (adsbygoogle = window.adsbygoogle || []).push({});
+  </script>
+)}

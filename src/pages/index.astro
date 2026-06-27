@@ -1,0 +1,122 @@
+---
+import MainLayout from "../layouts/MainLayout.astro";
+import ArticleCard from "../components/ArticleCard.astro";
+import { getCollection } from "astro:content";
+import { CATEGORIES } from "../config/site";
+
+const posts = await getCollection("blog", ({ data }) => !data.draft);
+const sortedPosts = posts.sort(
+  (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime()
+);
+const featuredPost = sortedPosts.find((p) => p.data.featured) ?? sortedPosts[0];
+const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0, 6);
+---
+
+<MainLayout>
+  <!-- Hero Section -->
+  <section class="bg-gradient-to-b from-brand-50 to-white border-b border-ink-100">
+    <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center">
+      <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-100 text-brand-700 mb-4">
+        Your guide to AI tools in 2026
+      </div>
+      <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink-900 leading-tight tracking-tight">
+        Master the Best AI Tools.
+        <span class="text-brand-600">Work Smarter, Not Harder.</span>
+      </h1>
+      <p class="mt-6 text-lg text-ink-600 max-w-2xl mx-auto leading-relaxed">
+        Honest reviews, step-by-step tutorials, and head-to-head comparisons of ChatGPT, Claude, Midjourney, and dozens more AI tools — written for real people, not AI experts.
+      </p>
+      <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/blog"
+          class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 transition-colors"
+        >
+          Browse All Articles
+        </a>
+        <a
+          href="/categories"
+          class="inline-flex items-center px-6 py-3 rounded-lg border border-ink-300 text-ink-700 font-medium hover:border-brand-400 hover:text-brand-600 transition-colors"
+        >
+          Explore Categories
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Categories Grid -->
+  <section class="max-w-6xl mx-auto px-4 py-12">
+    <h2 class="text-2xl font-bold text-ink-900 mb-6">Explore by Category</h2>
+    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+      {CATEGORIES.map((cat) => {
+        const count = posts.filter((p) => p.data.category === cat.slug).length;
+        return (
+          <a
+            href={`/categories/${cat.slug}`}
+            class="group rounded-xl border border-ink-200 p-5 hover:border-brand-400 hover:shadow-md transition-all text-center"
+          >
+            <div class="text-3xl mb-3">
+              {cat.icon === "chat" && "💬"}
+              {cat.icon === "tools" && "🔧"}
+              {cat.icon === "prompt" && "✏️"}
+              {cat.icon === "art" && "🎨"}
+              {cat.icon === "brain" && "🧠"}
+            </div>
+            <h3 class="font-semibold text-ink-900 group-hover:text-brand-600 transition-colors text-sm">
+              {cat.name}
+            </h3>
+            <p class="text-xs text-ink-400 mt-1">{count} article{count !== 1 ? "s" : ""}</p>
+          </a>
+        );
+      })}
+    </div>
+  </section>
+
+  <!-- Featured Article -->
+  {featuredPost && (
+    <section class="max-w-6xl mx-auto px-4 py-8">
+      <h2 class="text-2xl font-bold text-ink-900 mb-6">Featured Article</h2>
+      <ArticleCard post={featuredPost} featured={true} />
+    </section>
+  )}
+
+  <!-- Recent Articles -->
+  {recentPosts.length > 0 && (
+    <section class="max-w-6xl mx-auto px-4 py-12">
+      <div class="flex items-center justify-between mb-6">
+        <h2 class="text-2xl font-bold text-ink-900">Latest Articles</h2>
+        <a href="/blog" class="text-sm font-medium text-brand-600 hover:text-brand-700">
+          View all &rarr;
+        </a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {recentPosts.map((post) => (
+          <ArticleCard post={post} />
+        ))}
+      </div>
+    </section>
+  )}
+
+  <!-- CTA Section -->
+  <section class="bg-ink-900 text-white">
+    <div class="max-w-4xl mx-auto px-4 py-16 text-center">
+      <h2 class="text-3xl font-bold mb-4">Never Miss an AI Tool Review</h2>
+      <p class="text-ink-300 max-w-xl mx-auto mb-8">
+        Subscribe to our RSS feed or follow us on Twitter for the latest AI tool tutorials, comparisons, and industry insights.
+      </p>
+      <div class="flex flex-wrap items-center justify-center gap-4">
+        <a
+          href="/rss.xml"
+          class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 transition-colors"
+        >
+          Subscribe via RSS
+        </a>
+        <a
+          href="https://twitter.com/aikitguides"
+          class="inline-flex items-center px-6 py-3 rounded-lg border border-ink-600 text-white font-medium hover:border-brand-400 transition-colors"
+        >
+          Follow on Twitter
+        </a>
+      </div>
+    </div>
+  </section>
+</MainLayout>

@@ -1,0 +1,37 @@
+---
+import { ADSENSE } from "../config/site";
+
+interface Props {
+  slot?: string;
+  format?: string;
+  responsive?: boolean;
+  label?: string;
+}
+
+const {
+  slot = ADSENSE.slot.inContent,
+  format = "auto",
+  responsive = true,
+  label = "Advertisement",
+} = Astro.props;
+
+const showAds = ADSENSE.enabled;
+---
+
+{showAds ? (
+  <div class="ad-container">
+    <p class="ad-label">{label}</p>
+    <ins
+      class="adsbygoogle ad-slot"
+      style="display:block"
+      data-ad-client={ADSENSE.client}
+      data-ad-slot={slot}
+      data-ad-format={format}
+      data-full-width-responsive={responsive ? "true" : "false"}
+    />
+  </div>
+) : (
+  <div class="ad-container ad-slot" aria-hidden="true">
+    <!-- Ad slot placeholder - visible only when AdSense is enabled -->
+  </div>
+)}

@@ -1,0 +1,36 @@
+---
+interface TocItem {
+  depth: number;
+  slug: string;
+  text: string;
+}
+
+interface Props {
+  headings: TocItem[];
+}
+
+const { headings } = Astro.props;
+const tocItems = headings.filter((h) => h.depth >= 2 && h.depth <= 3);
+---
+
+{tocItems.length > 0 && (
+  <nav class="hidden lg:block sticky top-24 ml-8 w-56 flex-shrink-0">
+    <div class="border-l-2 border-ink-200 pl-4">
+      <p class="text-xs font-semibold uppercase tracking-wider text-ink-400 mb-3">
+        Table of Contents
+      </p>
+      <ul class="space-y-2">
+        {tocItems.map((item) => (
+          <li class:list={[item.depth === 3 && "ml-3"]}>
+            <a
+              href={`#${item.slug}`}
+              class="text-sm text-ink-500 hover:text-brand-600 transition-colors block py-0.5"
+            >
+              {item.text}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </nav>
+)}

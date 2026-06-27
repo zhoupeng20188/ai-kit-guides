@@ -1,0 +1,41 @@
+---
+import type { CollectionEntry } from "astro:content";
+import { getCategoryBySlug } from "../config/site";
+
+interface Props {
+  posts: CollectionEntry<"blog">[];
+  currentId: string;
+}
+
+const { posts, currentId } = Astro.props;
+const related = posts.filter((p) => p.id !== currentId).slice(0, 3);
+---
+
+{related.length > 0 && (
+  <section class="mt-16 pt-10 border-t border-ink-200">
+    <h2 class="text-2xl font-bold text-ink-900 mb-6">Related Articles</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {related.map((post) => {
+        const cat = getCategoryBySlug(post.data.category);
+        return (
+          <article class="group rounded-xl border border-ink-200 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="p-5">
+              {cat && (
+                <span class="inline-block text-xs font-medium text-brand-600 mb-2">
+                  {cat.name}
+                </span>
+              )}
+              <h3 class="font-semibold text-ink-900 group-hover:text-brand-600 transition-colors text-base leading-snug">
+                <a href={`/blog/${post.id}`}>{post.data.title}</a>
+              </h3>
+              <p class="mt-2 text-sm text-ink-500 line-clamp-2">{post.data.description}</p>
+              <time class="block mt-3 text-xs text-ink-400" datetime={post.data.pubDate.toISOString()}>
+                {post.data.pubDate.toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
+              </time>
+            </div>
+          </article>
+        );
+      })}
+    </div>
+  </section>
+)}
