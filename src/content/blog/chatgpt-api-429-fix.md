@@ -41,7 +41,7 @@ Before you write a single line of retry code, log into your OpenAI dashboard and
 
 Go to [platform.openai.com/account/limits](https://platform.openai.com/account/limits) and look at:
 
-- **RPM** (requests per minute) — for `gpt-4.5-turbo`, free tier is 500 RPM, paid is 5,000 RPM
+- **RPM** (requests per minute) — for `gpt-5.5-turbo`, free tier is 500 RPM, paid is 5,000 RPM
 - **TPM** (tokens per minute) — usually 80,000 for free tier
 - **Quota** (dollar amount) — check your billing page
 
@@ -63,7 +63,7 @@ def call_chatgpt_with_retry(messages, max_retries=8):
     for attempt in range(max_retries):
         try:
             response = client.chat.completions.create(
-                model="gpt-4.5-turbo",
+                model="gpt-5.5-turbo",
                 messages=messages,
                 temperature=0.7
             )
@@ -124,7 +124,7 @@ batch_requests = [
         "custom_id": f"req-{i}",
         "method": "POST",
         "url": "/v1/chat/completions",
-        "body": {"model": "gpt-4.5-turbo", "messages": [{"role": "user", "content": item}]}
+        "body": {"model": "gpt-5.5-turbo", "messages": [{"role": "user", "content": item}]}
     }
     for i, item in enumerate(items)
 ]
@@ -154,9 +154,9 @@ Sometimes 429 really does mean you're trying to do too much, and no amount of ba
 
 - Upgrade to a higher usage tier (requires spending more on the API)
 - Spread the job across 24 hours instead of 1 hour
-- Use a different model for parts of the job (GPT-4.5 for complex stuff, GPT-5.5 Nano for simple classification — Nano has much higher rate limits)
+- Use a different model for parts of the job (GPT-5.5 for complex stuff, GPT-5.5 Nano for simple classification — Nano has much higher rate limits)
 
-The last option is what I eventually did. Running everything through GPT-4.5 Turbo was overkill. I swapped the simple classification steps to GPT-5.5 Nano and cut my API costs by 60% while also eliminating the 429 errors. If you want a deeper comparison of when to use which model, I wrote about this in my [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026) — a lot of the logic applies to model selection generally.
+The last option is what I eventually did. Running everything through GPT-5.5 Turbo was overkill. I swapped the simple classification steps to GPT-5.5 Nano and cut my API costs by 60% while also eliminating the 429 errors. If you want a deeper comparison of when to use which model, I wrote about this in my [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026) — a lot of the logic applies to model selection generally.
 
 ## FAQ
 
