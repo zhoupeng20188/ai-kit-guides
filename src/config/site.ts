@@ -4,7 +4,7 @@ export const SITE = {
   description:
     "AI tool tutorials, honest comparisons, and beginner-friendly guides. Helping you find and master the best AI tools — ChatGPT, Midjourney, Claude, and more.",
   url: "https://aikitguides.com",
-  author: "AI Kit Guides Team",
+  author: "Peng Zhou",
   email: "foreverzhy1252@gmail.com",
   locale: "en_US",
   lang: "en",
