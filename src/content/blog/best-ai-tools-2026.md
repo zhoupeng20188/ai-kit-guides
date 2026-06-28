@@ -6,7 +6,7 @@ category: "ai-tools"
 tags: ["ai-tools", "productivity", "comparison", "reviews"]
 author: "AI Kit Guides Team"
 featured: false
-image: "/og-best-ai-tools-2026.png"
+image: "/og-best-ai-tools-2026.jpg"
 imageAlt: "10 Best AI Tools for Productivity in 2026: Tested and Ranked"
 faq:
   - question: "What are the best AI productivity tools in 2026?"

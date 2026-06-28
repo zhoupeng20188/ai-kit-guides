@@ -9,7 +9,7 @@ export const SITE = {
   locale: "en_US",
   lang: "en",
   twitter: "", // No Twitter account
-  defaultOgImage: "/og-default.png",
+  defaultOgImage: "/og-default.jpg",
   nav: [
     { label: "Home", href: "/" },
     { label: "Blog", href: "/blog" },

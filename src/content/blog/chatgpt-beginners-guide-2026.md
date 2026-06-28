@@ -5,7 +5,7 @@ pubDate: 2026-06-20
 category: "chatgpt"
 tags: ["chatgpt", "openai", "beginners", "tutorial"]
 author: "AI Kit Guides Team"
-image: "/og-chatgpt-beginners-guide-2026.png"
+image: "/og-chatgpt-beginners-guide-2026.jpg"
 imageAlt: "ChatGPT for Beginners: A Complete Guide to Getting Started in 2026"
 featured: true
 faq:
