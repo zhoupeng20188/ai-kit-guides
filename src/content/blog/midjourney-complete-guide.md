@@ -4,7 +4,6 @@ description: "Learn how to use Midjourney to create professional AI-generated ar
 pubDate: 2026-06-25
 category: "ai-art"
 tags: ["midjourney", "ai-art", "tutorial", "image-generation"]
-author: "AI Kit Guides Team"
 image: "/og-midjourney-complete-guide.jpg"
 imageAlt: "Midjourney Complete Guide: Create Stunning AI Art from Text"
 faq:

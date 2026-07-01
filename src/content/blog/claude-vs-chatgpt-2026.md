@@ -4,7 +4,6 @@ description: "A 2026 comparison of Claude 4.7 and GPT-5.5 covering pricing, writ
 pubDate: 2026-06-27
 category: "llm"
 tags: ["claude", "chatgpt", "gpt-5.5", "claude-4.7", "comparison", "ai-tools"]
-author: "AI Kit Guides Team"
 image: "/og-claude-vs-chatgpt-2026.jpg"
 imageAlt: "Claude 4.7 vs GPT-5.5: Which AI Assistant Is Better in 2026?"
 faq:

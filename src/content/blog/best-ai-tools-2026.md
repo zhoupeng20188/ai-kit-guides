@@ -4,7 +4,6 @@ description: "We tested dozens of AI productivity tools to bring you the top 10 
 pubDate: 2026-06-26
 category: "ai-tools"
 tags: ["ai-tools", "productivity", "comparison", "reviews"]
-author: "AI Kit Guides Team"
 featured: false
 image: "/og-best-ai-tools-2026.jpg"
 imageAlt: "10 Best AI Tools for Productivity in 2026: Tested and Ranked"

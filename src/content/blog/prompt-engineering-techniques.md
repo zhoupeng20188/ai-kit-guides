@@ -4,7 +4,6 @@ description: "Learn the prompt engineering techniques that actually work. From f
 pubDate: 2026-06-24
 category: "prompt-engineering"
 tags: ["prompt-engineering", "chatgpt", "claude", "techniques"]
-author: "AI Kit Guides Team"
 image: "/og-prompt-engineering-techniques.jpg"
 imageAlt: "Prompt Engineering Techniques: 10 Proven Methods for Better AI Results"
 faq:

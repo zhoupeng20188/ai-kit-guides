@@ -2,7 +2,7 @@
 title: "ChatGPT API Error 429: How I Finally Fixed My Rate Limit Issue"
 description: "Got ChatGPT API error 429? Here's how I fixed it after my script broke at 2AM. Exponential backoff code, Batch API tips, and what actually works."
 pubDate: 2026-06-28
-category: "tutorials"
+category: "chatgpt"
 tags: ["chatgpt api", "error 429", "rate limit", "openai api fix", "python"]
 image: "/og-chatgpt-api-429-fix.jpg"
 imageAlt: "ChatGPT API error 429 response in terminal with Python code on screen"
