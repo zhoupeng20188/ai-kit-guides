@@ -1,5 +1,5 @@
 ---
-title: "Claude Projects Tutorial: How I Finally Organized My AI Workflow"
+title: "Claude Projects: How I Organized 50+ AI Chats"
 description: "Claude Projects changed how I use AI. Here's how to set it up, what actually works, and the limitations nobody tells you about. Updated for Claude 4.7 in 2026."
 pubDate: 2026-06-28
 category: "llm"

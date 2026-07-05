@@ -1,5 +1,5 @@
 ---
-title: "ChatGPT for Beginners: A Complete Guide to Getting Started in 2026"
+title: "ChatGPT for Beginners: Start Here in 2026"
 description: "New to ChatGPT? This beginner-friendly guide covers everything from creating an account to writing your first prompt, with practical examples and tips."
 pubDate: 2026-06-20
 category: "chatgpt"

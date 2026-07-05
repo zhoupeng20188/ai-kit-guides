@@ -1,5 +1,5 @@
 ---
-title: "OpenAI Rate Limits: How to Calculate Your Real API Quota (2026 Guide)"
+title: "OpenAI Rate Limits: How Much API Can You Afford?"
 description: "Confused by TPM, RPM, and 5 different OpenAI tiers? Here's how rate limits actually work, what your real budget is, and how to check it right now."
 pubDate: 2026-07-03
 category: "chatgpt"

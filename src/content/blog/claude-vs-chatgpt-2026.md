@@ -1,5 +1,5 @@
 ---
-title: "Claude 4.7 vs GPT-5.5: Which AI Assistant Is Better in 2026?"
+title: "Claude 4.7 vs GPT-5.5: I Tested Both — Here's My Pick"
 description: "A 2026 comparison of Claude 4.7 and GPT-5.5 covering pricing, writing, coding, long documents, research, and real-world use cases."
 pubDate: 2026-06-27
 category: "llm"

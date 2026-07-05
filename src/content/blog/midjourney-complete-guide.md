@@ -1,5 +1,5 @@
 ---
-title: "Midjourney Complete Guide: Create Stunning AI Art from Text"
+title: "Midjourney Guide: Create AI Art That Doesn't Look AI"
 description: "Learn how to use Midjourney to create professional AI-generated art. Covers setup, prompts, parameters, styles, and pro tips for stunning results."
 pubDate: 2026-06-25
 category: "ai-art"

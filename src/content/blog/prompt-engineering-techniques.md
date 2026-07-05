@@ -1,5 +1,5 @@
 ---
-title: "Prompt Engineering Techniques: 10 Proven Methods for Better AI Results"
+title: "Prompt Engineering: 10 Techniques That Actually Work"
 description: "Learn the prompt engineering techniques that actually work. From few-shot prompting to chain-of-thought reasoning, master the art of talking to AI."
 pubDate: 2026-06-24
 category: "prompt-engineering"

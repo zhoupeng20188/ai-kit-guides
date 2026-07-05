@@ -1,5 +1,5 @@
 ---
-title: "ChatGPT API Error 429: How I Finally Fixed My Rate Limit Issue"
+title: "ChatGPT 429 Error? 5 Fixes I Tested (and One Failed)"
 description: "Got ChatGPT API error 429? Here's how I fixed it after my script broke at 2AM. Exponential backoff code, Batch API tips, and what actually works."
 pubDate: 2026-06-28
 category: "chatgpt"
