@@ -9,8 +9,6 @@ imageAlt: "Cursor AI editor interface showing agent mode sidebar with code sugge
 keywords: ["cursor ai tutorial", "cursor vs vs code", "ai code editor 2026", "cursor agent mode"]
 ---
 
-# Cursor AI Editor Tutorial: How I Switched from VS Code and Never Looked Back
-
 I was a die-hard VS Code user for eight years. Extensions, keybindings, settings sync — I had it all configured exactly how I liked it. When a colleague mentioned Cursor in early 2025, I brushed it off. "It's just VS Code with ChatGPT bolted on," I told him. I was wrong, and I'll admit that now.
 
 Three months later, I haven't opened regular VS Code once. Here's what actually happened, what works, and what still frustrates me about the [Cursor AI editor](https://cursor.com).

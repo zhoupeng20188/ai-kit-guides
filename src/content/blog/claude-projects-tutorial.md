@@ -9,8 +9,6 @@ imageAlt: "Claude Projects interface showing project sidebar with uploaded files
 keywords: ["claude projects tutorial", "claude 4.7 projects", "organize ai workflow", "claude custom instructions"]
 ---
 
-# Claude Projects Tutorial: How I Finally Organized My AI Workflow
-
 I used to have 40+ separate ChatGPT and Claude conversations, all doing slightly different versions of the same task. One thread was helping me write blog posts. Another was reviewing my code. A third was summarizing research papers. And because Claude (and ChatGPT) doesn't remember anything between conversations, I was pasting the same context — my writing style, my codebase structure, my project goals — into every new thread like an idiot.
 
 Then Claude Projects launched, and I realized I'd been doing it wrong for months.

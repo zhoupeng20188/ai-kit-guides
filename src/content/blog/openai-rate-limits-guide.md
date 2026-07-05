@@ -9,8 +9,6 @@ imageAlt: "OpenAI API rate limits dashboard showing TPM and RPM values across di
 keywords: ["openai rate limits", "openai api quota calculator", "openai tpm rpm", "openai tier system 2026", "chatgpt api limits"]
 ---
 
-# OpenAI Rate Limits: How to Calculate Your Real API Quota (2026 Guide)
-
 A few months ago I spent two hours debugging a "rate limit" error on a side project, only to discover the problem wasn't rate limiting at all — I had burned through my credits three days earlier and OpenAI was just politely telling me I was broke.
 
 That's the dirty secret of OpenAI's rate limit docs: they make it sound like 429 is always about throttling, but there are actually **two completely different 429 errors** with the same status code, and they have totally different fixes. Mix them up and you'll waste an evening like I did.
