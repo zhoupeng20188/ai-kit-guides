@@ -28,6 +28,11 @@ const articles = [
     title: "10 Best AI Tools for Productivity",
     subtitle: "Tested and Ranked in 2026",
   },
+  {
+    slug: "harness-engineering",
+    title: "Harness Engineering",
+    subtitle: "What Prompt Engineering Couldn't Solve",
+  },
 ];
 
 const publicDir = path.resolve(import.meta.dirname, "../public");
