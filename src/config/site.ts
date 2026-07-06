@@ -12,9 +12,9 @@ export const SITE = {
   defaultOgImage: "/og-default.jpg",
   nav: [
     { label: "Home", href: "/" },
-    { label: "Blog", href: "/blog" },
-    { label: "Categories", href: "/categories" },
-    { label: "About", href: "/about" },
+    { label: "Blog", href: "/blog/" },
+    { label: "Categories", href: "/categories/" },
+    { label: "About", href: "/about/" },
   ],
   social: {
     github: "https://github.com/zhoupeng20188/ai-kit-guides",

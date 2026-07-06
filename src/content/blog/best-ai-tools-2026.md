@@ -43,7 +43,7 @@ What keeps me coming back isn't any one killer feature. It's that it does *every
 - The writing can feel generic if you don't prompt it well. "In today's rapidly evolving landscape" shows up *way* too often
 - Free tier rate limiting is aggressive during US daytime hours (peak usage)
 - Sometimes it's slow. Like, 30 seconds to respond slow. Usually when I need it *now*
-**Verdict:** If you only use one AI tool, this is it. [Read our beginner's guide if you're just starting out →](/blog/chatgpt-beginners-guide-2026)
+**Verdict:** If you only use one AI tool, this is it. [Read our beginner's guide if you're just starting out →](/blog/chatgpt-beginners-guide-2026/)
 ---
 ## 2. Claude — The One I Use for Anything With Words
 **Price:** Free / ~$22/month (Pro)
@@ -59,7 +59,7 @@ The killer feature for me: **the context window**. 500K tokens means I can uploa
 - No web search. You have to use a workaround or switch to ChatGPT for anything current
 - The free tier is stingy with the good model (Claude Opus). You get ~10 messages a day before it drops to a weaker model
 - No image generation, no voice mode. It's focused on text and that's it
-**Verdict:** If you write for a living — blogs, marketing copy, reports — Claude is worth $22/month. [See how it compares to ChatGPT in our full comparison →](/blog/claude-vs-chatgpt-2026)
+**Verdict:** If you write for a living — blogs, marketing copy, reports — Claude is worth $22/month. [See how it compares to ChatGPT in our full comparison →](/blog/claude-vs-chatgpt-2026/)
 ---
 ## 3. Notion AI — Only If You Already Use Notion
 **Price:** $10/month (add-on to Notion)

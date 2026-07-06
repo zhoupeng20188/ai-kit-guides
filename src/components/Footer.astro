@@ -43,7 +43,7 @@ const year = new Date().getFullYear();
         <ul class="space-y-2 text-sm">
           {CATEGORIES.map((cat) => (
             <li>
-              <a href={`/categories/${cat.slug}`} class="hover:text-brand-400 transition-colors">
+              <a href={`/categories/${cat.slug}/`} class="hover:text-brand-400 transition-colors">
                 {cat.name}
               </a>
             </li>
@@ -54,9 +54,9 @@ const year = new Date().getFullYear();
       <div>
         <h3 class="text-white font-semibold text-sm mb-3">Site</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href="/about" class="hover:text-brand-400 transition-colors">About</a></li>
-          <li><a href="/contact" class="hover:text-brand-400 transition-colors">Contact</a></li>
-          <li><a href="/privacy-policy" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
+          <li><a href="/about/" class="hover:text-brand-400 transition-colors">About</a></li>
+          <li><a href="/contact/" class="hover:text-brand-400 transition-colors">Contact</a></li>
+          <li><a href="/privacy-policy/" class="hover:text-brand-400 transition-colors">Privacy Policy</a></li>
           <li><a href="/rss.xml" class="hover:text-brand-400 transition-colors">RSS Feed</a></li>
         </ul>
       </div>

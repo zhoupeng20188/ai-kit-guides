@@ -1,0 +1,9 @@
+# 301 redirect: non-trailing-slash → trailing-slash
+# Prevents GSC from indexing duplicate URLs (307 → 301 permanent)
+/about  /about/  301
+/contact  /contact/  301
+/privacy-policy  /privacy-policy/  301
+/blog  /blog/  301
+/blog/:slug  /blog/:slug/  301
+/categories  /categories/  301
+/categories/:slug  /categories/:slug/  301

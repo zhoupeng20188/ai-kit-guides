@@ -154,7 +154,7 @@ Sometimes 429 really does mean you're trying to do too much, and no amount of ba
 - Spread the job across 24 hours instead of 1 hour
 - Use a different model for parts of the job (GPT-5.5 for complex stuff, GPT-5.5 Nano for simple classification — Nano has much higher rate limits)
 
-The last option is what I eventually did. Running everything through GPT-5.5 Turbo was overkill. I swapped the simple classification steps to GPT-5.5 Nano and cut my API costs by 60% while also eliminating the 429 errors. If you want a deeper comparison of when to use which model, I wrote about this in my [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026) — a lot of the logic applies to model selection generally.
+The last option is what I eventually did. Running everything through GPT-5.5 Turbo was overkill. I swapped the simple classification steps to GPT-5.5 Nano and cut my API costs by 60% while also eliminating the 429 errors. If you want a deeper comparison of when to use which model, I wrote about this in my [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026/) — a lot of the logic applies to model selection generally.
 
 ## FAQ
 
@@ -172,7 +172,7 @@ Technically this works, but OpenAI's rate limits are per *organization*, not per
 
 ### Why does my script work fine for 10 minutes then suddenly start 429-ing?
 
-This is usually the TPM limit catching up with you. RPM is calculated per minute, but TPM is a rolling window. You might be fine for 10 minutes and then — bam — you've used up your 80,000 tokens for the rolling window. The fix is to track your token usage in code and slow down *before* you hit the limit. The [prompt engineering techniques](/blog/prompt-engineering-techniques) guide I wrote has some tips on reducing token usage without losing quality.
+This is usually the TPM limit catching up with you. RPM is calculated per minute, but TPM is a rolling window. You might be fine for 10 minutes and then — bam — you've used up your 80,000 tokens for the rolling window. The fix is to track your token usage in code and slow down *before* you hit the limit. The [prompt engineering techniques](/blog/prompt-engineering-techniques/) guide I wrote has some tips on reducing token usage without losing quality.
 
 ## Wrapping Up
 
@@ -180,4 +180,4 @@ Error 429 is annoying, but it's not mysterious once you understand which limit y
 
 One last thing: if you're building something that makes a lot of API calls, add logging *before* you have problems. I lost three hours that night because I had no idea which limit I was hitting. A single line of logging — `print(f"RPM used: {headers.get('x-ratelimit-remaining'}")`) — would have saved me the entire night.
 
-If you're just getting started with the ChatGPT API, check out my [beginner's guide to ChatGPT](/blog/chatgpt-beginners-guide-2026) — it covers setup, the basics of making your first API call, and a few other pitfalls I wish someone had told me about.
+If you're just getting started with the ChatGPT API, check out my [beginner's guide to ChatGPT](/blog/chatgpt-beginners-guide-2026/) — it covers setup, the basics of making your first API call, and a few other pitfalls I wish someone had told me about.

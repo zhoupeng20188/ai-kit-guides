@@ -136,7 +136,7 @@ Since people always ask: Claude Projects is basically ChatGPT's "Custom Instruct
 | Conversation history visible | ✅ Across all project chats | ❌ No |
 | API access | ❌ Not yet | ✅ Yes (via system prompt) |
 
-I use both, but for different things. ChatGPT (via API) is better for automated tasks. Claude Projects is better for ongoing creative work where context matters. If you want a deeper comparison, I wrote a whole post on [Claude vs. ChatGPT](/blog/claude-vs-chatgpt-2026) that covers this and a lot more.
+I use both, but for different things. ChatGPT (via API) is better for automated tasks. Claude Projects is better for ongoing creative work where context matters. If you want a deeper comparison, I wrote a whole post on [Claude vs. ChatGPT](/blog/claude-vs-chatgpt-2026/) that covers this and a lot more.
 
 ## FAQ
 
@@ -162,4 +162,4 @@ Claude Projects isn't a revolution, but it's a genuine quality-of-life improveme
 
 My advice: start with one project. Pick something you do repeatedly — writing, coding, research — and spend 20 minutes setting up proper instructions. Don't overthink it. You can always refine the instructions later. The fact that I wasted months *not* using Projects still annoys me, so maybe don't make the same mistake.
 
-If you're deciding between Claude and ChatGPT for your workflow, I put together a [list of the best AI tools for 2026](/blog/best-ai-tools-2026) that includes both (and some others worth looking at). And if you want to get better at prompting Claude within Projects, the [prompt engineering techniques](/blog/prompt-engineering-techniques) guide has some Claude-specific tips toward the end.
+If you're deciding between Claude and ChatGPT for your workflow, I put together a [list of the best AI tools for 2026](/blog/best-ai-tools-2026/) that includes both (and some others worth looking at). And if you want to get better at prompting Claude within Projects, the [prompt engineering techniques](/blog/prompt-engineering-techniques/) guide has some Claude-specific tips toward the end.

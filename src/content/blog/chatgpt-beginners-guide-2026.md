@@ -179,8 +179,8 @@ Is it worth $20? If you use it more than twice a week, yes. If you're just playi
 You've got the basics. Now the only way to get better is to use it. Here's what I'd do next:
 
 1. **Try the voice mode.** Seriously, it changes how you interact with the thing.
-2. **Read our [prompt engineering guide](/blog/prompt-engineering-techniques) — it'll 2x the quality of what you get back.**
-3. **Check out our [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026) if you're wondering whether you need both.**
+2. **Read our [prompt engineering guide](/blog/prompt-engineering-techniques/) — it'll 2x the quality of what you get back.**
+3. **Check out our [Claude vs. ChatGPT comparison](/blog/claude-vs-chatgpt-2026/) if you're wondering whether you need both.**
 4. **Break it.** Try prompts that push the boundaries. See where it fails. That's how you learn its limits.
 
 ## One Last Thing

@@ -19,7 +19,7 @@ Cursor is built on top of VS Code — same extensions, same keybindings, same se
 
 The key difference: Copilot suggests one line at a time. Cursor can rewrite your entire file while you watch.
 
-If you're completely new to AI coding tools, check out my [ChatGPT beginners guide](/blog/chatgpt-beginners-guide-2026) first — this article assumes you've at least used an AI chat tool before.
+If you're completely new to AI coding tools, check out my [ChatGPT beginners guide](/blog/chatgpt-beginners-guide-2026/) first — this article assumes you've at least used an AI chat tool before.
 
 ## Installing Cursor (5 Minutes, Zero Drama)
 
@@ -48,7 +48,7 @@ This is where Cursor shines compared to regular ChatGPT. Instead of copy-pasting
 
 Example: I had a Spring Boot app with a weird null pointer exception in a service method. Instead of copying the method, the controller, and the DTO into ChatGPT, I just asked Cursor: "Why is `user.getAddress()` returning null in `UserService.java`?" It found that my `UserDTO` mapping was skipping the address field. Fixed in 30 seconds.
 
-If you want to get better at asking AI the right questions, my [prompt engineering techniques](/blog/prompt-engineering-techniques) article has some specific tips for code-related prompts.
+If you want to get better at asking AI the right questions, my [prompt engineering techniques](/blog/prompt-engineering-techniques/) article has some specific tips for code-related prompts.
 
 ### Agent Mode (The Scary One That Actually Works)
 
@@ -70,7 +70,7 @@ Cursor lets you pick which model powers each feature. As of mid-2026, the option
 
 My personal setup: GPT-5.5 Turbo for tab completions (speed matters more there), Claude 4.7 Sonnet for chat and agent mode (quality matters more there). This combo works well for me as a Java developer — Claude seems to understand enterprise patterns better than GPT.
 
-If you're curious about how these models compare outside of coding, my [Claude vs ChatGPT comparison](/blog/claude-vs-chatgpt-2026) goes into detail on their general strengths and weaknesses.
+If you're curious about how these models compare outside of coding, my [Claude vs ChatGPT comparison](/blog/claude-vs-chatgpt-2026/) goes into detail on their general strengths and weaknesses.
 
 ## Cursor Rules (The Hidden Power Feature)
 
@@ -91,7 +91,7 @@ Here's the `.cursorrules` file from one of my Spring Boot projects:
 
 With these rules, Cursor generates code that looks like I wrote it. Without them, it defaults to whatever style the model feels like — usually a mix of patterns that doesn't match any real project.
 
-This is similar to what Claude Projects does with custom instructions — if you're interested in that approach too, see my [Claude Projects tutorial](/blog/claude-projects-tutorial).
+This is similar to what Claude Projects does with custom instructions — if you're interested in that approach too, see my [Claude Projects tutorial](/blog/claude-projects-tutorial/).
 
 ## Pricing: Is Cursor Worth $20/Month?
 
@@ -145,6 +145,6 @@ Cursor falls back to its "fast" model (a smaller, less capable model). It still 
 
 Cursor isn't perfect, and I'm not pretending it is. Agent Mode can be unpredictable, the pricing stings if you're a heavy user, and it sometimes forgets context in large projects. But for me, the productivity gain is real and measurable. I estimate I'm coding about 30-40% faster than I was with VS Code + Copilot, and that's after subtracting the time I spend reviewing AI-generated code.
 
-If you're curious about other AI tools that have genuinely changed my workflow, I ranked them in my [best AI tools for 2026](/blog/best-ai-tools-2026) article — Cursor is #1 on that list now.
+If you're curious about other AI tools that have genuinely changed my workflow, I ranked them in my [best AI tools for 2026](/blog/best-ai-tools-2026/) article — Cursor is #1 on that list now.
 
 The bottom line: try the free tier for a week. If you don't notice a difference, stick with VS Code. But if Agent Mode makes you say "oh, that's actually useful" like I did, the $20/month is an easy call.

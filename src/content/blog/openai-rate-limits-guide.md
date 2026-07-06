@@ -15,7 +15,7 @@ That's the dirty secret of OpenAI's rate limit docs: they make it sound like 429
 
 This guide breaks down the real OpenAI rate limit system as of mid-2026: the 4 dimensions that actually matter (most docs only mention 2), the 5-tier system that determines your budget, and the exact way to check what your limit actually is right now. No fluff, no hand-waving. Just the stuff I wish someone had told me six months ago.
 
-If you just want the quick fix for a 429 error, check out my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix) first. This article is more about understanding the system so you can stop hitting the limit in the first place.
+If you just want the quick fix for a 429 error, check out my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix/) first. This article is more about understanding the system so you can stop hitting the limit in the first place.
 
 ## The 4 Dimensions of OpenAI Rate Limits (Not 2)
 
@@ -200,7 +200,7 @@ Yes. Cached tokens still count as input tokens for TPM accounting (you pay less 
 
 ### Are batch API calls subject to the same rate limits?
 
-No. Batch has its own queue limit, separate from synchronous RPM/TPM. Submitting a batch with 100,000 requests does not block your live traffic. This is one of the biggest wins for cost reduction — see my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix) for the full batch workflow.
+No. Batch has its own queue limit, separate from synchronous RPM/TPM. Submitting a batch with 100,000 requests does not block your live traffic. This is one of the biggest wins for cost reduction — see my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix/) for the full batch workflow.
 
 ### What's the difference between `rate_limit_exceeded` and `insufficient_quota`?
 
@@ -226,4 +226,4 @@ The key things to remember:
 
 If you take one thing away: stop using fixed `time.sleep(5)` retries. They cause thundering herd problems and are the #1 reason 429s cascade across a system. Use exponential backoff with jitter, and honor the `retry-after-ms` header when it's present.
 
-For the full retry code with `tenacity` and `p-retry` examples, see my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix). And if you're just getting started with the OpenAI API in general, my [ChatGPT beginner's guide](/blog/chatgpt-beginners-guide-2026) covers the basics.
+For the full retry code with `tenacity` and `p-retry` examples, see my [ChatGPT API 429 fix guide](/blog/chatgpt-api-429-fix/). And if you're just getting started with the OpenAI API in general, my [ChatGPT beginner's guide](/blog/chatgpt-beginners-guide-2026/) covers the basics.
