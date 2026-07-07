@@ -44,3 +44,7 @@ pnpm-debug.log*
 # project notes and guides (keep locally)
 PROJECT_SUMMARY.md
 PUSH_GUIDE.md
+
+.dev.vars*
+!.dev.vars.example
+!.env.example
