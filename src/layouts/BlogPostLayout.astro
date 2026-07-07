@@ -106,6 +106,14 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
             <p class="mt-4 text-lg text-ink-600 leading-relaxed">{description}</p>
 
             <div class="mt-6 flex items-center gap-4 text-sm text-ink-500">
+              <img
+                src="/avatar-256.jpg"
+                alt={author}
+                width="32"
+                height="32"
+                loading="lazy"
+                class="rounded-full"
+              />
               <span class="font-medium text-ink-700">{author}</span>
               <span>&middot;</span>
               <time datetime={pubDate.toISOString()}>{formattedDate}</time>

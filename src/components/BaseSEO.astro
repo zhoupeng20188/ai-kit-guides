@@ -142,8 +142,10 @@ const logoUrl = new URL("/icon-512x512.png", Astro.site);
       description: description,
       image: ogImage.toString(),
       author: {
-        "@type": "Organization",
+        "@type": "Person",
         name: author,
+        url: `${SITE.url}/about/`,
+        image: new URL("/avatar-512.jpg", Astro.site).toString(),
       },
       publisher: {
         "@type": "Organization",

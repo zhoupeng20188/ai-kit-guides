@@ -11,7 +11,7 @@ const blog = defineCollection({
       updatedDate: z.coerce.date().optional(),
       category: z.string(),
       tags: z.array(z.string()).default([]),
-      author: z.string().default("AI Kit Guides Team"),
+      author: z.string().default("Peng Zhou"),
       image: z.string().optional(),
       imageAlt: z.string().optional(),
       featured: z.boolean().default(false),
