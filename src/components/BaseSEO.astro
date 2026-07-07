@@ -1,5 +1,5 @@
 ---
-import { SITE } from "../config/site";
+import { SITE, ANALYTICS } from "../config/site";
 
 interface Props {
   title?: string;
@@ -183,3 +183,12 @@ const logoUrl = new URL("/icon-512x512.png", Astro.site);
     })}
   />
 )}
+
+<!-- Google Analytics 4 -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${ANALYTICS.ga4Id}`}></script>
+<script is:inline define:vars={{ ga4Id: ANALYTICS.ga4Id }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', ga4Id);
+</script>

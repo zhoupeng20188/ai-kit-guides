@@ -22,6 +22,10 @@ export const SITE = {
   },
 };
 
+export const ANALYTICS = {
+  ga4Id: "G-FN0G78042G",
+};
+
 export const ADSENSE = {
   client: "ca-pub-0000000000000000", // Replace with your AdSense publisher ID
   enabled: false, // Set to true after AdSense approval
