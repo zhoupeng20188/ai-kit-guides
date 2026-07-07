@@ -77,12 +77,12 @@ const template = (title, subtitle) => `<svg width="1200" height="630" viewBox="0
 
 for (const { slug, title, subtitle } of articles) {
   const svgPath = path.join(publicDir, `og-${slug}.svg`);
-  const pngPath = path.join(publicDir, `og-${slug}.png`);
+  const jpgPath = path.join(publicDir, `og-${slug}.jpg`);
 
   fs.writeFileSync(svgPath, template(title, subtitle));
-  execSync(`sips -s format png "${svgPath}" --out "${pngPath}"`);
+  execSync(`sips -s format jpeg "${svgPath}" --out "${jpgPath}"`);
   fs.unlinkSync(svgPath);
-  console.log(`Generated ${pngPath}`);
+  console.log(`Generated ${jpgPath}`);
 }
 
 console.log("Done!");
