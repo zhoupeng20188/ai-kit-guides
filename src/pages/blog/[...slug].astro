@@ -51,9 +51,14 @@ const readingTime = Math.max(1, Math.ceil(wordCount / 225));
   <!-- Author Bio -->
   <div class="mt-12 p-6 rounded-xl bg-ink-50 border border-ink-100">
     <div class="flex items-start gap-4">
-      <div class="w-12 h-12 rounded-full bg-brand-600 flex items-center justify-center text-white font-bold flex-shrink-0">
-        AI
-      </div>
+      <img
+        src="/avatar-256.jpg"
+        alt={post.data.author}
+        width="48"
+        height="48"
+        loading="lazy"
+        class="w-12 h-12 rounded-full object-cover flex-shrink-0"
+      />
       <div>
         <p class="font-semibold text-ink-900">{post.data.author}</p>
         <p class="text-sm text-ink-600 mt-1">

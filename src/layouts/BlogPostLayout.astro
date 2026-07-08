@@ -111,8 +111,9 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
                 alt={author}
                 width="32"
                 height="32"
-                loading="lazy"
-                class="rounded-full"
+                loading="eager"
+                decoding="async"
+                class="rounded-full w-8 h-8 object-cover"
               />
               <span class="font-medium text-ink-700">{author}</span>
               <span>&middot;</span>
