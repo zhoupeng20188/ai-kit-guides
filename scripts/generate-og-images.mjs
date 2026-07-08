@@ -33,6 +33,11 @@ const articles = [
     title: "Harness Engineering",
     subtitle: "What Prompt Engineering Couldn't Solve",
   },
+  {
+    slug: "ai-hallucination-tips",
+    title: "Why Does AI Make Things Up?",
+    subtitle: "7 Ways to Stop AI Hallucinations",
+  },
 ];
 
 const publicDir = path.resolve(import.meta.dirname, "../public");
