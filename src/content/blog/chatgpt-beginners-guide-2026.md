@@ -6,7 +6,6 @@ category: "chatgpt"
 tags: ["chatgpt", "openai", "beginners", "tutorial"]
 image: "/og-chatgpt-beginners-guide-2026.jpg"
 imageAlt: "ChatGPT for Beginners: A Complete Guide to Getting Started in 2026"
-featured: true
 faq:
   - question: "Is ChatGPT free to use?"
     answer: "Yes, ChatGPT offers a free tier with access to GPT-4o mini. The Plus plan at $20/month unlocks GPT-4o, image generation, and higher usage limits."
