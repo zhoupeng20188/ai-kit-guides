@@ -41,6 +41,19 @@ const logoUrl = new URL("/icon-512x512.png", Astro.site);
 
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+<!-- Theme: apply before paint to avoid flash of wrong theme -->
+<script is:inline>
+  (function () {
+    try {
+      var stored = localStorage.getItem("theme");
+      var prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (stored === "dark" || (!stored && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    } catch (e) {}
+  })();
+</script>
 <title>{pageTitle}</title>
 <meta name="description" content={description} />
 <meta name="author" content={author} />

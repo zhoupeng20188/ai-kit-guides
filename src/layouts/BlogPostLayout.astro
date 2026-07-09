@@ -71,7 +71,7 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
       })}
     />
   </head>
-  <body class="min-h-screen flex flex-col bg-white">
+  <body class="min-h-screen flex flex-col bg-white dark:bg-ink-50">
     <Header />
 
     <main class="flex-1">
@@ -95,7 +95,7 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
             {cat && (
               <a
                 href={`/categories/${cat.slug}/`}
-                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-50 text-brand-700 mb-4"
+                class="inline-flex items-center px-3 py-1 rounded-full text-sm font-medium bg-brand-50 text-brand-700 mb-4 dark:bg-brand-900 dark:text-brand-200"
               >
                 {cat.name}
               </a>
@@ -169,7 +169,7 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
         <RelatedPosts posts={relatedPosts} currentId={post.id} />
 
         <!-- Newsletter CTA -->
-        <section class="mt-16 mb-8 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 p-8 text-center">
+        <section class="mt-16 mb-8 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 p-8 text-center dark:from-brand-900 dark:to-brand-800">
           <h2 class="text-xl font-bold text-ink-900 mb-2">Stay Updated on AI Tools</h2>
           <p class="text-sm text-ink-600 mb-4 max-w-md mx-auto">
             Get the latest AI tool reviews, tutorials, and comparison guides delivered to your RSS reader.

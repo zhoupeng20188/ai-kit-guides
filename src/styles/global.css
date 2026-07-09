@@ -1,6 +1,9 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+/* ===== Dark mode: class strategy (toggle sets `html.dark`) ===== */
+@custom-variant dark (&:where(.dark, .dark *));
+
 /* ===== Self-hosted Fonts (no Google Fonts CDN) ===== */
 @font-face {
   font-family: 'Inter';
@@ -73,7 +76,60 @@
 html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
+  color-scheme: light;
 }
+
+/* ===== Dark mode token overrides =====
+   Invert the `ink` scale so existing utility usages flip automatically:
+   lightest surface (50) -> darkest bg, darkest text (900) -> lightest text. */
+.dark {
+  color-scheme: dark;
+
+  --color-ink-50: #0f172a;  /* page / darkest surface */
+  --color-ink-100: #1e293b; /* card surface */
+  --color-ink-200: #334155; /* border */
+  --color-ink-300: #475569;
+  --color-ink-400: #64748b;
+  --color-ink-500: #94a3b8;
+  --color-ink-600: #cbd5e1; /* secondary text */
+  --color-ink-700: #e2e8f0;
+  --color-ink-800: #f1f5f9; /* body text */
+  --color-ink-900: #f8fafc; /* heading / emphasis text */
+}
+
+/* Dark mode prose: override Tailwind Typography color variables so
+   article/about body text, headings, lists, etc. flip to light. */
+.dark .prose {
+  --tw-prose-body: var(--color-ink-800);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-lead: var(--color-ink-700);
+  --tw-prose-links: var(--color-brand-400);
+  --tw-prose-bold: var(--color-ink-900);
+  --tw-prose-counters: var(--color-ink-500);
+  --tw-prose-bullets: var(--color-ink-400);
+  --tw-prose-hr: var(--color-ink-200);
+  --tw-prose-quotes: var(--color-ink-700);
+  --tw-prose-quote-borders: var(--color-ink-200);
+  --tw-prose-captions: var(--color-ink-500);
+  --tw-prose-code: var(--color-ink-900);
+  --tw-prose-pre-code: #e2e8f0;
+  --tw-prose-pre-bg: #0f172a;
+  --tw-prose-th-borders: var(--color-ink-200);
+  --tw-prose-td-borders: var(--color-ink-200);
+  color: var(--color-ink-800);
+}
+
+/* Keep code blocks dark even though ink-900 is remapped to light text */
+.dark .prose pre {
+  background: #0f172a;
+  color: #e2e8f0;
+}
+
+/* ===== Theme toggle icon swap ===== */
+.icon-sun { display: none; }
+.dark .icon-sun { display: block; }
+.icon-moon { display: block; }
+.dark .icon-moon { display: none; }
 
 body {
   font-family: var(--font-sans);
@@ -81,6 +137,10 @@ body {
   background-color: #ffffff;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+.dark body {
+  background-color: var(--color-ink-50);
 }
 
 /* ===== Typography Prose Overrides ===== */

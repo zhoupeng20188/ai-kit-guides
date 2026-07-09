@@ -9,7 +9,7 @@ const isActive = (href: string) => {
 ---
 
 <header
-  class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-ink-200"
+  class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-ink-200 dark:bg-ink-50/90"
   style="height: var(--header-height)"
 >
   <div class="max-w-6xl mx-auto px-4 h-full flex items-center justify-between">
@@ -29,8 +29,8 @@ const isActive = (href: string) => {
           class:list={[
             "px-3 py-2 rounded-md text-sm font-medium transition-colors",
             isActive(item.href)
-              ? "text-brand-600 bg-brand-50"
-              : "text-ink-600 hover:text-brand-600 hover:bg-ink-50",
+              ? "text-brand-600 bg-brand-50 dark:bg-brand-900"
+              : "text-ink-600 hover:text-brand-600 hover:bg-ink-50 dark:hover:bg-white/10",
           ]}
         >
           {item.label}
@@ -39,6 +39,20 @@ const isActive = (href: string) => {
     </nav>
 
     <div class="flex items-center gap-3">
+      <button
+        id="theme-toggle"
+        type="button"
+        class="p-2 text-ink-600 hover:text-brand-600 transition-colors"
+        aria-label="Toggle dark mode"
+      >
+        <svg class="icon-moon w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" />
+        </svg>
+        <svg class="icon-sun w-5 h-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <circle cx="12" cy="12" r="4" />
+          <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41" />
+        </svg>
+      </button>
       <a
         href="/rss.xml"
         class="text-ink-400 hover:text-brand-600 transition-colors"
@@ -66,7 +80,7 @@ const isActive = (href: string) => {
     </div>
   </div>
 
-  <div id="mobile-menu" class="hidden md:hidden border-t border-ink-200 bg-white">
+  <div id="mobile-menu" class="hidden md:hidden border-t border-ink-200 bg-white dark:bg-ink-50">
     <nav class="px-4 py-3 flex flex-col gap-1">
       {SITE.nav.map((item) => (
         <a
@@ -74,8 +88,8 @@ const isActive = (href: string) => {
           class:list={[
             "px-3 py-2 rounded-md text-sm font-medium",
             isActive(item.href)
-              ? "text-brand-600 bg-brand-50"
-              : "text-ink-600 hover:bg-ink-50",
+              ? "text-brand-600 bg-brand-50 dark:bg-brand-900"
+              : "text-ink-600 hover:bg-ink-50 dark:hover:bg-white/10",
           ]}
         >
           {item.label}
@@ -90,5 +104,14 @@ const isActive = (href: string) => {
   const menu = document.getElementById("mobile-menu");
   toggle?.addEventListener("click", () => {
     menu?.classList.toggle("hidden");
+  });
+
+  const themeToggle = document.getElementById("theme-toggle");
+  themeToggle?.addEventListener("click", () => {
+    const isDark = document.documentElement.classList.toggle("dark");
+    try {
+      localStorage.setItem("theme", isDark ? "dark" : "light");
+    } catch (e) {}
+    themeToggle.setAttribute("aria-pressed", String(isDark));
   });
 </script>
