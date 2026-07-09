@@ -5,6 +5,7 @@ import Footer from "../components/Footer.astro";
 import BaseSEO from "../components/BaseSEO.astro";
 import TableOfContents from "../components/TableOfContents.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
+import SocialShare from "../components/SocialShare.astro";
 import InContentAd from "../components/InContentAd.astro";
 import { SITE, getCategoryBySlug } from "../config/site";
 import "../styles/global.css";
@@ -37,6 +38,8 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
   month: "long",
   day: "numeric",
 });
+
+const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
 
 ---
 
@@ -160,6 +163,9 @@ const formattedUpdated = updatedDate?.toLocaleDateString("en-US", {
             </div>
           </div>
         </article>
+
+        <!-- Social Share -->
+        <SocialShare url={shareUrl} title={title} />
 
         <!-- Bottom Ad -->
         <div class="my-10">
