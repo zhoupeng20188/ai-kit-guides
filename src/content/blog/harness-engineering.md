@@ -22,7 +22,7 @@ Last month I spent four hours debugging an AI agent that kept "working" but brea
 
 That frustration sent me down a rabbit hole. I came out the other side convinced that **prompt engineering is hitting its ceiling, and the next paradigm is already here: harness engineering**.
 
-This is a 2026 concept — coined by Mitchell Hashimoto (HashiCorp founder, the guy behind Terraform) in February of this year — that reframes the entire problem. Instead of asking "how do I write better prompts," you ask "how do I build a system where the AI almost *can't* fail in the ways I care about." It clicked hard for me. Maybe it will for you too.
+This is a 2026 concept — coined by <a href="https://mitchellh.com/" target="_blank" rel="noopener noreferrer">Mitchell Hashimoto</a> (HashiCorp founder, the guy behind Terraform) in February of this year — that reframes the entire problem. Instead of asking "how do I write better prompts," you ask "how do I build a system where the AI almost *can't* fail in the ways I care about." It clicked hard for me. Maybe it will for you too.
 
 ## The Day I Realized Prompt Engineering Had Limits
 
@@ -42,7 +42,7 @@ The term "harness" borrows from horse riding. A horse is powerful but unpredicta
 
 Harness engineering applies the same idea to AI. You don't try to make the model smarter. You build a structured environment around the model so its intelligence gets channeled into reliable behavior.
 
-Harrison Chase (the LangChain founder) put it cleanly:
+Harrison Chase (the <a href="https://www.langchain.com/" target="_blank" rel="noopener noreferrer">LangChain</a> founder) put it cleanly:
 
 > "Harness is everything around the model — context assembly, tool orchestration, verification loops, architectural constraints, observability, cost control."
 

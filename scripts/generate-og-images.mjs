@@ -38,6 +38,11 @@ const articles = [
     title: "Why Does AI Make Things Up?",
     subtitle: "7 Ways to Stop AI Hallucinations",
   },
+  {
+    slug: "openclaw-vs-hermes-agent",
+    title: "OpenClaw vs Hermes Agent",
+    subtitle: "Which Open-Source AI Agent Wins in 2026?",
+  },
 ];
 
 const publicDir = path.resolve(import.meta.dirname, "../public");

@@ -210,6 +210,16 @@ body {
   text-decoration-color: var(--color-brand-600);
 }
 
+.dark .prose a {
+  color: var(--color-brand-400);
+  text-decoration-color: var(--color-brand-600);
+}
+
+.dark .prose a:hover {
+  color: var(--color-brand-300);
+  text-decoration-color: var(--color-brand-400);
+}
+
 .prose strong {
   font-weight: 600;
   color: var(--color-ink-900);
