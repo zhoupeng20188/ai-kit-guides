@@ -199,24 +199,6 @@ This file took me about two months to build up. Each entry under "Known Failure 
 
 You can do all of this in a day. The marginal value of each step is enormous.
 
-## FAQ
-
-### What is harness engineering in simple terms?
-
-Harness engineering is the practice of building a structured environment around an AI model — including constraints, verification loops, tools, and observability — so the model produces reliable, repeatable results. The model is the engine, the harness is the steering wheel, brakes, and dashboard.
-
-### How is harness engineering different from prompt engineering?
-
-Prompt engineering focuses on how to phrase instructions to get better outputs. Harness engineering focuses on the entire system around the model — what information it sees, what tools it can use, what rules it must follow, and how its outputs are verified. In practice, prompt engineering is now a small subset of harness engineering.
-
-### Do I need harness engineering if I only use ChatGPT occasionally?
-
-Probably not. Harness engineering matters most for AI agents that run autonomously — coding agents, customer service bots, research assistants. If you only use ChatGPT or Claude through their chat interface, prompt engineering is still enough.
-
-### What tools do I need to start with harness engineering?
-
-Most teams start with a CLAUDE.md or AGENTS.md file (under 100 lines) describing project rules, a linter or pre-commit hook for mechanical constraints, and a verification step where the agent runs tests before declaring success. You don't need any new frameworks — your existing dev tooling is enough.
-
 ## Where This Is Going
 
 The current models are all roughly comparable in raw capability. The differentiator in 2026 and beyond won't be "which model you use" — it'll be "how good is your harness." That's the part that's hard to replicate and easy to build advantage with.
