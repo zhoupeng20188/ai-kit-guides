@@ -1,6 +1,6 @@
 ---
-title: "Prompt Engineering: 10 Techniques That Actually Work"
-description: "Learn the prompt engineering techniques that actually work. From few-shot prompting to chain-of-thought reasoning, master the art of talking to AI."
+title: "Prompt Engineering Techniques: Your Prompts Aren't the Problem—Fix It"
+description: "Tired of vague AI answers? These 10 prompt engineering techniques—few-shot, chain-of-thought, role prompting—get better results from ChatGPT and Claude."
 pubDate: 2026-06-24
 category: "prompt-engineering"
 tags: ["prompt-engineering", "chatgpt", "claude", "techniques"]
