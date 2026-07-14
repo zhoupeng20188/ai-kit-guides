@@ -1,6 +1,6 @@
 ---
-title: "OpenAI Rate Limits: How Much API Can You Afford?"
-description: "Confused by TPM, RPM, and 5 different OpenAI tiers? Here's how rate limits actually work, what your real budget is, and how to check it right now."
+title: "OpenAI Rate Limits: Why Your 429 Isn't What You Think"
+description: "Your OpenAI 429 might not be throttling at all. Learn the two 429 types, TPM vs RPM, and how to find your real limit fast."
 pubDate: 2026-07-03
 category: "chatgpt"
 tags: ["openai rate limits", "openai api quota", "chatgpt api tpm rpm", "api tier system", "openai developer guide"]
