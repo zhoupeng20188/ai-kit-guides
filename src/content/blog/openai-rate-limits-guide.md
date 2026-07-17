@@ -1,6 +1,6 @@
 ---
-title: "OpenAI Rate Limits: Why Your 429 Isn't What You Think"
-description: "Your OpenAI 429 might not be throttling at all. Learn the two 429 types, TPM vs RPM, and how to find your real limit fast."
+title: "OpenAI Rate Limits: The 2 Different 429 Errors Explained"
+description: "Two different 429 errors share one status code and need different fixes. Here's how OpenAI's TPM, RPM, and 5 tiers really work — and how to check yours."
 pubDate: 2026-07-03
 category: "chatgpt"
 tags: ["openai rate limits", "openai api quota", "chatgpt api tpm rpm", "api tier system", "openai developer guide"]
