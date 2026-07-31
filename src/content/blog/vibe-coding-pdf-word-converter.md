@@ -201,3 +201,7 @@ The app works, but it is not done, and I want to be honest about the gaps:
 The full source is on GitHub: **[zhoupeng20188/pdf2word](https://github.com/zhoupeng20188/pdf2word)**. It runs on macOS 11+, PDF to Word works out of the box, and Word to PDF needs LibreOffice. `./run.sh` creates the venv and launches the GUI.
 
 If you are thinking about building your own tool but assume you need to "learn the framework first" — you do not. You need a clear spec, an AI agent you actually review, and the willingness to chase down the boring bugs (subset fonts, zero-width characters, single-instance binaries) that are where the real work lives. That is the lesson of vibe coding: the framework is no longer the bottleneck. Knowing what good looks like — and what broken looks like — is.
+
+## If This Tool Saved You Time
+
+If this PDF→Word converter saved you a headache, you can [buy me a coffee on Ko-fi ☕](https://ko-fi.com/forever1252). No pressure either way — and all the source is on GitHub if you want to tinker with it yourself.
