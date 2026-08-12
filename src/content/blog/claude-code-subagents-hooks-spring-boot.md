@@ -3,7 +3,7 @@ title: "Claude Code Subagents & Hooks on Spring Boot: My Guardrails (2026)"
 description: "How I use Claude Code subagents and hooks on Spring Boot: real .claude configs that stop an agent from breaking the Gradle build or skipping tests."
 pubDate: 2026-08-12
 category: "ai-tools"
-tags: ["claude code", "claude code subagents", "claude code hooks", "spring boot", "ai coding"]
+tags: ["claude code", "claude code subagents", "claude code hooks", "spring boot", "ai coding", "java-ai-cluster"]
 image: "/og-claude-code-subagents-hooks-spring-boot.jpg"
 imageAlt: "A terminal showing Claude Code running inside a Spring Boot project, with a hook log line reporting a blocked gradle change"
 keywords: ["claude code subagents spring boot", "claude code hooks spring boot", "claude code guardrails", "claude code agents java", "claude code spring boot advanced"]
@@ -86,3 +86,6 @@ If you want the foundation first, my [Claude Code Spring Boot workflow post](/bl
 A hook that runs the build catches compile errors. A hook that runs `./gradlew test` catches red builds. Neither proves the code is right — only that it runs. I still read every agent diff like a junior's PR, with extra suspicion on dependency injection and transaction boundaries; the specifics are in my [notes on what AI code review misses in Java](/blog/ai-code-review-java/). And the tests a hook runs green are only as good as the assertions, which is the whole point of [reviewing AI-written JUnit tests properly](/blog/ai-junit-tests/).
 
 The honest summary: subagents and hooks did not make Claude Code flawless. They made the failure modes loud instead of silent. For an autonomous agent on a real Spring Boot codebase, that is most of the battle — and it is the part no CLAUDE.md sentence ever enforced.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

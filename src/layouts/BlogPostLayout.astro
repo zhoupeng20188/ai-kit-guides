@@ -7,6 +7,7 @@ import TableOfContents from "../components/TableOfContents.astro";
 import RelatedPosts from "../components/RelatedPosts.astro";
 import SocialShare from "../components/SocialShare.astro";
 import InContentAd from "../components/InContentAd.astro";
+import ClusterList from "../components/ClusterList.astro";
 import { SITE, getCategoryBySlug } from "../config/site";
 import "../styles/global.css";
 
@@ -14,9 +15,10 @@ interface Props {
   post: CollectionEntry<"blog">;
   relatedPosts: CollectionEntry<"blog">[];
   headings?: object[];
+  clusterPosts?: CollectionEntry<"blog">[];
 }
 
-const { post, relatedPosts, headings = [] } = Astro.props;
+const { post, relatedPosts, headings = [], clusterPosts = [] } = Astro.props;
 const { title, description, pubDate, updatedDate, category, tags, author, image, imageAlt, faq } = post.data;
 const cat = getCategoryBySlug(category);
 
@@ -172,7 +174,11 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
           <InContentAd label="Advertisement" />
         </div>
 
-        <RelatedPosts posts={relatedPosts} currentId={post.id} />
+        {clusterPosts.length > 0 ? (
+          <ClusterList posts={clusterPosts} heading="The complete AI for Java developers guide" />
+        ) : (
+          <RelatedPosts posts={relatedPosts} currentId={post.id} />
+        )}
 
         <!-- Newsletter CTA -->
         <section class="mt-16 mb-8 rounded-2xl bg-gradient-to-br from-brand-50 to-brand-100 p-8 text-center dark:from-brand-900 dark:to-brand-800">

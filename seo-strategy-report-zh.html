@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>SEO 综合优化策略报告 — aikitguides.com</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #e5e3dc;
+    --text: #2c2c2a;
+    --text-muted: #6b6963;
+    --text-light: #888780;
+    --accent: #0ea5e9;
+    --p0: #dc2626;
+    --p1: #d97706;
+    --p2: #16a34a;
+    --code-bg: #f1efe8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.8;
+    max-width: 920px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: 22px; font-weight: 600; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; }
+  h4 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
+  p { margin-bottom: 14px; font-size: 15px; }
+  ul, ol { margin: 0 0 16px 20px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'SF Mono', Monaco, monospace; }
+  pre { background: var(--code-bg); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); vertical-align: top; }
+  th { font-weight: 600; background: var(--code-bg); }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; white-space: nowrap; }
+  .badge-p0 { background: #fee2e2; color: var(--p0); }
+  .badge-p1 { background: #fef3c7; color: var(--p1); }
+  .badge-p2 { background: #dcfce7; color: var(--p2); }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .metric-card .num { font-size: 26px; font-weight: 700; }
+  .metric-card .label { font-size: 12px; color: var(--text-light); margin-top: 4px; line-height: 1.4; }
+  .metric-card.alert .num { color: var(--p0); }
+  .callout { border-left: 4px solid var(--accent); background: #f0f9ff; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .callout-warn { border-left-color: var(--p1); background: #fffbeb; }
+  .callout-danger { border-left-color: var(--p0); background: #fef2f2; }
+  .callout-success { border-left-color: var(--p2); background: #f0fdf4; }
+  .callout p { margin: 0; font-size: 14px; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin-bottom: 4px; font-size: 14px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .summary-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+  .summary-box h3 { margin-top: 0; }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-light); font-size: 13px; }
+  @media (max-width: 640px) {
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>SEO 综合优化策略报告</h1>
+<p style="color: var(--text-muted); font-size: 15px;">aikitguides.com &middot; 审计日期：2026 年 8 月 12 日 &middot; 制定人：SEO 专家</p>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="num">3,290</div>
+    <div class="label">Google 展现量（近 3 个月）</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">13</div>
+    <div class="label">Google 点击量（近 3 个月）</div>
+  </div>
+  <div class="metric-card alert">
+    <div class="num">0.4%</div>
+    <div class="label">Google 点击率（瓶颈）</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">26</div>
+    <div class="label">已发布文章</div>
+  </div>
+</div>
+
+<div class="callout callout-danger">
+  <p><strong>核心诊断：</strong>网站技术基础扎实，Google 已经能发现你的页面（3 个月 3,290 次展现）。真正的瓶颈是 <strong>点击率（0.4%）</strong>，而不是展现量。平均排名 33.4 意味着大多数页面排在 Google 的第 3-4 页。制胜模式非常清晰：<strong>具体工具 + 具体动作/错误 + 版本/年份</strong> 这类标题能拿到 4%-6% 的点击率，而宽泛/通用的页面点击率为 0%。修复技术阻碍项、合并互相蚕食的页面，然后把已经验证过的内容公式加倍放大。</p>
+</div>
+
+<div class="toc">
+  <h3 style="margin-top: 0; margin-bottom: 12px;">目录</h3>
+  <ol>
+    <li><a href="#tech-audit">技术 SEO 审计</a></li>
+    <li><a href="#content-analysis">搜索表现与内容分析</a></li>
+    <li><a href="#keyword-strategy">关键词策略与主题集群</a></li>
+    <li><a href="#on-page">页面优化清单</a></li>
+    <li><a href="#internal-linking">内链架构</a></li>
+    <li><a href="#authority">外链权重与 E-E-A-T</a></li>
+    <li><a href="#bing">Bing 优化</a></li>
+    <li><a href="#action-plan">优先级行动计划</a></li>
+  </ol>
+</div>
+
+<h2 id="tech-audit">1. 技术 SEO 审计</h2>
+
+<h3>1.1 可抓取性与索引</h3>
+
+<table>
+  <tr>
+    <th>项目</th>
+    <th>状态</th>
+    <th>详情</th>
+  </tr>
+  <tr>
+    <td>robots.txt</td>
+    <td><span class="badge badge-p0">P0 问题</span></td>
+    <td><code>Disallow: /_astro/</code> 会屏蔽 Googlebot 渲染器加载 CSS/JS 打包文件。Google 无法完整渲染页面，可能影响依赖 JS 的内容索引，也会干扰 Core Web Vitals 评估。</td>
+  </tr>
+  <tr>
+    <td>XML 站点地图</td>
+    <td><span class="badge badge-p1">P1 问题</span></td>
+    <td>站点地图存在，且已在 robots.txt 中引用。包含全部 26 篇文章 + 分类页 + 静态页。但 <strong>缺少 <code>&lt;lastmod&gt;</code> 日期</strong>，Google 无法据此优先安排重新抓取。</td>
+  </tr>
+  <tr>
+    <td>Host 指令</td>
+    <td><span class="badge badge-p2">P2 问题</span></td>
+    <td>robots.txt 中的 <code>Host: https://aikitguides.com</code> 已被弃用。Google 会忽略它，仅 Yandex 使用。为整洁起见建议删除。</td>
+  </tr>
+  <tr>
+    <td>Canonical 规范链接</td>
+    <td>正常</td>
+    <td>通过 <code>&lt;link rel="canonical"&gt;</code>（在 BaseSEO.astro 中）正确设置了自引用规范链接。<code>trailingSlash: 'always'</code> 保证 URL 结构一致。</td>
+  </tr>
+  <tr>
+    <td>索引指令</td>
+    <td>正常</td>
+    <td>所有页面均为 <code>index,follow,max-image-preview:large</code>。草稿页通过 <code>noindex</code> 排除。</td>
+  </tr>
+  <tr>
+    <td>站点地图覆盖</td>
+    <td>正常</td>
+    <td>站点地图共 36 个 URL（26 篇文章 + 5 个分类页 + 5 个静态页）。所有 URL 一致使用结尾斜杠。</td>
+  </tr>
+</table>
+
+<h3>1.2 结构化数据</h3>
+
+<table>
+  <tr>
+    <th>Schema 类型</th>
+    <th>状态</th>
+    <th>说明</th>
+  </tr>
+  <tr>
+    <td>Organization</td>
+    <td>正常</td>
+    <td>包含名称、URL、Logo、邮箱、sameAs（GitHub + RSS）。基线良好。</td>
+  </tr>
+  <tr>
+    <td>WebSite + SearchAction</td>
+    <td><span class="badge badge-p1">P1 问题</span></td>
+    <td>SearchAction schema 指向 <code>/blog?q={search_term_string}</code>，但站点并不存在搜索功能。Google 可能在 Search Console 中标记此问题。<strong>移除 SearchAction</strong> 或实现真正的搜索页。</td>
+  </tr>
+  <tr>
+    <td>Article</td>
+    <td>正常</td>
+    <td>完整的 Article schema：headline、description、image、author（Person）、publisher（Organization）、datePublished、dateModified、articleSection、keywords、mainEntityOfPage。</td>
+  </tr>
+  <tr>
+    <td>BreadcrumbList</td>
+    <td>正常</td>
+    <td>所有博客文章均正确实现，4 级层级：首页 &gt; 博客 &gt; 分类 &gt; 文章。</td>
+  </tr>
+  <tr>
+    <td>FAQPage</td>
+    <td>正常</td>
+    <td>当 frontmatter 中存在 <code>faq</code> 字段时应用 FAQ schema，利于富媒体结果资格。</td>
+  </tr>
+  <tr>
+    <td>缺失：HowTo</td>
+    <td>机会</td>
+    <td>教程类文章（cursor-spring-boot、claude-code-spring-boot 等）可受益于 <code>HowTo</code> schema，争取分步富媒体结果。</td>
+  </tr>
+  <tr>
+    <td>缺失：Person（作者）</td>
+    <td>机会</td>
+    <td>Article schema 中作者以 <code>{"@type": "Person"}</code> 引用，但缺少独立的 Person 实体页及 <code>sameAs</code> 链接（GitHub、LinkedIn）。补全可增强 E-E-A-T。</td>
+  </tr>
+</table>
+
+<h3>1.3 Core Web Vitals 与性能</h3>
+
+<div class="callout callout-warn">
+  <p><strong>说明：</strong>本环境下的 PageSpeed Insights API 不可达。以下评估基于代码分析，以及通过 curl 实测的 TTFB 数据。</p>
+</div>
+
+<table>
+  <tr>
+    <th>指标</th>
+    <th>评估</th>
+    <th>详情</th>
+  </tr>
+  <tr>
+    <td>TTFB</td>
+    <td><span class="badge badge-p1">需监控</span></td>
+    <td>经代理 curl 实测约 2.08s，可能受代理影响偏高。Cloudflare Pages 静态托管在全球应能达到 &lt;500ms TTFB。请以 GSC 的 Core Web Vitals 报告为准核实。</td>
+  </tr>
+  <tr>
+    <td>HTML 压缩</td>
+    <td>正常</td>
+    <td>astro.config.mjs 中 <code>compressHTML: true</code>，构建时已压缩 HTML。</td>
+  </tr>
+  <tr>
+    <td>CSS 优化</td>
+    <td>正常</td>
+    <td>astro.config.mjs 中 <code>inlineStylesheets: 'auto'</code>：小 CSS 内联、大 CSS 外链。Tailwind 4 已清除未用样式。</td>
+  </tr>
+  <tr>
+    <td>图片加载</td>
+    <td>正常</td>
+    <td>头像图片 <code>loading="lazy"</code>，首屏作者头像 <code>loading="eager"</code>，并设置了 <code>decoding="async"</code>。</td>
+  </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>正常</td>
+    <td>Astro 默认渲染静态 HTML，零客户端 JS。仅有 GA4 脚本与主题切换的内联 JS。性能表现优秀。</td>
+  </tr>
+  <tr>
+    <td>字体加载</td>
+    <td>机会</td>
+    <td>未对 Google Analytics 域名（<code>googletagmanager.com</code>）设置 <code>&lt;link rel="preconnect"&gt;</code>。添加预连接可减少连接开销。</td>
+  </tr>
+</table>
+
+<h3>1.4 移动端优化</h3>
+<ul>
+  <li><strong>视口：</strong>配置正确（<code>width=device-width, initial-scale=1</code>）</li>
+  <li><strong>响应式布局：</strong>全站使用 Tailwind 响应式类（md:、lg: 断点）</li>
+  <li><strong>触摸目标：</strong>导航链接与按钮均有充足内边距</li>
+  <li><strong>字体可读性：</strong>基础字号 14px+（正文使用 prose 类）</li>
+  <li><strong>深色模式：</strong>支持 <code>prefers-color-scheme</code>，主题切换通过 localStorage 持久化</li>
+</ul>
+
+<hr>
+
+<h2 id="content-analysis">2. 搜索表现与内容分析</h2>
+
+<h3>2.1 Google Search Console（近 3 个月快照，2026-08-10）</h3>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="num">3,290</div>
+    <div class="label">总展现量</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">13</div>
+    <div class="label">总点击量</div>
+  </div>
+  <div class="metric-card alert">
+    <div class="num">0.4%</div>
+    <div class="label">平均点击率</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">33.4</div>
+    <div class="label">平均排名</div>
+  </div>
+</div>
+
+<h3>2.2 表现优异的页面（复制此模式）</h3>
+
+<table>
+  <tr>
+    <th>页面</th>
+    <th>展现</th>
+    <th>点击</th>
+    <th>CTR</th>
+    <th>平均排名</th>
+    <th>成功原因</th>
+  </tr>
+  <tr>
+    <td>cursor-spring-boot</td>
+    <td>50</td>
+    <td>3</td>
+    <td><strong>6.0%</strong></td>
+    <td>12.9</td>
+    <td>具体工具 + 具体框架 + 年份</td>
+  </tr>
+  <tr>
+    <td>chatgpt-beginners-guide-2026</td>
+    <td>49</td>
+    <td>3</td>
+    <td><strong>6.1%</strong></td>
+    <td>19.1</td>
+    <td>具体工具 + "新手" + 年份</td>
+  </tr>
+  <tr>
+    <td>claude-code-spring-boot</td>
+    <td>45</td>
+    <td>2</td>
+    <td><strong>4.4%</strong></td>
+    <td>15.6</td>
+    <td>具体工具 + 具体框架</td>
+  </tr>
+  <tr>
+    <td>chatgpt-api-429-fix</td>
+    <td>689</td>
+    <td>2</td>
+    <td>0.29%</td>
+    <td>31.3</td>
+    <td>展现量高（错误码搜索），但 CTR 低（标题需加入年份/版本）</td>
+  </tr>
+  <tr>
+    <td>cursor-ai-editor-tutorial</td>
+    <td>620</td>
+    <td>2</td>
+    <td>0.32%</td>
+    <td>29.8</td>
+    <td>展现量高，CTR 低（宽泛的"tutorial"不够突出）</td>
+  </tr>
+</table>
+
+<h3>2.3 表现不佳的页面（修复或合并）</h3>
+
+<table>
+  <tr>
+    <th>页面</th>
+    <th>展现</th>
+    <th>点击</th>
+    <th>CTR</th>
+    <th>诊断</th>
+    <th>行动</th>
+  </tr>
+  <tr>
+    <td>openai-429-fix-variations</td>
+    <td>286</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>蚕食 chatgpt-api-429-fix。同主题、同义词标题，Google 要么排错页面，要么分散了权重。</td>
+    <td><span class="badge badge-p0">P0</span> 301 重定向到 chatgpt-api-429-fix</td>
+  </tr>
+  <tr>
+    <td>openai-rate-limits-guide</td>
+    <td>766</td>
+    <td>1</td>
+    <td>0.13%</td>
+    <td>搜索意图不匹配。搜 "openai rate limits" 的人想要的是官方文档/状态页，而不是一篇博客教程。</td>
+    <td><span class="badge badge-p1">P1</span> 停止优化 CTR。保留为枢纽页，把新内容转向具体错误码。</td>
+  </tr>
+  <tr>
+    <td>cursor-rules-tutorial</td>
+    <td>177</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>"cursor rules tutorial" 过于通用，与官方文档和 YouTube 视频竞争。</td>
+    <td><span class="badge badge-p1">P1</span> 重命名为 "Cursor Rules：.cursor/rules 的 Java/Spring Boot 实例（2026）"</td>
+  </tr>
+  <tr>
+    <td>prompt-engineering-techniques</td>
+    <td>122</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>极度竞争的头词。新站难以排上 "prompt engineering techniques"。</td>
+    <td><span class="badge badge-p2">P2</span> 重命名为特定细分方向："面向 Java 开发者的提示词工程"</td>
+  </tr>
+  <tr>
+    <td>claude-projects-tutorial</td>
+    <td>100</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>通用教程标题，需要具体化。</td>
+    <td><span class="badge badge-p1">P1</span> 重命名："Claude Projects：整理 50+ 对话（配置 + 工作流 2026）"</td>
+  </tr>
+  <tr>
+    <td>midjourney-complete-guide</td>
+    <td>55</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>"Complete guide" 已严重饱和，与成熟的艺术类博客竞争。</td>
+    <td><span class="badge badge-p2">P2</span> 重命名为具体用例："Midjourney 面向开发者：UI 素材与线框图"</td>
+  </tr>
+  <tr>
+    <td>ai-hallucination-tips</td>
+    <td>53+</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>过于宽泛。"AI hallucination" 是新闻话题，而非人们会点击的搜索词。</td>
+    <td><span class="badge badge-p2">P2</span> 重命名："在 Java 代码中杜绝 AI 幻觉：7 个验证习惯"</td>
+  </tr>
+</table>
+
+<h3>2.4 内容模式分析</h3>
+
+<div class="callout callout-success">
+  <p><strong>制胜公式（数据已验证）：</strong></p>
+  <p><code>[具体工具] + [具体框架/动作/错误] + [年份或版本]</code></p>
+  <p>转化的例子："Cursor with Spring Boot"（6% CTR）、"ChatGPT for Beginners 2026"（6.1% CTR）、"Claude Code with Spring Boot"（4.4% CTR）。</p>
+</div>
+
+<div class="callout callout-danger">
+  <p><strong>失败公式（数据已验证）：</strong></p>
+  <p><code>[宽泛主题] + [通用词，如 "guide" / "tutorial" / "techniques" / "complete"]</code></p>
+  <p>点击为 0 的例子："Prompt Engineering Techniques"、"Midjourney Complete Guide"、"AI Hallucination Tips"。这些词与成熟大站竞争，在搜索结果页中毫无差异化。</p>
+</div>
+
+<hr>
+
+<h2 id="keyword-strategy">3. 关键词策略与主题集群</h2>
+
+<h3>3.1 主题集群架构</h3>
+
+<p>现有最强的集群是 <strong>Java/后端 + AI</strong>（7 篇文章）。应将其正式化为"支柱页 + 辐条页"结构：</p>
+
+<h4>集群：面向 Java 开发者的 AI（需要支柱页）</h4>
+
+<table>
+  <tr>
+    <th>角色</th>
+    <th>文章</th>
+    <th>目标关键词</th>
+    <th>状态</th>
+  </tr>
+  <tr>
+    <td><strong>支柱页</strong></td>
+    <td>AI for Java Developers：完整指南（2026）</td>
+    <td>ai for java developers</td>
+    <td>尚未创建 — 最高优先级</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>cursor-spring-boot</td>
+    <td>cursor spring boot</td>
+    <td>已上线（6% CTR）</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>claude-code-spring-boot</td>
+    <td>claude code spring boot</td>
+    <td>已上线（4.4% CTR）</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>using-ai-legacy-java-codebase</td>
+    <td>ai legacy java codebase</td>
+    <td>已上线</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>ai-junit-tests</td>
+    <td>ai junit tests</td>
+    <td>已上线</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>ai-code-review-java</td>
+    <td>ai code review java</td>
+    <td>已上线</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>cursor-background-agents-spring-boot</td>
+    <td>cursor background agents</td>
+    <td>已上线</td>
+  </tr>
+  <tr>
+    <td>辐条</td>
+    <td>claude-code-subagents-hooks-spring-boot</td>
+    <td>claude code subagents hooks</td>
+    <td>已上线</td>
+  </tr>
+</table>
+
+<h4>新文章目标（未来 4-6 周）</h4>
+
+<table>
+  <tr>
+    <th>优先级</th>
+    <th>目标关键词</th>
+    <th>标题构思</th>
+    <th>意图</th>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>ai for java developers</td>
+    <td>AI for Java Developers：完整指南（2026）</td>
+    <td>信息类（支柱页）</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>copilot spring boot</td>
+    <td>GitHub Copilot with Spring Boot：2026 年还能用吗？</td>
+    <td>信息类</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>claude code mcp server</td>
+    <td>为 Claude Code 构建你的第一个 MCP Server（Java 示例）</td>
+    <td>教程类</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>cursor tab vs copilot</td>
+    <td>Cursor Tab vs GitHub Copilot：我在 Java 上两个都用过了（2026）</td>
+    <td>商业比较类</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>ai spring boot entity dto</td>
+    <td>AI 总把 Spring Boot 的 DTO 写错 — 这里有修复方案</td>
+    <td>信息类</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>chatgpt 429002 error</td>
+    <td>ChatGPT API 429002 错误：含义与我的修复方法</td>
+    <td>交易类</td>
+  </tr>
+</table>
+
+<h3>3.2 关键词蚕食审计</h3>
+
+<table>
+  <tr>
+    <th>问题</th>
+    <th>涉及页面</th>
+    <th>解决方案</th>
+  </tr>
+  <tr>
+    <td>429 错误主题分裂</td>
+    <td>chatgpt-api-429-fix（689 展现）vs openai-429-fix-variations（286 展现、0 点击）vs openai-429001-error-code-fix（低展现）</td>
+    <td><strong>301 重定向</strong> openai-429-fix-variations 到 chatgpt-api-429-fix。保留 openai-429001 作为独立长尾页（具体错误码），并对 variations 页设置 canonical 指向 429-fix。</td>
+  </tr>
+  <tr>
+    <td>限流内容重叠</td>
+    <td>openai-rate-limits-guide（766 展现、1 点击）vs chatgpt-api-429-fix（689 展现、2 点击）</td>
+    <td>两者都保留但差异化：rate-limits-guide = 理论/系统解释；429-fix = 实操修复。通过交叉 canonical 与内链澄清意图。</td>
+  </tr>
+  <tr>
+    <td>Cursor 教程重叠</td>
+    <td>cursor-ai-editor-tutorial（620 展现）vs cursor-rules-tutorial（177 展现）vs cursor-spring-boot（50 展现、6% CTR）</td>
+    <td>不存在蚕食 — 意图不同。但 cursor-ai-editor-tutorial 以 0.32% CTR 拿到 620 展现，需要把标题改写为更具体。</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 id="on-page">4. 页面优化清单</h2>
+
+<h3>4.1 标题标签优化（对 CTR 影响最大）</h3>
+
+<table>
+  <tr>
+    <th>页面</th>
+    <th>当前标题</th>
+    <th>问题</th>
+    <th>建议标题</th>
+  </tr>
+  <tr>
+    <td>cursor-ai-editor-tutorial</td>
+    <td>Cursor AI Editor：How I Switched from VS Code and Never Looked Back</td>
+    <td>过长（69 字符）。"Never Looked Back" 是陈词滥调。</td>
+    <td>Cursor AI Editor 教程 2026：配置、技巧与真实工作流</td>
+  </tr>
+  <tr>
+    <td>chatgpt-api-429-fix</td>
+    <td>ChatGPT 429 Error? 5 Fixes I Tested (and One Failed)</td>
+    <td>CTR 潜力不错，但缺年份。"One Failed" 制造好奇。</td>
+    <td>ChatGPT API 429 错误修复：我测试的 5 种方案（2026）</td>
+  </tr>
+  <tr>
+    <td>cursor-rules-tutorial</td>
+    <td>Cursor Rules Tutorial：Make AI Write Code the Way You Do</td>
+    <td>过于通用，没有框架或具体性。</td>
+    <td>Cursor Rules（.cursor/rules）：Java 与 Spring Boot 实例（2026）</td>
+  </tr>
+  <tr>
+    <td>claude-projects-tutorial</td>
+    <td>Claude Projects：How I Organized 50+ AI Chats</td>
+    <td>还可以，但可以更具体。</td>
+    <td>Claude Projects 教程：整理 50+ 对话（配置 + 工作流 2026）</td>
+  </tr>
+  <tr>
+    <td>prompt-engineering-techniques</td>
+    <td>Prompt Engineering Techniques：Your Prompts Aren't the Problem—Fix It</td>
+    <td>过长、通用，与成熟指南竞争。</td>
+    <td>面向开发者的提示词工程：7 个真正有效的方法（2026）</td>
+  </tr>
+  <tr>
+    <td>midjourney-complete-guide</td>
+    <td>Midjourney Guide：Create AI Art That Doesn't Look AI</td>
+    <td>"Complete guide" 已严重饱和。</td>
+    <td>Midjourney 面向开发者：生成 UI 素材与线框图（2026）</td>
+  </tr>
+</table>
+
+<h3>4.2 Meta 描述优化</h3>
+
+<p>当前描述整体不错（第一人称、具体）。关键改进点：</p>
+<ul>
+  <li>在缺失处补上当前年份（向搜索者传递新鲜度信号）</li>
+  <li>在开头 100 字符内包含主关键词</li>
+  <li>描述长度保持在 140-160 字符（当前 schema 已强制 max 160，正确）</li>
+  <li>加入行动号召或结果陈述（"这是我学到的"、"在生产环境实测过"）</li>
+</ul>
+
+<h3>4.3 标题层级结构</h3>
+<ul>
+  <li><strong>H1：</strong>正确由 title 渲染（正文无重复 H1 — 很好，由 layout 处理）</li>
+  <li><strong>H2-H3：</strong>文章使用正确的标题层级。TableOfContents 组件从标题自动生成目录。</li>
+  <li><strong>改进：</strong>在每篇文章的至少一个 H2 中自然地融入目标关键词</li>
+</ul>
+
+<hr>
+
+<h2 id="internal-linking">5. 内链架构</h2>
+
+<h3>5.1 当前状态</h3>
+
+<ul>
+  <li>多数文章正文中有 2-4 个上下文内链（良好）</li>
+  <li>RelatedPosts 组件在底部展示 3 篇同分类文章（良好）</li>
+  <li>分类页提供了枢纽结构（良好）</li>
+  <li>首页链接了 6 篇最新文章 + 精选 + 分类（良好）</li>
+</ul>
+
+<h3>5.2 发现的问题</h3>
+
+<table>
+  <tr>
+    <th>问题</th>
+    <th>影响</th>
+    <th>修复</th>
+  </tr>
+  <tr>
+    <td>内链使用的结尾斜杠不一致 — 许多使用 <code>/blog/slug</code>（无斜杠），但 Astro 的 <code>trailingSlash: 'always'</code> 配置会 301 重定向到 <code>/blog/slug/</code></td>
+    <td><span class="badge badge-p1">P1</span> 每次重定向都浪费抓取预算，并轻微稀释链接权重</td>
+    <td>执行查找替换，为 markdown 文件中的所有内链补上结尾斜杠</td>
+  </tr>
+  <tr>
+    <td>缺少将所有 Java+AI 集群文章聚合在一起的支柱页</td>
+    <td><span class="badge badge-p1">P1</span> 集群文章未能集中权重</td>
+    <td>创建支柱页，用描述性锚文本链接到全部 7 篇 Java+AI 文章</td>
+  </tr>
+  <tr>
+    <td>RelatedPosts 仅按分类匹配，而非按主题相关性</td>
+    <td><span class="badge badge-p2">P2</span> 文章可能展示不相关的"相关"文章</td>
+    <td>对关键文章考虑基于标签或手动选择相关文章</td>
+  </tr>
+  <tr>
+    <td>没有"上一篇/下一篇"导航</td>
+    <td><span class="badge badge-p2">P2</span> 用户和爬虫的发现路径更少</td>
+    <td>考虑在文章底部加入上一篇/下一篇导航</td>
+  </tr>
+</table>
+
+<h3>5.3 建议的内链结构</h3>
+
+<pre><code>支柱页：/blog/ai-for-java-developers/
+  |
+  +-- /blog/cursor-spring-boot/         （辐条）
+  +-- /blog/claude-code-spring-boot/     （辐条）
+  +-- /blog/using-ai-legacy-java-codebase/  （辐条）
+  +-- /blog/ai-junit-tests/              （辐条）
+  +-- /blog/ai-code-review-java/         （辐条）
+  +-- /blog/cursor-background-agents-spring-boot/  （辐条）
+  +-- /blog/claude-code-subagents-hooks-spring-boot/  （辐条）
+
+每个辐条页都回链到支柱页。
+支柱页用描述性锚文本链接到每个辐条页。
+支柱页由首页与分类页链接。</code></pre>
+
+<hr>
+
+<h2 id="authority">6. 外链权重与 E-E-A-T</h2>
+
+<h3>6.1 E-E-A-T 评估</h3>
+
+<table>
+  <tr>
+    <th>维度</th>
+    <th>评分</th>
+    <th>详情</th>
+  </tr>
+  <tr>
+    <td>经验（Experience）</td>
+    <td>强</td>
+    <td>第一人称文章，含真实代码示例、真实报错信息、真实工作流描述。作者是资深 Java 工程师，自 2023 年起每天使用 AI 工具。</td>
+  </tr>
+  <tr>
+    <td>专业度（Expertise）</td>
+    <td>强</td>
+    <td>深度技术内容（Spring Boot DI 陷阱、JPA N+1、Gradle 依赖膨胀）。不是浮于表面的 AI 内容。</td>
+  </tr>
+  <tr>
+    <td>权威性（Authoritativeness）</td>
+    <td>中等</td>
+    <td>About 页有真实照片、简介、GitHub 链接、与 shiptocash.com 的跨站链接。缺失：LinkedIn 个人主页链接、带 sameAs 到 GitHub 的作者 schema。</td>
+  </tr>
+  <tr>
+    <td>可信度（Trustworthiness）</td>
+    <td>强</td>
+    <td>有隐私政策、联系页、RSS 订阅、诚实的评测（"有时它浪费了我三个小时"）。无欺骗性做法。</td>
+  </tr>
+</table>
+
+<h3>6.2 外链建设机会</h3>
+
+<table>
+  <tr>
+    <th>策略</th>
+    <th>难度</th>
+    <th>预期效果</th>
+    <th>详情</th>
+  </tr>
+  <tr>
+    <td>GitHub README 反向链接</td>
+    <td>低</td>
+    <td>中</td>
+    <td>pdf2word 仓库 README 已链接到博客。从其他仓库（my_music、stock plugin 等）的相关文章再加链接。</td>
+  </tr>
+  <tr>
+    <td>Dev.to / Hashnode 交叉发布</td>
+    <td>中</td>
+    <td>中</td>
+    <td>将技术文章交叉发布到 Dev.to，并以 canonical 链接回指 aikitguides.com。Dev.to 域名权重高。</td>
+  </tr>
+  <tr>
+    <td>Hacker News / Show HN</td>
+    <td>低</td>
+    <td>高（若命中）</td>
+    <td>pdf2word 的 Show HN 草稿已存在，择机提交。</td>
+  </tr>
+  <tr>
+    <td>Reddit r/java、r/springboot</td>
+    <td>低</td>
+    <td>中</td>
+    <td>在相关子版块分享 Java+AI 文章。不要刷屏 — 先在评论中提供价值。</td>
+  </tr>
+  <tr>
+    <td>Stack Overflow 回答</td>
+    <td>中</td>
+    <td>低-中</td>
+    <td>在 OpenAI 429 / Cursor / Claude Code 相关问题上回答，并链接到详细指南。</td>
+  </tr>
+  <tr>
+    <td>可链接资产：AI 工具对比表</td>
+    <td>中</td>
+    <td>高</td>
+    <td>创建一个全面、定期更新的"2026 AI 编程工具对比"表格页，供其他博客引用。</td>
+  </tr>
+</table>
+
+<h3>6.3 作者实体强化</h3>
+
+<ul>
+  <li>添加独立的 <code>/about/peng-zhou/</code> 页面，含完整 Person schema（sameAs：GitHub、LinkedIn、shiptocash.com）</li>
+  <li>将 Article schema 的 author 字段链接到此 Person 页（目前链接到 <code>/about/</code>）</li>
+  <li>考虑添加 LinkedIn 个人主页（即使不活跃）以强化作者实体</li>
+  <li>在 Person schema 中加入 <code>jobTitle</code> 和 <code>knowsAbout</code> 字段</li>
+</ul>
+
+<hr>
+
+<h2 id="bing">7. Bing 优化</h2>
+
+<div class="callout callout-success">
+  <p><strong>Bing 是你的隐藏机会。</strong>Bing 的点击率为 2.94% — 是你 Google 点击率的 7 倍。cursor-spring-boot 在 Bing 上的 CTR 高达 16.67%（平均排名 2.06）。Bing 还驱动 Yahoo 搜索和 ChatGPT 的网页搜索，因此 Bing 优化具有倍增的传播效应。</p>
+</div>
+
+<h3>Bing 专属行动</h3>
+<ol>
+  <li><strong>提交到 Bing Webmaster Tools</strong>（若尚未做）。提交站点地图，并对新文章使用 URL 提交 API。</li>
+  <li><strong>Bing 比 Google 更看重精确关键词匹配。</strong>确保目标关键词出现在标题、H1 和前 100 词中。</li>
+  <li><strong>Bing Places / Bing Webmaster Tools</strong> — 验证站点所有权并监控 Bing 索引状态。</li>
+  <li><strong>IndexNow 协议</strong> — 实现 IndexNow（Bing 支持），在内容新增/更新时即时通知。Astro 可通过 API 端点集成。</li>
+</ol>
+
+<hr>
+
+<h2 id="action-plan">8. 优先级行动计划</h2>
+
+<h3>阶段 1：立即修复技术问题（第 1 周）</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>行动</th>
+    <th>优先级</th>
+    <th>文件</th>
+    <th>工作量</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>从 robots.txt 删除 <code>Disallow: /_astro/</code></td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td><code>public/robots.txt</code></td>
+    <td>5 分钟</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>将 <code>openai-429-fix-variations</code> 301 重定向到 <code>chatgpt-api-429-fix</code></td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>Cloudflare Pages 重定向或 Astro 配置</td>
+    <td>15 分钟</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>从 robots.txt 删除已弃用的 <code>Host:</code> 指令</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td><code>public/robots.txt</code></td>
+    <td>1 分钟</td>
+  </tr>
+</table>
+
+<h3>阶段 2：页面优化（第 2-3 周）</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>行动</th>
+    <th>优先级</th>
+    <th>工作量</th>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>从 WebSite schema 移除 SearchAction（站点无搜索页）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>10 分钟</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>为 markdown 文件中的所有内链补上结尾斜杠（查找替换）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>30 分钟</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>配置站点地图 lastmod 日期（使用 frontmatter 的 pubDate/updatedDate）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>1 小时</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>为 googletagmanager.com 添加 <code>&lt;link rel="preconnect"&gt;</code></td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>5 分钟</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>重写 6 个低 CTR 页面的标题标签（见第 4.1 节）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>1 小时</td>
+  </tr>
+</table>
+
+<h3>阶段 3：内容与 CTR 优化（第 3-6 周）</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>行动</th>
+    <th>优先级</th>
+    <th>工作量</th>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>创建支柱页："AI for Java Developers：完整指南（2026）"</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>1 天</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>从支柱页向全部 7 篇 Java+AI 文章添加内链（及反向链接）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>2 小时</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>实现 IndexNow，新发布内容即时通知 Bing 索引</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>2 小时</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>发布 "Copilot with Spring Boot" 文章（填补集群空缺）</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>1 天</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>提交到 Bing Webmaster Tools + 验证站点地图</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>30 分钟</td>
+  </tr>
+</table>
+
+<h3>阶段 4：权威与规模化（持续）</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>行动</th>
+    <th>优先级</th>
+    <th>节奏</th>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>每周发布 3 篇文章，遵循制胜公式（工具 + 动作 + 版本）</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>每周</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>交叉发布到 Dev.to，并带 canonical 链接回指 aikitguides.com</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>每周</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>构建带 sameAs 链接的作者 Person schema 页面</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>一次性</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>创建可链接资产："2026 AI 编程工具对比"（定期更新表格）</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>每月更新</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>为 pdf2word 提交 Show HN（择机）</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>一次性</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>每周监控 GSC：跟踪标题改写后的 CTR 变化，留意新的查询模式</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>每周</td>
+  </tr>
+</table>
+
+<div class="callout callout-success">
+  <p><strong>预期成效（3 个月预测）：</strong></p>
+  <ul style="margin: 8px 0 0 20px;">
+    <li><strong>CTR：</strong>0.4% → 1.5-2%（来自标题改写 + 蚕食修复）</li>
+    <li><strong>月点击量：</strong>4-5 → 15-25（来自 CTR 提升 + 新内容）</li>
+    <li><strong>Bing 流量：</strong>6 次点击 → 15-20 次/月（来自 IndexNow + 标题对齐）</li>
+    <li><strong>已索引页面：</strong>26 → 35-40（来自每周发布）</li>
+    <li><strong>平均排名：</strong>33.4 → 25-28（来自支柱页权重集中）</li>
+  </ul>
+  <p style="margin-top: 12px; font-size: 13px; color: var(--text-light);">以上是基于已验证的 CTR 提升模式得出的保守估计。最大杠杆是标题/描述重写 — 在 3,290 次展现上每提升 0.5% CTR = 每月约 16 次额外点击。</p>
+</div>
+
+<div class="footer">
+  <p>报告生成日期：2026 年 8 月 12 日 &middot; 站点：aikitguides.com &middot; 数据来源：Google Search Console（近 3 个月）、Bing Webmaster Tools（近 30 天）、代码库审计、线上站点验证</p>
+</div>
+
+</body>
+</html>

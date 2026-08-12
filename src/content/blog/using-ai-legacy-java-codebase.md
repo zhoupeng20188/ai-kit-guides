@@ -3,7 +3,7 @@ title: "Using AI on a Legacy Java Codebase (What Actually Works)"
 description: "A senior Java engineer's real lessons on using AI to change legacy code: undocumented patches, shared multi-channel logic, and how to fence the AI in."
 pubDate: 2026-07-22
 category: "ai-tools"
-tags: ["legacy java", "ai coding", "claude code", "legacy code refactoring", "java ai tools"]
+tags: ["legacy java", "ai coding", "claude code", "legacy code refactoring", "java ai tools", "java-ai-cluster"]
 image: "/og-legacy-java-ai.jpg"
 imageAlt: "A senior engineer using an AI assistant to safely modify a large legacy Java codebase full of undocumented patches"
 keywords: ["ai legacy java code", "using ai on legacy code", "claude code java", "ai refactoring legacy java", "ai change old code"]
@@ -120,3 +120,6 @@ It is also weakest exactly where legacy code is hardest: the tangled, undocument
 Using AI on a legacy Java codebase works, but the mental model is the opposite of greenfield. The risk is not the code the AI writes — it is the code it touches without understanding. Undocumented patches look like cleanup opportunities. Shared multi-channel logic gets "fixed" for one caller and broken for four others. And left unconstrained, the AI ignores your existing utilities and drifts from your code style until the repo no longer looks like itself.
 
 The answer is constraint, and most of it belongs in a persistent file — a `CLAUDE.md` (or `.cursor/rules`) that says: use what exists, match the style, map every caller before touching shared logic, and never delete what you do not understand. Pair that with small diffs, characterization tests, and reviewing every line like a stranger wrote it. Do that, and AI becomes a genuinely useful pair of hands on old code. Skip it, and it becomes the fastest way yet to break a system nobody fully understands.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

@@ -1,5 +1,5 @@
 ---
-title: "OpenAI 429 Fix: How to Read and Resolve Every Error Variation"
+title: "OpenAI 429 Fix: How to Read Every Error Variation (2026)"
 description: "OpenAI 429 isn't one error — it's several. Here's how to read the error body and headers, tell each 429 variation apart, and apply the right fix."
 pubDate: 2026-07-17
 category: "chatgpt"

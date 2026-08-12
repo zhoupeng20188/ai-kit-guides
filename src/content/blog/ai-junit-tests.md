@@ -3,7 +3,7 @@ title: "I Let AI Write My JUnit Tests. Here's What Broke."
 description: "I let AI generate JUnit tests for my Java code. They passed, and proved nothing. Here's how I write tests with AI and the 5 traps I check first."
 pubDate: 2026-08-05
 category: "ai-tools"
-tags: ["ai junit tests", "ai unit testing java", "claude code java", "ai code generation", "junit 5 ai"]
+tags: ["ai junit tests", "ai unit testing java", "claude code java", "ai code generation", "junit 5 ai", "java-ai-cluster"]
 image: "/og-ai-junit-tests.jpg"
 imageAlt: "Terminal showing a Maven test run where AI-generated JUnit tests pass the build but assert nothing useful"
 keywords: ["ai junit tests", "ai write junit tests", "ai generate unit tests java", "claude code java tests", "junit 5 ai generated"]
@@ -114,3 +114,6 @@ AI is a fast test drafter, not a test author you can trust on autopilot. The wor
 - Write the integration, concurrency, and undocumented-behavior tests yourself.
 
 Do that and your coverage number actually means something. Skip it and you get the 71% I had, green, wrong, and quietly useless.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

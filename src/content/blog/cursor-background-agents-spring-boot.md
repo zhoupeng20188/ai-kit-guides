@@ -3,7 +3,7 @@ title: "Cursor Background Agents on a Spring Boot Repo: 4 Gotchas (2026)"
 description: "Handed Spring Boot grunt work to Cursor's background agents, got PRs that broke bootRun. 4 cloud-vs-local gotchas and the .cursor rules that fixed them."
 pubDate: 2026-08-10
 category: "ai-tools"
-tags: ["cursor", "cursor background agents", "spring boot", "ai coding", "cursor cloud agents"]
+tags: ["cursor", "cursor background agents", "spring boot", "ai coding", "cursor cloud agents", "java-ai-cluster"]
 image: "/og-cursor-background-agents-spring-boot.jpg"
 imageAlt: "Cursor background agent panel open on a Spring Boot project, showing a completed agent task that opened a pull request while the developer worked locally"
 keywords: ["cursor background agents", "cursor cloud agents spring boot", "cursor background agents java", "spring boot ai coding workflow", "cursor agent pull request"]
@@ -82,3 +82,6 @@ The line that matters most is the one about stopping instead of deleting tests. 
 The mindset shift with background agents is simple: you stop being the person writing the code and become the person reviewing it. The agent hands you a PR from a world you are not watching, and your job is to catch what that world could not see — the profile-gated bean, the uncommitted conflict, the assertion that proves nothing. That is the same review discipline I apply to [AI code review on legacy Java](/blog/using-ai-legacy-java-codebase) and to [reviewing AI-generated Java PRs](/blog/ai-code-review-java): the AI is fast, confident, and context-blind, and you hold the business context it will never have.
 
 Used this way, background agents are not a replacement for judgment. They are a way to get the boring 80% typed while you spend your attention on the 20% that decides whether it ships. Pin the environment, narrow the task, and read every line. Do that, and the PR that lands while you were in a meeting is one you can actually merge.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

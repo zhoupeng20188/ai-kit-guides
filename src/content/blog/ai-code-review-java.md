@@ -3,7 +3,7 @@ title: "What AI Code Review Misses in Java (and How I Catch It) (2026)"
 description: "My team runs every PR through an AI reviewer, but it once green-lit code that broke production. Here's what AI code review misses in Java, and my workflow."
 pubDate: 2026-08-07
 category: "ai-tools"
-tags: ["ai code review", "java code review", "ai code review java", "github copilot code review", "claude code review"]
+tags: ["ai code review", "java code review", "ai code review java", "github copilot code review", "claude code review", "java-ai-cluster"]
 image: "/og-ai-code-review-java.jpg"
 imageAlt: "Terminal showing an AI code review comment on a Java Spring Boot pull request, with a @Transactional annotation highlighted in the diff"
 keywords: ["ai code review java", "ai code review for java", "what does ai code review miss", "github copilot code review java", "claude code review java"]
@@ -82,3 +82,6 @@ I cover the generation-side habits in my [Claude Code on Spring Boot](/blog/clau
 AI code review is a genuine time saver for the mechanical stuff, and I'd never go back to reviewing 40-file diffs by hand. But on a Java backend, the expensive bugs live in transactions, concurrency, Spring wiring, ORM access patterns, and the newer language features. The AI misses those precisely because they need intent and context, not just pattern matching.
 
 If you take one thing from this: treat the green checkmark as "no obvious typos," not "safe to merge." Read the four zones yourself, give the AI context when you need its help, and keep the final read for your own eyes.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

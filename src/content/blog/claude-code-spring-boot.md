@@ -3,7 +3,7 @@ title: "Claude Code with Spring Boot: A Practical Workflow"
 description: "How I actually use Claude Code on a Spring Boot project in 2026: setup, CLAUDE.md, running the build, and the habits that keep the AI from drifting off."
 pubDate: 2026-07-31
 category: "ai-tools"
-tags: ["claude code", "spring boot", "ai coding", "java ai tools", "claude code workflow"]
+tags: ["claude code", "spring boot", "ai coding", "java ai tools", "claude code workflow", "java-ai-cluster"]
 image: "/og-claude-code-spring-boot.jpg"
 imageAlt: "Terminal running Claude Code inside a Spring Boot project, showing the AI editing Java files and running the Maven build"
 keywords: ["claude code spring boot", "claude code with spring boot", "claude code spring boot tutorial", "ai coding spring boot", "spring boot ai workflow"]
@@ -110,3 +110,6 @@ If you want the broader mindset for not trusting confident output, the habits in
 ## Summary
 
 Claude Code earns its place on Spring Boot work the moment a task spans more than one file. The setup that makes it useful is small: install it, run `/init` then trim the `CLAUDE.md`, and put two rules in that file, the build command and the "only say done if tests pass" line. Drive it with explain-first, one intent per prompt, and a real `git diff` review at the end. Use Sonnet 5 for the daily work and Opus 5 for the refactors that need judgment. Do that, and it becomes a fast pair of hands that compiles its own code. Skip the discipline, and it becomes the fastest way yet to merge something that builds green and behaves wrong.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

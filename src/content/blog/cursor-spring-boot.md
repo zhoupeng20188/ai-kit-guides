@@ -3,7 +3,7 @@ title: "Cursor with Spring Boot: A Practical Java Workflow (2026)"
 description: "How I use Cursor on a real Spring Boot codebase in 2026: project rules, the prompts that work, and the bean-wiring traps that break the build."
 pubDate: 2026-08-03
 category: "ai-tools"
-tags: ["cursor", "spring boot", "ai coding", "java ai tools", "cursor workflow"]
+tags: ["cursor", "spring boot", "ai coding", "java ai tools", "cursor workflow", "java-ai-cluster"]
 image: "/og-cursor-spring-boot.jpg"
 imageAlt: "Cursor editor open on a Spring Boot Java project, showing the Agent panel editing a @Service class and the Gradle build output"
 keywords: ["cursor spring boot", "cursor with spring boot", "cursor spring boot tutorial", "spring boot ai coding", "cursor java workflow"]
@@ -99,3 +99,6 @@ I will keep this short because I have said it before, but it is the whole ballga
 ## Summary
 
 Cursor is my daily driver for Spring Boot not because it is magic, but because it sits inside the editor and handles the mechanical 80% fast. The setup that makes it trustworthy is small: let it index, drop a `.cursor/rules/spring-boot.mdc` with your stack and two hard rules (no new deps, list callers before editing shared logic), and review every diff like legacy code. Use it for tight edits and scaffolding; reach for [Claude Code](/blog/claude-code-spring-boot) when the task spans the whole repo and needs to run the build itself. Do that, and Cursor becomes a fast pair of hands that compiles its own code. Skip the discipline and it becomes the fastest way yet to merge something that builds green and behaves wrong.
+
+
+If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

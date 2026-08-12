@@ -1,0 +1,969 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Comprehensive SEO Strategy Report — aikitguides.com</title>
+<style>
+  :root {
+    --bg: #fafaf8;
+    --surface: #ffffff;
+    --border: #e5e3dc;
+    --text: #2c2c2a;
+    --text-muted: #6b6963;
+    --text-light: #888780;
+    --accent: #0ea5e9;
+    --p0: #dc2626;
+    --p1: #d97706;
+    --p2: #16a34a;
+    --code-bg: #f1efe8;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 24px;
+  }
+  h1 { font-size: 28px; font-weight: 700; margin-bottom: 8px; }
+  h2 { font-size: 22px; font-weight: 600; margin: 40px 0 16px; padding-bottom: 8px; border-bottom: 2px solid var(--border); }
+  h3 { font-size: 17px; font-weight: 600; margin: 28px 0 12px; }
+  h4 { font-size: 15px; font-weight: 600; margin: 20px 0 8px; }
+  p { margin-bottom: 14px; font-size: 15px; }
+  ul, ol { margin: 0 0 16px 20px; }
+  li { margin-bottom: 6px; font-size: 15px; }
+  code { background: var(--code-bg); padding: 2px 6px; border-radius: 4px; font-size: 13px; font-family: 'SF Mono', Monaco, monospace; }
+  pre { background: var(--code-bg); padding: 16px; border-radius: 8px; overflow-x: auto; margin: 12px 0; }
+  pre code { background: none; padding: 0; }
+  table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 14px; }
+  th, td { padding: 10px 14px; text-align: left; border-bottom: 1px solid var(--border); }
+  th { font-weight: 600; background: var(--code-bg); }
+  .badge { display: inline-block; padding: 2px 10px; border-radius: 12px; font-size: 12px; font-weight: 600; }
+  .badge-p0 { background: #fee2e2; color: var(--p0); }
+  .badge-p1 { background: #fef3c7; color: var(--p1); }
+  .badge-p2 { background: #dcfce7; color: var(--p2); }
+  .metric-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 12px; margin: 20px 0; }
+  .metric-card { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 16px; text-align: center; }
+  .metric-card .num { font-size: 26px; font-weight: 700; }
+  .metric-card .label { font-size: 12px; color: var(--text-light); margin-top: 4px; }
+  .metric-card.alert .num { color: var(--p0); }
+  .callout { border-left: 4px solid var(--accent); background: #f0f9ff; padding: 14px 18px; border-radius: 0 8px 8px 0; margin: 16px 0; }
+  .callout-warn { border-left-color: var(--p1); background: #fffbeb; }
+  .callout-danger { border-left-color: var(--p0); background: #fef2f2; }
+  .callout-success { border-left-color: var(--p2); background: #f0fdf4; }
+  .callout p { margin: 0; font-size: 14px; }
+  .toc { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+  .toc ol { margin: 0; padding-left: 20px; }
+  .toc li { margin-bottom: 4px; font-size: 14px; }
+  .toc a { color: var(--accent); text-decoration: none; }
+  .toc a:hover { text-decoration: underline; }
+  .summary-box { background: var(--surface); border: 1px solid var(--border); border-radius: 10px; padding: 20px 24px; margin: 20px 0; }
+  .summary-box h3 { margin-top: 0; }
+  .footer { margin-top: 60px; padding-top: 20px; border-top: 1px solid var(--border); color: var(--text-light); font-size: 13px; }
+  @media (max-width: 640px) {
+    .metric-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+</style>
+</head>
+<body>
+
+<h1>Comprehensive SEO Strategy Report</h1>
+<p style="color: var(--text-muted); font-size: 15px;">aikitguides.com &middot; Audit date: August 12, 2026 &middot; Prepared by: SEO Expert</p>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="num">3,290</div>
+    <div class="label">Google impressions (3mo)</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">13</div>
+    <div class="label">Google clicks (3mo)</div>
+  </div>
+  <div class="metric-card alert">
+    <div class="num">0.4%</div>
+    <div class="label">Google CTR (bottleneck)</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">26</div>
+    <div class="label">Published articles</div>
+  </div>
+</div>
+
+<div class="callout callout-danger">
+  <p><strong>Core diagnosis:</strong> The site is technically sound and Google is discovering your pages (3,290 impressions in 3 months). The bottleneck is <strong>CTR (0.4%)</strong>, not impressions. Average position 33.4 means most pages are on page 3-4 of Google. The winning pattern is clear: <strong>specific tool + specific action/error + version/year</strong> gets 4-6% CTR. Broad/generic pages get 0%. Fix the technical blockers, consolidate cannibalizing pages, and double down on the proven content formula.</p>
+</div>
+
+<div class="toc">
+  <h3 style="margin-top: 0; margin-bottom: 12px;">Table of contents</h3>
+  <ol>
+    <li><a href="#tech-audit">Technical SEO audit</a></li>
+    <li><a href="#content-analysis">Search performance &amp; content analysis</a></li>
+    <li><a href="#keyword-strategy">Keyword strategy &amp; topic clusters</a></li>
+    <li><a href="#on-page">On-page optimization checklist</a></li>
+    <li><a href="#internal-linking">Internal linking architecture</a></li>
+    <li><a href="#authority">Link authority &amp; E-E-A-T</a></li>
+    <li><a href="#bing">Bing optimization</a></li>
+    <li><a href="#action-plan">Prioritized action plan</a></li>
+  </ol>
+</div>
+
+<h2 id="tech-audit">1. Technical SEO audit</h2>
+
+<h3>1.1 Crawlability &amp; indexation</h3>
+
+<table>
+  <tr>
+    <th>Item</th>
+    <th>Status</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>robots.txt</td>
+    <td><span class="badge badge-p0">P0 issue</span></td>
+    <td><code>Disallow: /_astro/</code> blocks CSS/JS bundles from Googlebot's renderer. Google can't fully render the page, which may hurt indexing of JS-dependent content and Core Web Vitals assessment.</td>
+  </tr>
+  <tr>
+    <td>XML sitemap</td>
+    <td><span class="badge badge-p1">P1 issue</span></td>
+    <td>Sitemap exists and is referenced in robots.txt. Contains all 26 articles + category pages + static pages. But <strong>lacks <code>&lt;lastmod&gt;</code> dates</strong>, so Google can't prioritize recrawls.</td>
+  </tr>
+  <tr>
+    <td>Host directive</td>
+    <td><span class="badge badge-p2">P2 issue</span></td>
+    <td><code>Host: https://aikitguides.com</code> in robots.txt is deprecated. Google ignores it; only Yandex uses it. Remove for cleanliness.</td>
+  </tr>
+  <tr>
+    <td>Canonical URLs</td>
+    <td>OK</td>
+    <td>Self-referencing canonicals correctly set via <code>&lt;link rel="canonical"&gt;</code> in BaseSEO.astro. <code>trailingSlash: 'always'</code> ensures consistent URL structure.</td>
+  </tr>
+  <tr>
+    <td>Indexation directive</td>
+    <td>OK</td>
+    <td><code>index,follow,max-image-preview:large</code> on all pages. Draft pages excluded via <code>noindex</code>.</td>
+  </tr>
+  <tr>
+    <td>Sitemap coverage</td>
+    <td>OK</td>
+    <td>36 URLs in sitemap (26 articles + 5 category pages + 5 static pages). All URLs use trailing slashes consistently.</td>
+  </tr>
+</table>
+
+<h3>1.2 Structured data</h3>
+
+<table>
+  <tr>
+    <th>Schema type</th>
+    <th>Status</th>
+    <th>Notes</th>
+  </tr>
+  <tr>
+    <td>Organization</td>
+    <td>OK</td>
+    <td>Name, URL, logo, email, sameAs (GitHub + RSS). Good baseline.</td>
+  </tr>
+  <tr>
+    <td>WebSite + SearchAction</td>
+    <td><span class="badge badge-p1">P1 issue</span></td>
+    <td>SearchAction schema points to <code>/blog?q={search_term_string}</code> but no search functionality exists. Google may flag this in Search Console. <strong>Remove the SearchAction</strong> or implement a search page.</td>
+  </tr>
+  <tr>
+    <td>Article</td>
+    <td>OK</td>
+    <td>Full Article schema: headline, description, image, author (Person), publisher (Organization), datePublished, dateModified, articleSection, keywords, mainEntityOfPage.</td>
+  </tr>
+  <tr>
+    <td>BreadcrumbList</td>
+    <td>OK</td>
+    <td>Properly implemented on all blog posts with 4-level hierarchy: Home > Blog > Category > Article.</td>
+  </tr>
+  <tr>
+    <td>FAQPage</td>
+    <td>OK</td>
+    <td>FAQ schema applied when <code>faq</code> frontmatter is present. Good for rich result eligibility.</td>
+  </tr>
+  <tr>
+    <td>Missing: HowTo</td>
+    <td>Opportunity</td>
+    <td>Tutorial articles (cursor-spring-boot, claude-code-spring-boot, etc.) could benefit from <code>HowTo</code> schema for step-by-step rich results.</td>
+  </tr>
+  <tr>
+    <td>Missing: Person (author)</td>
+    <td>Opportunity</td>
+    <td>Author is referenced as <code>{"@type": "Person"}</code> in Article schema but lacks a standalone Person entity page with <code>sameAs</code> links (GitHub, LinkedIn). This would strengthen E-E-A-T.</td>
+  </tr>
+</table>
+
+<h3>1.3 Core Web Vitals &amp; performance</h3>
+
+<div class="callout callout-warn">
+  <p><strong>Note:</strong> PageSpeed Insights API was unreachable from this environment. The following assessment is based on code analysis and curl TTFB measurement.</p>
+</div>
+
+<table>
+  <tr>
+    <th>Metric</th>
+    <th>Assessment</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>TTFB</td>
+    <td><span class="badge badge-p1">Monitor</span></td>
+    <td>~2.08s via curl through proxy. This may be proxy-inflated. Cloudflare Pages static hosting should deliver <500ms TTFB globally. Verify with GSC Core Web Vitals report.</td>
+  </tr>
+  <tr>
+    <td>HTML compression</td>
+    <td>OK</td>
+    <td><code>compressHTML: true</code> in astro.config.mjs. HTML minified at build time.</td>
+  </tr>
+  <tr>
+    <td>CSS optimization</td>
+    <td>OK</td>
+    <td><code>inlineStylesheets: 'auto'</code> inlines small CSS, externalizes large. Tailwind 4 purges unused styles.</td>
+  </tr>
+  <tr>
+    <td>Image loading</td>
+    <td>OK</td>
+    <td><code>loading="lazy"</code> on avatar images, <code>loading="eager"</code> on above-the-fold author avatar. <code>decoding="async"</code> set.</td>
+  </tr>
+  <tr>
+    <td>JavaScript</td>
+    <td>OK</td>
+    <td>Astro renders static HTML with zero client-side JS by default. Only GA4 script and theme toggle are inline JS. Excellent for performance.</td>
+  </tr>
+  <tr>
+    <td>Font loading</td>
+    <td>Opportunity</td>
+    <td>No <code>&lt;link rel="preconnect"&gt;</code> for Google Analytics domain (<code>googletagmanager.com</code>). Add preconnect to reduce connection overhead.</td>
+  </tr>
+</table>
+
+<h3>1.4 Mobile optimization</h3>
+<ul>
+  <li><strong>Viewport:</strong> Correctly configured (<code>width=device-width, initial-scale=1</code>)</li>
+  <li><strong>Responsive layout:</strong> Tailwind responsive classes used throughout (md:, lg: breakpoints)</li>
+  <li><strong>Touch targets:</strong> Navigation links and buttons have adequate padding</li>
+  <li><strong>Font legibility:</strong> Base font sizes are 14px+ (article body uses prose class)</li>
+  <li><strong>Dark mode:</strong> Theme toggle with <code>prefers-color-scheme</code> support and localStorage persistence</li>
+</ul>
+
+<hr>
+
+<h2 id="content-analysis">2. Search performance &amp; content analysis</h2>
+
+<h3>2.1 Google Search Console (3-month snapshot, 2026-08-10)</h3>
+
+<div class="metric-grid">
+  <div class="metric-card">
+    <div class="num">3,290</div>
+    <div class="label">Total impressions</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">13</div>
+    <div class="label">Total clicks</div>
+  </div>
+  <div class="metric-card alert">
+    <div class="num">0.4%</div>
+    <div class="label">Avg CTR</div>
+  </div>
+  <div class="metric-card">
+    <div class="num">33.4</div>
+    <div class="label">Avg position</div>
+  </div>
+</div>
+
+<h3>2.2 Winning pages (replicate this pattern)</h3>
+
+<table>
+  <tr>
+    <th>Page</th>
+    <th>Imp</th>
+    <th>Clicks</th>
+    <th>CTR</th>
+    <th>Avg pos</th>
+    <th>Why it works</th>
+  </tr>
+  <tr>
+    <td>cursor-spring-boot</td>
+    <td>50</td>
+    <td>3</td>
+    <td><strong>6.0%</strong></td>
+    <td>12.9</td>
+    <td>Specific tool + specific framework + year</td>
+  </tr>
+  <tr>
+    <td>chatgpt-beginners-guide-2026</td>
+    <td>49</td>
+    <td>3</td>
+    <td><strong>6.1%</strong></td>
+    <td>19.1</td>
+    <td>Specific tool + "beginners" + year</td>
+  </tr>
+  <tr>
+    <td>claude-code-spring-boot</td>
+    <td>45</td>
+    <td>2</td>
+    <td><strong>4.4%</strong></td>
+    <td>15.6</td>
+    <td>Specific tool + specific framework</td>
+  </tr>
+  <tr>
+    <td>chatgpt-api-429-fix</td>
+    <td>689</td>
+    <td>2</td>
+    <td>0.29%</td>
+    <td>31.3</td>
+    <td>High impressions (error-code search), low CTR (title needs year/version)</td>
+  </tr>
+  <tr>
+    <td>cursor-ai-editor-tutorial</td>
+    <td>620</td>
+    <td>2</td>
+    <td>0.32%</td>
+    <td>29.8</td>
+    <td>High impressions, low CTR (broad "tutorial" doesn't stand out)</td>
+  </tr>
+</table>
+
+<h3>2.3 Losing pages (fix or consolidate)</h3>
+
+<table>
+  <tr>
+    <th>Page</th>
+    <th>Imp</th>
+    <th>Clicks</th>
+    <th>CTR</th>
+    <th>Diagnosis</th>
+    <th>Action</th>
+  </tr>
+  <tr>
+    <td>openai-429-fix-variations</td>
+    <td>286</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>Cannibalizes chatgpt-api-429-fix. Same topic, synonym title. Google ranks the wrong page or splits authority.</td>
+    <td><span class="badge badge-p0">P0</span> 301 redirect to chatgpt-api-429-fix</td>
+  </tr>
+  <tr>
+    <td>openai-rate-limits-guide</td>
+    <td>766</td>
+    <td>1</td>
+    <td>0.13%</td>
+    <td>Search intent mismatch. People searching "openai rate limits" want the official docs/status page, not a blog tutorial.</td>
+    <td><span class="badge badge-p1">P1</span> Stop optimizing CTR. Keep as hub page, focus new content on specific error codes.</td>
+  </tr>
+  <tr>
+    <td>cursor-rules-tutorial</td>
+    <td>177</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>"cursor rules tutorial" is too generic. Competes with official docs and YouTube videos.</td>
+    <td><span class="badge badge-p1">P1</span> Retitle to "Cursor Rules: .cursor/rules Examples for Java/Spring Boot (2026)"</td>
+  </tr>
+  <tr>
+    <td>prompt-engineering-techniques</td>
+    <td>122</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>Ultra-competitive head term. New site can't rank for "prompt engineering techniques."</td>
+    <td><span class="badge badge-p2">P2</span> Retitle to target a specific niche: "Prompt Engineering for Java Developers"</td>
+  </tr>
+  <tr>
+    <td>claude-projects-tutorial</td>
+    <td>100</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>Generic tutorial title. Needs specificity.</td>
+    <td><span class="badge badge-p1">P1</span> Retitle: "Claude Projects: Organize 50+ Chats (Setup + Workflow 2026)"</td>
+  </tr>
+  <tr>
+    <td>midjourney-complete-guide</td>
+    <td>55</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>"Complete guide" is oversaturated. Competing with established art blogs.</td>
+    <td><span class="badge badge-p2">P2</span> Retitle to a specific use case: "Midjourney for Developers: UI Assets & Mockups"</td>
+  </tr>
+  <tr>
+    <td>ai-hallucination-tips</td>
+    <td>53+</td>
+    <td>0</td>
+    <td>0%</td>
+    <td>Too broad. "AI hallucination" is a news topic, not a search query people click on.</td>
+    <td><span class="badge badge-p2">P2</span> Retitle: "Stop AI Hallucinations in Java Code: 7 Verification Habits"</td>
+  </tr>
+</table>
+
+<h3>2.4 Content pattern analysis</h3>
+
+<div class="callout callout-success">
+  <p><strong>The winning formula (confirmed by data):</strong></p>
+  <p><code>[specific tool] + [specific framework/action/error] + [year or version]</code></p>
+  <p>Examples that convert: "Cursor with Spring Boot" (6% CTR), "ChatGPT for Beginners 2026" (6.1% CTR), "Claude Code with Spring Boot" (4.4% CTR).</p>
+</div>
+
+<div class="callout callout-danger">
+  <p><strong>The losing formula (confirmed by data):</strong></p>
+  <p><code>[broad topic] + [generic word like "guide" / "tutorial" / "techniques" / "complete"]</code></p>
+  <p>Examples that get 0 clicks: "Prompt Engineering Techniques", "Midjourney Complete Guide", "AI Hallucination Tips". These compete with established domains and offer no differentiation in the SERP.</p>
+</div>
+
+<hr>
+
+<h2 id="keyword-strategy">3. Keyword strategy &amp; topic clusters</h2>
+
+<h3>3.1 Topic cluster architecture</h3>
+
+<p>The strongest existing cluster is <strong>Java/Backend + AI</strong> (7 articles). This should be formalized into a pillar-and-spoke structure:</p>
+
+<h4>Cluster: AI for Java Developers (pillar page needed)</h4>
+
+<table>
+  <tr>
+    <th>Role</th>
+    <th>Article</th>
+    <th>Keyword target</th>
+    <th>Status</th>
+  </tr>
+  <tr>
+    <td><strong>Pillar</strong></td>
+    <td>AI for Java Developers: Complete Guide (2026)</td>
+    <td>ai for java developers</td>
+    <td>Not yet created — highest priority</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>cursor-spring-boot</td>
+    <td>cursor spring boot</td>
+    <td>Live (6% CTR)</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>claude-code-spring-boot</td>
+    <td>claude code spring boot</td>
+    <td>Live (4.4% CTR)</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>using-ai-legacy-java-codebase</td>
+    <td>ai legacy java codebase</td>
+    <td>Live</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>ai-junit-tests</td>
+    <td>ai junit tests</td>
+    <td>Live</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>ai-code-review-java</td>
+    <td>ai code review java</td>
+    <td>Live</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>cursor-background-agents-spring-boot</td>
+    <td>cursor background agents</td>
+    <td>Live</td>
+  </tr>
+  <tr>
+    <td>Spoke</td>
+    <td>claude-code-subagents-hooks-spring-boot</td>
+    <td>claude code subagents hooks</td>
+    <td>Live</td>
+  </tr>
+</table>
+
+<h4>New article targets (next 4-6 weeks)</h4>
+
+<table>
+  <tr>
+    <th>Priority</th>
+    <th>Keyword target</th>
+    <th>Title concept</th>
+    <th>Intent</th>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>ai for java developers</td>
+    <td>AI for Java Developers: Complete Guide (2026)</td>
+    <td>Informational (pillar)</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>copilot spring boot</td>
+    <td>GitHub Copilot with Spring Boot: Does It Work in 2026?</td>
+    <td>Informational</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>claude code mcp server</td>
+    <td>Build Your First MCP Server for Claude Code (Java Example)</td>
+    <td>Tutorial</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>cursor tab vs copilot</td>
+    <td>Cursor Tab vs GitHub Copilot: I Tested Both on Java (2026)</td>
+    <td>Commercial</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>ai spring boot entity dto</td>
+    <td>AI Keeps Getting Spring Boot DTOs Wrong — Here's the Fix</td>
+    <td>Informational</td>
+  </tr>
+  <tr>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>chatgpt 429002 error</td>
+    <td>ChatGPT API 429002 Error: What It Means and How I Fixed It</td>
+    <td>Transactional</td>
+  </tr>
+</table>
+
+<h3>3.2 Keyword cannibalization audit</h3>
+
+<table>
+  <tr>
+    <th>Issue</th>
+    <th>Pages involved</th>
+    <th>Resolution</th>
+  </tr>
+  <tr>
+    <td>429 error topic split</td>
+    <td>chatgpt-api-429-fix (689 imp) vs openai-429-fix-variations (286 imp, 0 clicks) vs openai-429001-error-code-fix (low imp)</td>
+    <td><strong>301 redirect</strong> openai-429-fix-variations to chatgpt-api-429-fix. Keep openai-429001 as a standalone long-tail page (specific error code). Add canonical from variations to 429-fix.</td>
+  </tr>
+  <tr>
+    <td>Rate limits overlap</td>
+    <td>openai-rate-limits-guide (766 imp, 1 click) vs chatgpt-api-429-fix (689 imp, 2 clicks)</td>
+    <td>Keep both but differentiate: rate-limits-guide = theory/system explanation; 429-fix = practical fix. Add cross-canonicals and internal links to clarify intent.</td>
+  </tr>
+  <tr>
+    <td>Cursor tutorial overlap</td>
+    <td>cursor-ai-editor-tutorial (620 imp) vs cursor-rules-tutorial (177 imp) vs cursor-spring-boot (50 imp, 6% CTR)</td>
+    <td>No cannibalization — different intents. But cursor-ai-editor-tutorial's 620 imp at 0.32% CTR needs a title rewrite to be more specific.</td>
+  </tr>
+</table>
+
+<hr>
+
+<h2 id="on-page">4. On-page optimization checklist</h2>
+
+<h3>4.1 Title tag optimization (highest CTR impact)</h3>
+
+<table>
+  <tr>
+    <th>Page</th>
+    <th>Current title</th>
+    <th>Issue</th>
+    <th>Suggested title</th>
+  </tr>
+  <tr>
+    <td>cursor-ai-editor-tutorial</td>
+    <td>Cursor AI Editor: How I Switched from VS Code and Never Looked Back</td>
+    <td>Too long (69 chars). "Never Looked Back" is cliché.</td>
+    <td>Cursor AI Editor Tutorial 2026: Setup, Tips & Real Workflow</td>
+  </tr>
+  <tr>
+    <td>chatgpt-api-429-fix</td>
+    <td>ChatGPT 429 Error? 5 Fixes I Tested (and One Failed)</td>
+    <td>Good CTR potential but missing year. "One Failed" creates curiosity.</td>
+    <td>ChatGPT API 429 Error Fix: 5 Solutions I Tested (2026)</td>
+  </tr>
+  <tr>
+    <td>cursor-rules-tutorial</td>
+    <td>Cursor Rules Tutorial: Make AI Write Code the Way You Do</td>
+    <td>Too generic. No framework or specificity.</td>
+    <td>Cursor Rules (.cursor/rules): Examples for Java &amp; Spring Boot (2026)</td>
+  </tr>
+  <tr>
+    <td>claude-projects-tutorial</td>
+    <td>Claude Projects: How I Organized 50+ AI Chats</td>
+    <td>Decent but could be more specific.</td>
+    <td>Claude Projects Tutorial: Organize 50+ Chats (Setup + Workflow 2026)</td>
+  </tr>
+  <tr>
+    <td>prompt-engineering-techniques</td>
+    <td>Prompt Engineering Techniques: Your Prompts Aren't the Problem—Fix It</td>
+    <td>Too long. Generic. Competes with established guides.</td>
+    <td>Prompt Engineering for Developers: 7 Techniques That Actually Work (2026)</td>
+  </tr>
+  <tr>
+    <td>midjourney-complete-guide</td>
+    <td>Midjourney Guide: Create AI Art That Doesn't Look AI</td>
+    <td>"Complete guide" is oversaturated.</td>
+    <td>Midjourney for Developers: Generate UI Assets &amp; Mockups (2026)</td>
+  </tr>
+</table>
+
+<h3>4.2 Meta description optimization</h3>
+
+<p>Current descriptions are generally good (first-person, specific). Key improvements:</p>
+<ul>
+  <li>Add the current year where missing (signals freshness to searchers)</li>
+  <li>Include the primary keyword in the first 100 characters</li>
+  <li>Keep descriptions between 140-160 characters (current schema enforces max 160, which is correct)</li>
+  <li>Add a call-to-action or outcome statement ("Here's what I learned", "Tested in production")</li>
+</ul>
+
+<h3>4.3 Heading structure</h3>
+<ul>
+  <li><strong>H1:</strong> Correctly rendered from title (no duplicate H1 in body — good, layout handles it)</li>
+  <li><strong>H2-H3:</strong> Articles use proper heading hierarchy. TableOfContents component generates from headings.</li>
+  <li><strong>Improvement:</strong> Add target keywords naturally in at least one H2 per article</li>
+</ul>
+
+<hr>
+
+<h2 id="internal-linking">5. Internal linking architecture</h2>
+
+<h3>5.1 Current state</h3>
+
+<ul>
+  <li>Most articles have 2-4 contextual internal links in the body (good)</li>
+  <li>RelatedPosts component shows 3 same-category articles at the bottom (good)</li>
+  <li>Category pages provide hub structure (good)</li>
+  <li>Homepage links to 6 recent articles + featured + categories (good)</li>
+</ul>
+
+<h3>5.2 Issues found</h3>
+
+<table>
+  <tr>
+    <th>Issue</th>
+    <th>Impact</th>
+    <th>Fix</th>
+  </tr>
+  <tr>
+    <td>Internal links use inconsistent trailing slashes — many use <code>/blog/slug</code> without trailing slash, but Astro's <code>trailingSlash: 'always'</code> config 301-redirects to <code>/blog/slug/</code></td>
+    <td><span class="badge badge-p1">P1</span> Every redirect wastes crawl budget and dilutes link equity slightly</td>
+    <td>Run a find-and-replace to add trailing slashes to all internal links in markdown files</td>
+  </tr>
+  <tr>
+    <td>No pillar page linking all Java+AI cluster articles together</td>
+    <td><span class="badge badge-p1">P1</span> Cluster articles don't concentrate authority</td>
+    <td>Create pillar page that links to all 7 Java+AI articles with descriptive anchor text</td>
+  </tr>
+  <tr>
+    <td>RelatedPosts uses category-only matching, not topical relevance</td>
+    <td><span class="badge badge-p2">P2</span> Articles may show unrelated "related" posts</td>
+    <td>Consider tag-based or manual related post selection for key articles</td>
+  </tr>
+  <tr>
+    <td>No "previous/next article" navigation</td>
+    <td><span class="badge badge-p2">P2</span> Users and crawlers have fewer discovery paths</td>
+    <td>Consider adding prev/next navigation at the bottom of articles</td>
+  </tr>
+</table>
+
+<h3>5.3 Recommended internal link structure</h3>
+
+<pre><code>Pillar: /blog/ai-for-java-developers/
+  |
+  +-- /blog/cursor-spring-boot/         (spoke)
+  +-- /blog/claude-code-spring-boot/     (spoke)
+  +-- /blog/using-ai-legacy-java-codebase/  (spoke)
+  +-- /blog/ai-junit-tests/              (spoke)
+  +-- /blog/ai-code-review-java/         (spoke)
+  +-- /blog/cursor-background-agents-spring-boot/  (spoke)
+  +-- /blog/claude-code-subagents-hooks-spring-boot/  (spoke)
+
+Each spoke links back to the pillar.
+Pillar links to every spoke with descriptive anchor text.
+Pillar is linked from homepage and category page.</code></pre>
+
+<hr>
+
+<h2 id="authority">6. Link authority &amp; E-E-A-T</h2>
+
+<h3>6.1 E-E-A-T assessment</h3>
+
+<table>
+  <tr>
+    <th>Dimension</th>
+    <th>Score</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>Experience</td>
+    <td>Strong</td>
+    <td>First-person articles with real code examples, real error messages, real workflow descriptions. Author is a senior Java engineer using AI tools daily since 2023.</td>
+  </tr>
+  <tr>
+    <td>Expertise</td>
+    <td>Strong</td>
+    <td>Deep technical content (Spring Boot DI traps, JPA N+1, Gradle dependency creep). Not surface-level AI content.</td>
+  </tr>
+  <tr>
+    <td>Authoritativeness</td>
+    <td>Moderate</td>
+    <td>About page with real photo, bio, GitHub link, cross-site link to shiptocash.com. Missing: LinkedIn profile link, author schema with sameAs to GitHub.</td>
+  </tr>
+  <tr>
+    <td>Trustworthiness</td>
+    <td>Strong</td>
+    <td>Privacy policy, contact page, RSS feed, honest reviews ("sometimes it wasted three hours"). No deceptive practices.</td>
+  </tr>
+</table>
+
+<h3>6.2 Link building opportunities</h3>
+
+<table>
+  <tr>
+    <th>Tactic</th>
+    <th>Effort</th>
+    <th>Expected impact</th>
+    <th>Details</th>
+  </tr>
+  <tr>
+    <td>GitHub README backlinks</td>
+    <td>Low</td>
+    <td>Medium</td>
+    <td>pdf2word repo README already links to the blog. Add links from other repos (my_music, stock plugin, etc.) to relevant articles.</td>
+  </tr>
+  <tr>
+    <td>Dev.to / Hashnode cross-posting</td>
+    <td>Medium</td>
+    <td>Medium</td>
+    <td>Cross-post technical articles to Dev.to with canonical link back to aikitguides.com. Dev.to has high domain authority.</td>
+  </tr>
+  <tr>
+    <td>Hacker News / Show HN</td>
+    <td>Low</td>
+    <td>High (if it hits)</td>
+    <td>Show HN draft already exists for pdf2word. Submit when timing is right.</td>
+  </tr>
+  <tr>
+    <td>Reddit r/java, r/springboot</td>
+    <td>Low</td>
+    <td>Medium</td>
+    <td>Share Java+AI articles in relevant subreddits. Don't spam — provide value in comments first.</td>
+  </tr>
+  <tr>
+    <td>Stack Overflow answers</td>
+    <td>Medium</td>
+    <td>Low-medium</td>
+    <td>Answer OpenAI 429 / Cursor / Claude Code questions with a link back to the detailed guide.</td>
+  </tr>
+  <tr>
+    <td>Linkable asset: AI tools comparison table</td>
+    <td>Medium</td>
+    <td>High</td>
+    <td>Create a comprehensive, regularly updated "AI coding tools comparison 2026" table page that other blogs would reference.</td>
+  </tr>
+</table>
+
+<h3>6.3 Author entity strengthening</h3>
+
+<ul>
+  <li>Add a standalone <code>/about/peng-zhou/</code> page with full Person schema (sameAs: GitHub, LinkedIn, shiptocash.com)</li>
+  <li>Link the Article schema's author field to this Person page (currently links to <code>/about/</code>)</li>
+  <li>Consider adding a LinkedIn profile (even if inactive) to strengthen the author entity</li>
+  <li>Add <code>jobTitle</code> and <code>knowsAbout</code> fields to the Person schema</li>
+</ul>
+
+<hr>
+
+<h2 id="bing">7. Bing optimization</h2>
+
+<div class="callout callout-success">
+  <p><strong>Bing is your hidden opportunity.</strong> Bing delivers 2.94% CTR — 7x your Google CTR. cursor-spring-boot has 16.67% CTR on Bing (avg position 2.06). Bing also powers Yahoo search and ChatGPT's web search, so Bing optimization has multiplicative reach.</p>
+</div>
+
+<h3>Bing-specific actions</h3>
+<ol>
+  <li><strong>Submit to Bing Webmaster Tools</strong> (if not already done). Submit the sitemap and use the URL submission API for new articles.</li>
+  <li><strong>Bing values exact keyword matches more than Google.</strong> Ensure target keywords appear in title, H1, and first 100 words.</li>
+  <li><strong>Bing Places / Bing Webmaster Tools</strong> — verify site ownership and monitor Bing indexing status.</li>
+  <li><strong>IndexNow protocol</strong> — implement IndexNow (supported by Bing) to instantly notify of new/updated content. Astro can integrate this via API endpoint.</li>
+</ol>
+
+<hr>
+
+<h2 id="action-plan">8. Prioritized action plan</h2>
+
+<h3>Phase 1: Immediate technical fixes (Week 1)</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Action</th>
+    <th>Priority</th>
+    <th>File</th>
+    <th>Effort</th>
+  </tr>
+  <tr>
+    <td>1</td>
+    <td>Remove <code>Disallow: /_astro/</code> from robots.txt</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td><code>public/robots.txt</code></td>
+    <td>5 min</td>
+  </tr>
+  <tr>
+    <td>2</td>
+    <td>301 redirect <code>openai-429-fix-variations</code> to <code>chatgpt-api-429-fix</code></td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>Cloudflare Pages redirects or Astro config</td>
+    <td>15 min</td>
+  </tr>
+  <tr>
+    <td>3</td>
+    <td>Remove deprecated <code>Host:</code> directive from robots.txt</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td><code>public/robots.txt</code></td>
+    <td>1 min</td>
+  </tr>
+</table>
+
+<h3>Phase 2: On-page optimization (Weeks 2-3)</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Action</th>
+    <th>Priority</th>
+    <th>Effort</th>
+  </tr>
+  <tr>
+    <td>4</td>
+    <td>Remove SearchAction from WebSite schema (no search page exists)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>10 min</td>
+  </tr>
+  <tr>
+    <td>5</td>
+    <td>Add trailing slashes to all internal links in markdown files (find-and-replace)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>30 min</td>
+  </tr>
+  <tr>
+    <td>6</td>
+    <td>Configure sitemap lastmod dates (use pubDate/updatedDate from frontmatter)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>1 hour</td>
+  </tr>
+  <tr>
+    <td>7</td>
+    <td>Add <code>&lt;link rel="preconnect"&gt;</code> for googletagmanager.com</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>5 min</td>
+  </tr>
+  <tr>
+    <td>8</td>
+    <td>Rewrite title tags for 6 low-CTR pages (see section 4.1)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>1 hour</td>
+  </tr>
+</table>
+
+<h3>Phase 3: Content &amp; CTR optimization (Weeks 3-6)</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Action</th>
+    <th>Priority</th>
+    <th>Effort</th>
+  </tr>
+  <tr>
+    <td>9</td>
+    <td>Create pillar page: "AI for Java Developers: Complete Guide (2026)"</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>1 day</td>
+  </tr>
+  <tr>
+    <td>10</td>
+    <td>Add internal links from pillar page to all 7 Java+AI articles (and back)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>2 hours</td>
+  </tr>
+  <tr>
+    <td>11</td>
+    <td>Implement IndexNow for instant Bing indexing on new publishes</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>2 hours</td>
+  </tr>
+  <tr>
+    <td>12</td>
+    <td>Publish "Copilot with Spring Boot" article (fills cluster gap)</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>1 day</td>
+  </tr>
+  <tr>
+    <td>13</td>
+    <td>Submit to Bing Webmaster Tools + verify sitemap</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>30 min</td>
+  </tr>
+</table>
+
+<h3>Phase 4: Authority &amp; scale (Ongoing)</h3>
+
+<table>
+  <tr>
+    <th>#</th>
+    <th>Action</th>
+    <th>Priority</th>
+    <th>Cadence</th>
+  </tr>
+  <tr>
+    <td>14</td>
+    <td>Publish 3 articles/week following the winning formula (tool + action + version)</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>Weekly</td>
+  </tr>
+  <tr>
+    <td>15</td>
+    <td>Cross-post to Dev.to with canonical links back to aikitguides.com</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>Weekly</td>
+  </tr>
+  <tr>
+    <td>16</td>
+    <td>Build author Person schema page with sameAs links</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>One-time</td>
+  </tr>
+  <tr>
+    <td>17</td>
+    <td>Create linkable asset: "AI Coding Tools Comparison 2026" (updated table)</td>
+    <td><span class="badge badge-p1">P1</span></td>
+    <td>Monthly update</td>
+  </tr>
+  <tr>
+    <td>18</td>
+    <td>Submit Show HN for pdf2word (when timing is right)</td>
+    <td><span class="badge badge-p2">P2</span></td>
+    <td>One-time</td>
+  </tr>
+  <tr>
+    <td>19</td>
+    <td>Monitor GSC weekly: track CTR changes after title rewrites, watch for new query patterns</td>
+    <td><span class="badge badge-p0">P0</span></td>
+    <td>Weekly</td>
+  </tr>
+</table>
+
+<div class="callout callout-success">
+  <p><strong>Expected outcomes (3-month projection):</strong></p>
+  <ul style="margin: 8px 0 0 20px;">
+    <li><strong>CTR:</strong> 0.4% → 1.5-2% (from title rewrites + cannibalization fix)</li>
+    <li><strong>Clicks/month:</strong> 4-5 → 15-25 (from CTR improvement + new content)</li>
+    <li><strong>Bing traffic:</strong> 6 clicks → 15-20 clicks/month (from IndexNow + title alignment)</li>
+    <li><strong>Indexed pages:</strong> 26 → 35-40 (from weekly publishing)</li>
+    <li><strong>Avg position:</strong> 33.4 → 25-28 (from pillar page authority concentration)</li>
+  </ul>
+  <p style="margin-top: 12px; font-size: 13px; color: var(--text-light);">These are conservative estimates based on the proven CTR improvement pattern. The biggest lever is title/description rewriting — each 0.5% CTR increase on 3,290 impressions = ~16 additional clicks/month.</p>
+</div>
+
+<div class="footer">
+  <p>Report generated: August 12, 2026 &middot; Site: aikitguides.com &middot; Data sources: Google Search Console (3-month), Bing Webmaster Tools (30-day), codebase audit, live site verification</p>
+</div>
+
+</body>
+</html>

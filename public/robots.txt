@@ -1,12 +1,8 @@
 User-agent: *
 Allow: /
 
-# Block development/staging
+# Block development/staging (preview/draft URLs only)
 Disallow: /*?*draft=
-Disallow: /_astro/
-
-# Host directive
-Host: https://aikitguides.com
 
 # Sitemap
 Sitemap: https://aikitguides.com/sitemap-index.xml
