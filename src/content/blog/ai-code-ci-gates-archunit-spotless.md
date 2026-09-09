@@ -102,6 +102,8 @@ noFields().should().beAnnotatedWith("org.springframework.beans.factory.annotatio
 
 After that, it failed correctly. This is the most useful thing in this whole experiment for anyone running ArchUnit today, and it has nothing to do with AI. Go check your rules right now. Every single one of them needs to be proven to fail at least once.
 
+There is an earlier version of the same failure, one layer down. A gate can only fail if the test underneath it actually executes. While continuing this series I hit agent-written tests in a Spring Boot 4 project that compiled, sat in `src/test/java`, and [never ran at all](/blog/ai-junit-tests-not-running-spring-boot-4/): Surefire printed `Tests run: 0` and Maven still said `BUILD SUCCESS`. A gate wrapped around a test that never executes is this dead rule in a different costume.
+
 ## Run 3: same broken code, plus AGENTS.md, and it reverted my fix
 
 For the third run I used the identical broken starting point and added an `AGENTS.md` with the project conventions and one firm instruction:

@@ -100,7 +100,7 @@ For anything touching an older service, I would also reread what I wrote about [
 
 ## What I Would Tell My Team
 
-Do not ask an agent to "migrate us to Spring Boot 4." That prompt guarantees it optimises for the compiler going quiet, which is precisely the wrong target here. Ask it to do the renames, one module at a time, with the migration guide open beside it. Then take the silent changes yourself and write tests for them, because those are judgement calls about your API contract, not mechanical edits.
+Do not ask an agent to "migrate us to Spring Boot 4." That prompt guarantees it optimises for the compiler going quiet, which is precisely the wrong target here. Ask it to do the renames, one module at a time, with the migration guide open beside it. Then take the silent changes yourself and write tests for them, because those are judgement calls about your API contract, not mechanical edits. Then check that those tests actually execute: on Spring Boot 4 with JUnit 6 I ended up with [agent-written tests that never ran](/blog/ai-junit-tests-not-running-spring-boot-4/) while the build stayed green, which is the same silent failure one layer further down.
 
 The honest summary: the agent is excellent at the 80% that is tedious and compiler-verified, and it is close to useless at the 20% that will actually page you. Knowing which is which is the whole job.
 

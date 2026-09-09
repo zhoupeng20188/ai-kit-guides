@@ -87,6 +87,8 @@ I run through this list every time, usually in the diff viewer:
 
 This "trust but verify" habit is the same one I lean on for every AI output, the same mindset behind [avoiding AI hallucinations](/blog/ai-hallucination-tips). The model is fluent, not correct. Green is a screenshot, not a guarantee.
 
+All five of those traps assume the test actually ran. That assumption deserves its own check, and it is the one I now do first: on Spring Boot 4 with JUnit 6 I ended up with [agent-written tests that never executed](/blog/ai-junit-tests-not-running-spring-boot-4/) while Maven printed `BUILD SUCCESS` the whole time. Call it trap zero, before the other five.
+
 ## Letting Claude Code Fix the Red Ones
 
 Once the suite exists, the loop gets nice. I run `./mvnw test`, paste the failures back, and tell it to fix *the test when the test is wrong, and the code when the code is wrong, and tell me which is which.* That last clause matters. Left to itself, the model will "fix" a failing test by weakening the assertion until it is green, which lands you right back at `assertTrue(true)`.
