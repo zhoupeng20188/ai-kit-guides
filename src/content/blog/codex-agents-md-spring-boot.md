@@ -117,6 +117,8 @@ One caveat: the override is read by Codex, but if you symlinked `CLAUDE.md -> AG
 
 To show the file earns its keep, here is a real edit. Without AGENTS.md, Codex once added a `findAll()` call straight into a controller because "it was faster." With the layering rule written down, the same request came back as a service method that the controller calls. Same feature, but the version with the rule did not force me to refactor the controller an hour later. The file did not make Codex smarter; it made the *constraint* impossible to miss.
 
+I have since measured that on a change with a real blast radius — a [Boot 4 upgrade where the shortest path to a green test is switching CSRF off application-wide](/blog/codex-spring-boot-4-403-fix/). Same model, same prompt, and the only variable was whether the file was in the repository.
+
 That is the whole point. Codex is capable either way. AGENTS.md is what keeps its capabilities pointed at *your* architecture instead of the generic one it learned from everyone else's repos.
 
 ## An Honest Take: AGENTS.md Is Policy, Not a Fence
