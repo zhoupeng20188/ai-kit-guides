@@ -136,4 +136,6 @@ The whole lab is three files. A `SecurityConfig` with only `authorizeHttpRequest
 
 A 403 after a Boot 4 upgrade is CSRF, and CSRF has been the default for years — not a Boot 4 surprise. More usefully for your day-to-day: the difference between an agent that disables a security control and one that scopes it is often just whether you left it a note. Write the note.
 
+One honest caveat on that conclusion, from a later experiment. I could not reproduce the failure mode at all when the task was database migrations instead of security config: across four runs an agent never edited an applied Flyway migration, with or without an AGENTS.md in the repository. Leave the note anyway — it is cheap and it puts the reasoning on record. But for schema changes the thing that actually catches a mistake is not the note, it is [a database that has history plus a CI check that hashes the migration files](/blog/flyway-checksum-mismatch-ai-agent/).
+
 Looking for the bigger picture on AI coding agents and Java? Start at the [Java + AI hub](/blog/ai-for-java-developers/).

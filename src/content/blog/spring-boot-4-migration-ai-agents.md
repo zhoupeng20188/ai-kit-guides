@@ -104,4 +104,6 @@ Do not ask an agent to "migrate us to Spring Boot 4." That prompt guarantees it 
 
 The honest summary: the agent is excellent at the 80% that is tedious and compiler-verified, and it is close to useless at the 20% that will actually page you. Knowing which is which is the whole job.
 
+There is a third category neither bucket covers, and it is the one I would lose sleep over: a change that is loud in one environment and completely silent in another. A rewritten Flyway migration behaves exactly like that. The database that already executed it refuses to start, while a fresh database — which is every database your CI provisions — migrates cleanly and ends up with [a different schema while reporting success](/blog/flyway-checksum-mismatch-ai-agent/).
+
 Want the broader picture of AI coding agents on Java? Start from the [Java + AI hub](/blog/ai-for-java-developers/), where this sits alongside the Claude Code, Cursor, and Codex pieces.
