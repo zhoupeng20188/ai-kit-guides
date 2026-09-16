@@ -126,6 +126,8 @@ BUILD SUCCESS — 4 tests run, 0 failures, 0 errors
 
 This is the configuration I now consider the actual default for Java work: **workspace-write plus network, nothing more**. The agent keeps its blast radius — it can still only write inside the project — while Maven, Gradle, and wrapper downloads work the way they do in real life. A build tool that cannot reach a repository is not a safe build tool; it is a broken one.
 
+**One correction I owe this section.** "Network on" covers outbound TCP; it says nothing about Unix domain sockets, so this configuration still cannot reach `/var/run/docker.sock`. That is invisible until a build needs a container, and then it fails with an error message that blames Docker rather than the sandbox. I measured that layer separately and wrote it up as [the Testcontainers and Docker socket experiment](/blog/codex-testcontainers-docker-socket-spring-boot/), which also turned up the more useful finding: what the agent does when it cannot run your integration tests.
+
 Worth saying out loud: I verified this key is real by running Codex with `--strict-config`, which errors out on unknown configuration fields. If you mistype the key, `--strict-config` is how you find out instead of silently getting the default.
 
 ## Do you ever need danger-full-access?
