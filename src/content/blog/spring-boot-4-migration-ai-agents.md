@@ -47,6 +47,8 @@ The Jackson 3 move is the biggest one. The group ID and package change from `com
 
 Then there is the rest of the mechanical pile: `antMatchers()` became `requestMatchers()`, `authorizeRequests()` became `authorizeHttpRequests()`, `spring-boot-starter-aop` became `spring-boot-starter-aspectj`, and `hibernate-jpamodelgen` became `hibernate-processor`.
 
+I used to assume this pile was the safe part to hand over, because every item on it is compiler-verified. Then I measured it: given twelve ordinary "add this dependency" requests on a Boot 4.1.1 project, [Codex chose the right coordinate once](/blog/codex-spring-boot-4-dependencies-silent-failures/). Five of the wrong answers built green and wired nothing at all — the BOM still manages the old library coordinates, so `flyway-core` resolves, boots, and runs zero migrations without a word. Starter renames look mechanical and are not.
+
 Why agents do well here is worth understanding, because it tells you when to delegate. These renames are **compiler-verified**. The agent does not need to understand your domain to fix them, the pattern is uniform, and a `./mvnw compile` gives it a hard yes or no. Give it the whole module, let it iterate on the error output, and verify with grep afterwards:
 
 ```bash

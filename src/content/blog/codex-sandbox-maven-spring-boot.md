@@ -183,3 +183,5 @@ After seven runs, my personal defaults for Codex on Java projects:
 
 And one operational note for CI: `codex exec`'s read-only default means the common advice of "just run codex exec in your pipeline" produces an agent that cannot compile anything. If you are wiring this into GitHub Actions, the same sandbox decision applies there, just with the network question answered differently — I cover the Claude Code equivalent of that setup in [my GitHub Actions piece](/blog/claude-code-github-actions-spring-boot/), and the Codex version needs this exact flag.
 
+Getting Maven to download a dependency is not the same as getting the right one. Once the sandbox question is settled, the agent still has to choose a coordinate, and on Spring Boot 4 that is where it falls over: twelve ordinary dependency requests produced [one correct answer](/blog/codex-spring-boot-4-dependencies-silent-failures/), and five of the wrong ones built green while wiring nothing, because the BOM still manages the old library coordinates.
+
