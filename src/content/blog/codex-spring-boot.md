@@ -111,4 +111,6 @@ Codex earns a permanent spot in my Spring Boot toolkit the moment a task is scop
 
 One more failure mode belongs on that list, and it is the one I now hit most often. Ask Codex to add a dependency on a Spring Boot 4 project and it will usually pick a coordinate that resolves, compiles, and does nothing: twelve ordinary requests, [one correct answer](/blog/codex-spring-boot-4-dependencies-silent-failures/). Same signature as everything above — green build, feature missing — except this one starts before you have written any code.
 
+And the same logic turns nastier once nobody is watching. Put `codex exec` in a pipeline and it returns exit code 0 no matter what happened — [seven runs, seven zeros](/blog/codex-ci-spring-boot-green-build/), including one where it changed a business rule to agree with a test that was wrong. The fix is not a better prompt; it is gating on your build tool's exit code and asserting a test count instead of the agent's.
+
 For the full map of how I run AI across Java and Spring Boot, every tool and every failure mode, I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

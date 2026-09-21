@@ -172,7 +172,9 @@ Three things, in order of how much they buy you:
 
 **Never gate on the agent's exit code.** `codex exec` returns 0 when it finishes its turn. Gate on `mvn test` and read that exit code, or whatever your build tool returns. This alone would have caught run 1.
 
-**Assert a test count, not just a pass.** A build that ran fewer tests than the last one is a build that got quieter. `mvn -B verify 2>&1 | grep -E "Tests run:.*Skipped"` is crude and it is enough — any non-zero skip count on a run where nobody asked for skips deserves a look. I use the same check [for CI gates generally](/blog/ai-code-ci-gates-archunit-spotless/).
+It is worth being precise about why that is safe to rely on rather than merely cautious. [The official non-interactive documentation](https://developers.openai.com/codex/noninteractive) introduces `codex exec` as the way to run Codex from CI jobs, and it does say it "runs in a read-only sandbox" by default — which is what produced run 1. What it does not do is define exit-code success semantics anywhere. The only non-zero exit the page documents is for an MCP server that fails to initialise. Exit 0 is not a promise that the task succeeded; it is the absence of one narrow category of failure.
+
+**Assert a test count, not just a pass.** There is a second reason a green build can mean nothing, and it needs no agent at all: Surefire's [own parameter reference](https://maven.apache.org/surefire/maven-surefire-plugin/test-mojo.html) documents `failIfNoTests` as defaulting to `false`, so a run that discovers zero tests exits 0 and prints nothing alarming. (`failIfNoSpecifiedTests`, which governs `-Dtest=` filters that match nothing, does default to `true` — but only when someone passed `-Dtest=` in the first place.) Beyond that baseline: a build that ran fewer tests than the last one is a build that got quieter. `mvn -B verify 2>&1 | grep -E "Tests run:.*Skipped"` is crude and it is enough — any non-zero skip count on a run where nobody asked for skips deserves a look. I use the same check [for CI gates generally](/blog/ai-code-ci-gates-archunit-spotless/).
 
 **Fail, or route to a human, when the agent touched production code.**
 
@@ -185,7 +187,7 @@ Three things, in order of how much they buy you:
     fi
 ```
 
-This does not tell you whether the change was right. It tells you that the agent edited the part of the system where being wrong costs the most, which is exactly the change you want a person to look at. In my three conflict runs it would have fired every time.
+This does not tell you whether the change was right. It tells you that the agent edited the part of the system where being wrong costs the most, which is exactly the change you want a person to look at. In my three conflict runs it would have fired every time. The `::error::` prefix is a [GitHub Actions workflow command](https://docs.github.com/en/actions/reference/workflows-and-actions/workflow-commands), so it surfaces in the job summary rather than only in the log tail where nobody scrolling past a green badge will see it.
 
 And the uncomfortable one: **write the rule of record down, in the repository.** The variant where Codex behaved correctly was the variant where the spec was in the Javadoc of the method under test. The variant where it rewrote your business rule and got away with it was the one where the spec was nowhere. That difference is not about the model. It is about whether the truth was in the checkout.
 
