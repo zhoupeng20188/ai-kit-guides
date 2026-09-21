@@ -185,3 +185,5 @@ And one operational note for CI: `codex exec`'s read-only default means the comm
 
 Getting Maven to download a dependency is not the same as getting the right one. Once the sandbox question is settled, the agent still has to choose a coordinate, and on Spring Boot 4 that is where it falls over: twelve ordinary dependency requests produced [one correct answer](/blog/codex-spring-boot-4-dependencies-silent-failures/), and five of the wrong ones built green while wiring nothing, because the BOM still manages the old library coordinates.
 
+The sandbox question has a second half once you move to CI, and it is the one that actually bites: `codex exec` returns exit code 0 whether it fixed your build or never managed to run a command. I measured [seven runs and seven zeros](/blog/codex-ci-spring-boot-green-build/), including one where the agent reported that it had changed nothing and left the build red.
+

@@ -135,4 +135,6 @@ The file is not magic. It is just the context you would repeat in every chat, wr
 
 It also moves the needle on problems I would not have expected it to touch. Three rules about dependencies — no list of correct coordinates in them, just "never add the third-party library on its own" and "prove the feature is wired, not that the build passed" — turned [five wrong Spring Boot 4 dependencies into five right ones](/blog/codex-spring-boot-4-dependencies-silent-failures/), from the same model on the same prompts.
 
+One limit is worth knowing, because it decides whether writing the file is worth your time. A rules file redirects the model to evidence that is already in the repository; it does not manufacture evidence that is missing. I hit exactly this: the same three rules stopped Codex from rewriting a business rule to match a wrong test when the spec was in the code, and failed to stop it when [the spec was nowhere in the checkout](/blog/codex-ci-spring-boot-green-build/). Put the rule of record in the repo, or the file has nothing to point at.
+
 Want the broader picture of AI coding agents on Java? Start from the [Java + AI hub](/blog/ai-for-java-developers/), where this fits alongside the Claude Code and Cursor pieces.

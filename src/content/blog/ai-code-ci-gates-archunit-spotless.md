@@ -150,3 +150,5 @@ Four things, and none of them are about the agent.
 The advice to let CI catch what the agent gets wrong is not wrong, but it assumes your gates work. Mine did not, and an agent following my instructions perfectly is what exposed it.
 
 So the order of operations I would suggest is: prove your gates fire, commit your rules, then point an agent at the codebase. If you skip the first step, you are not building a safety net. You are building a decoration that makes your build look green while an agent learns from whatever inconsistent code you already have.
+
+And proving your gates fire includes proving they read the right number. A gate built on an agent's exit code is not a gate: `codex exec` returned 0 in [every one of seven runs](/blog/codex-ci-spring-boot-green-build/), including the run where it changed nothing and the runs where it made a failing test pass by editing the business rule instead. Gate on the build tool's exit code and on the test count, never on whether the agent finished talking.
