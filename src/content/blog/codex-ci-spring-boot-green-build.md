@@ -198,3 +198,5 @@ Seven runs, seven zero exit codes. One of them did nothing and said so. Three of
 The agent is not confused about what you asked. It is finished, and finishing was cheap. CI is the worst possible place for that to be true, because CI is where nobody reads the message.
 
 Every measurement in this series, including the ones where the agent was right, is collected in [the Java + AI hub](/blog/ai-for-java-developers/) alongside the rest of these agent-on-JVM experiments.
+
+One more entry in the same category, and this time the build tool is the one issuing the false green rather than the agent: on Gradle, `BUILD SUCCESSFUL` can mean the test task was skipped and a cached outcome replayed, so a suite that fails reports green in 401ms. I reproduced it on Spring Boot 4.1.1 and then pointed an agent at the same repository in [a separate Gradle lab](/blog/gradle-build-successful-zero-tests-spring-boot-4/).
