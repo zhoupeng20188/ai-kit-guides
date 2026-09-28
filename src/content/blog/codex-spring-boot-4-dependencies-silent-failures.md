@@ -223,3 +223,5 @@ Boot 4 is a particularly bad framework to guess on, because the change that matt
 Two things changed for me after running this. I no longer accept a dependency change on the strength of a green build — I check the condition report or count the bean. And my Spring Boot projects now carry those three rules in `AGENTS.md`, because fifteen lines of "do not add the library on its own" turned five silent failures into five correct answers.
 
 If you want the full set of Boot 4 changes I have measured rather than read about, they are collected in [the Java + AI cluster overview](/blog/ai-for-java-developers/), alongside the [Codex sandbox work](/blog/codex-sandbox-maven-spring-boot/) that started this series.
+
+One layer down, the same modularisation does something stranger to configuration: whether a property is recognised at all becomes a function of your dependency tree. Taking the same `application.yml` from Boot 3 to Boot 4 and changing none of it, [one key stopped being claimed by anything](/blog/codex-spring-boot-4-yml-properties/) and adding a single starter brought it back — no log line in either direction.
