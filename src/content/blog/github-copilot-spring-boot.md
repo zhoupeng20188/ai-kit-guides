@@ -83,7 +83,7 @@ My rule: if the task fits in one or two files, Copilot agent mode is fine. If it
 
 A few things I keep Copilot firmly away from, learned the expensive way:
 
-- **Migrations and schema changes.** A wrong column type or a missing index is quiet until production. I write those by hand.
+- **Migrations and schema changes.** A wrong column type or a missing index is quiet until production. I write those by hand. Scope matters more than the tool, though: I tore down two real Copilot Spring Boot 4 migration PRs — one it finished cleanly, one it stalled on — and the difference was the size of the codebase, not the model. See [the PR teardown](/blog/copilot-spring-boot-4-pr-teardown/).
 - **Security-sensitive code** (auth filters, crypto, permission checks). Copilot optimizes for "looks right," and "looks right" is not "secure."
 - **Anything transactional across multiple services.** Spring's `@Transactional` only works the way you think when the proxy and self-invocation rules are respected. Copilot does not know those rules.
 

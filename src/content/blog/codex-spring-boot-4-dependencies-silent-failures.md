@@ -152,7 +152,7 @@ The real dividing line is somewhere else entirely. Boot 4 [split its auto-config
 
 The agent picked the one option that has no Spring wiring in it at all. And it stayed quiet because the Boot BOM still manages the version of `flyway-core`, `liquibase-core` and `jackson-databind`. Maven has no complaint to raise. The version resolves. The build is green. The only thing missing is the feature.
 
-This is the exact inverse of what makes a migration hard to review. A renamed starter name is a compiler-verifiable, mechanical change — the kind agents are genuinely good at. "The library is present but the framework never picked it up" is not visible anywhere in the build output. It is the same split I keep running into: mechanical renames that AI handles well, and silent behaviour changes that only a test catches.
+This is the exact inverse of what makes a migration hard to review. A renamed starter name is a compiler-verifiable, mechanical change — the kind agents are genuinely good at. "The library is present but the framework never picked it up" is not visible anywhere in the build output. It is the same split I keep running into: mechanical renames that AI handles well, and silent behaviour changes that only a test catches. A real Copilot coding-agent PR ran straight into this split: on Camunda's client modules it correctly added the new spring-boot-health and spring-boot-jackson modules, then hit the sprawling version of the same problem across Azure's 68 POM files and stalled. I wrote up [both PRs against my silent-failure lab](/blog/copilot-spring-boot-4-pr-teardown/).
 
 ## The three that worked anyway
 
