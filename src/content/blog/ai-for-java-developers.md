@@ -61,7 +61,7 @@ Once you're comfortable with one tool, the next leap is letting agents run witho
 
 After two years of this, here's the verdict I give other Java devs. AI is a force multiplier on the boring 70%: boilerplate, tests, explanations, mechanical review, "what does this exception mean." It is not a senior engineer on the risky 30%: transactions, concurrency, Spring wiring, ORM access patterns, and the newer language features. Those need intent and your actual runtime, not a plausible completion.
 
-The trap isn't trusting AI too much or too little. It's trusting the green checkmark. A diff that compiles, passes tests, and got an "LGTM" from a reviewer (human or AI) can still be wrong in exactly the ways Java is unforgiving about. So my rule is simple: let it do the volume, I keep the final read on the four dangerous zones.
+The trap isn't trusting AI too much or too little. It's trusting the green checkmark. A diff that compiles, passes tests, and got an "LGTM" from a reviewer (human or AI) can still be wrong in exactly the ways Java is unforgiving about. So my rule is simple: let it do the volume, I keep the final read on the four dangerous zones. Security config is one of those zones, and it fails silently — an agent can hand you a green build where `@PreAuthorize` no longer enforces anything ([the lab is here](/blog/claude-code-spring-boot-4-preauthorize/)).
 
 ## How to start with AI-assisted Java
 
