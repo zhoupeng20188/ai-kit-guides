@@ -1,6 +1,6 @@
 ---
-title: "Codex Added 12 Spring Boot 4 Dependencies. 5 Failed Silently (2026)"
-description: "I asked Codex to add 12 dependencies to a Spring Boot 4.1.1 project. One was right. Five built green and wired nothing. Here is the test that tells them apart."
+title: "Spring Boot 4 Dependencies: 12 Added by Codex, 5 Silent"
+description: "Spring Boot 4 split auto-configuration: starters wire, spring-boot-* partly wire, raw flyway-core wires nothing. 12 tested — here is the check."
 pubDate: 2026-09-18
 category: "spring-boot-4"
 tags: ["openai codex", "spring boot 4", "maven", "dependency management", "ai coding agents", "java testing", "java-ai-cluster"]
@@ -39,6 +39,22 @@ Each copy got one sentence. The instruction ended with the same constraint every
 Then I built each result myself and measured what the dependency actually did.
 
 ## All twelve answers
+
+If you only came for the rename list, these are the coordinates that changed. Everything below is Spring Boot 4.1.1, resolved and measured, not read off a changelog.
+
+| I asked for | Boot 3 answer | Boot 4 answer |
+|---|---|---|
+| Flyway | `flyway-core` | `spring-boot-starter-flyway` |
+| Liquibase | `liquibase-core` | `spring-boot-starter-liquibase` |
+| Spring MVC | `spring-boot-starter-web` | `spring-boot-starter-webmvc` |
+| WebClient | `spring-boot-starter-webflux` | `spring-boot-starter-webclient` |
+| RestClient | `spring-boot-starter-web` | `spring-boot-starter-restclient` |
+| `@WebMvcTest` | `spring-boot-starter-web` | `spring-boot-starter-webmvc-test` |
+| Security test | `spring-security-test` | `spring-boot-starter-security-test` |
+| Jackson | `jackson-databind` | `spring-boot-starter-jackson` |
+| AOP | `spring-boot-starter-aop` | `spring-boot-starter-aspectj` |
+
+The trap is not the renames — it is that most of the old coordinates still resolve. The Boot BOM keeps managing their versions, so nothing warns you at build time. Below is every one of the twelve tasks with exactly one `pom.xml` edit and no second guesses, plus what each dependency actually wired at runtime.
 
 | # | I asked for | Codex added | Boot 4.1.1 wants | What happened |
 |---|---|---|---|---|

@@ -1,6 +1,6 @@
 ---
-title: "Flyway Checksum Mismatch: Why CI Never Sees It (2026)"
-description: "I rewrote an applied Flyway migration. The database that had already run it refused to boot. A fresh CI database migrated clean, into a different schema."
+title: "Flyway Validate Failed: Checksum Mismatch Fix (Spring Boot 4)"
+description: "Checksum mismatch after editing an applied migration? Run mvn flyway:repair, revert, or add V-next — then see why CI still migrates into a different schema."
 pubDate: 2026-09-14
 category: "spring-boot-4"
 tags: ["flyway", "flyway migration", "flyway checksum mismatch", "spring boot 4", "ai coding agent", "java-ai-cluster"]
@@ -17,6 +17,38 @@ faq:
   - question: "Why is Flyway not running after upgrading to Spring Boot 4?"
     answer: "In Spring Boot 4 the auto-configuration was split out of spring-boot-autoconfigure into per-technology modules, and Flyway is one of them. If your build still declares only org.flywaydb:flyway-core the way it did on Spring Boot 3, the library sits on the classpath but nothing wires it up. There is no error, no warning, and no Flyway log line at all — the application boots normally against an empty database. Adding org.springframework.boot:spring-boot-starter-flyway is what restores it."
 ---
+
+## Fix it first: three ways to clear a checksum mismatch
+
+If you got here because your application refuses to start, here is the error and the three ways out. The rest of this article covers what happens *after* you pick one — including why the first option is the reason CI can stay green with a different schema than you think you shipped.
+
+```
+org.flywaydb.core.api.FlywayException: Validate failed.
+Migration checksum mismatch for migration version 2
+  -> Applied to database : 1234567890
+  -> Resolved locally    : -987654321
+```
+
+Flyway records a checksum of every migration it applies in its own `flyway_schema_history` table. Edit a file that has already run and the checksum changes, so validation fails on the next start. It never compares against the previous contents — only against the number it wrote down.
+
+**Option 1 — repair.** Rewrite the stored checksum to match the file on disk. Pick the line that matches your build tool.
+
+```bash
+mvn flyway:repair           # Maven
+./gradlew flywayRepair      # Gradle
+```
+
+**Option 2 — revert.** If the edit was a mistake, put the file back.
+
+```bash
+git checkout -- src/main/resources/db/migration/V2__add_order_status.sql
+```
+
+**Option 3 — add a new version.** If the change is real, stop editing `V2`. Add `V2_1` or `V4` and let Flyway carry it forward. Migration history is append-only.
+
+One version note before you trust any snippet above: the managed Flyway version moves with your Spring Boot line — 7.x on Boot 2.x, 9.x on Boot 3.x, 11.x on Boot 4. This lab ran on Flyway 12.4.0 declared explicitly, which also validates cleanly.
+
+All three clear the error. Only two leave every environment holding the same schema, and I did not expect which one that excludes.
 
 ## I went hunting for an AI disaster and did not find one
 
