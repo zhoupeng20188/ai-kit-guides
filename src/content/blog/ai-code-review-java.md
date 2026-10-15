@@ -2,7 +2,7 @@
 title: "What AI Code Review Misses in Java (and How I Catch It) (2026)"
 description: "My team runs every PR through an AI reviewer, but it once green-lit code that broke production. Here's what AI code review misses in Java, and my workflow."
 pubDate: 2026-08-07
-category: "ai-tools"
+category: "java-ai-tools"
 tags: ["ai code review", "java code review", "ai code review java", "github copilot code review", "claude code review", "java-ai-cluster"]
 image: "/og-ai-code-review-java.jpg"
 imageAlt: "Terminal showing an AI code review comment on a Java Spring Boot pull request, with a @Transactional annotation highlighted in the diff"

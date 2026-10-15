@@ -2,7 +2,7 @@
 title: "I Ran the Spring Boot 4 Upgrade — and Scored What Agents Miss"
 description: "A real, reproducible Boot 3.5.16 to 4.0.8 upgrade I drove on Java 17, scored against the silent-failure traps AI coding agents walk straight into."
 pubDate: 2026-10-10
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["spring boot 4", "spring boot migration", "claude code", "ai coding agents", "java-ai-cluster"]
 image: "/og-claude-code-spring-boot-4-migration.jpg"
 imageAlt: "A terminal window showing a Spring Boot 4 migration next to a checklist split into loud fixes the compiler forces and silent failures a green build hides"

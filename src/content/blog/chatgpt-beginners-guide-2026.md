@@ -2,7 +2,7 @@
 title: "ChatGPT for Beginners: Start Here in 2026"
 description: "New to ChatGPT? This beginner-friendly guide covers everything from creating an account to writing your first prompt, with practical examples and tips."
 pubDate: 2026-06-20
-category: "chatgpt"
+category: "ai-models-basics"
 tags: ["chatgpt", "openai", "beginners", "tutorial"]
 image: "/og-chatgpt-beginners-guide-2026.jpg"
 imageAlt: "ChatGPT for Beginners: A Complete Guide to Getting Started in 2026"

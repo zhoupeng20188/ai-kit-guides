@@ -2,7 +2,7 @@
 title: "Harness Engineering: What Prompt Engineering Couldn't Solve"
 description: "Harness engineering is the 2026 AI paradigm shift. What it is, why prompt engineering hit its limits, and how to build your own agent harness."
 pubDate: 2026-07-07
-category: "prompt-engineering"
+category: "ai-coding-agents"
 tags: ["harness engineering", "ai agents", "prompt engineering", "claude code", "cursor"]
 image: "/og-harness-engineering.jpg"
 imageAlt: "Harness Engineering concept diagram showing AI agent wrapped in a structured environment with verification loops, constraints, and observability"

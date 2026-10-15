@@ -2,7 +2,7 @@
 title: "Claude Code on Gradle: BUILD SUCCESSFUL With Zero Tests (2026)"
 description: "Gradle printed BUILD SUCCESSFUL in 401ms and ran zero tests. On Spring Boot 4.1.1, I pointed Claude Code at it five times. It caught it all five."
 pubDate: 2026-09-23
-category: "ai-tools"
+category: "java-testing-ci"
 tags: ["gradle", "spring boot 4", "claude code", "java testing", "ci cd", "build cache", "ai coding agents", "java-ai-cluster"]
 image: "/og-gradle-zero-tests.jpg"
 imageAlt: "A Gradle console showing BUILD SUCCESSFUL next to a test task marked UP-TO-DATE with no tests executed"

@@ -2,7 +2,7 @@
 title: "Claude Projects: How I Organized 50+ AI Chats"
 description: "Claude Projects changed how I use AI. Here's how to set it up, what actually works, and the limitations nobody tells you about. Updated for Claude 4.7 in 2026."
 pubDate: 2026-06-28
-category: "llm"
+category: "ai-models-basics"
 tags: ["claude projects", "claude 4.7 tutorial", "ai workflow", "claude tips", "ai organization"]
 image: "/og-claude-projects-tutorial.jpg"
 imageAlt: "Claude Projects interface showing project sidebar with uploaded files and custom instructions"
@@ -109,7 +109,6 @@ SEO rules:
 Existing posts (for internal linking):
 - ChatGPT beginner's guide: /blog/chatgpt-beginners-guide-2026
 - Claude vs ChatGPT comparison: /blog/claude-vs-chatgpt-2026
-- Midjourney guide: /blog/midjourney-complete-guide
 - Best AI tools 2026: /blog/best-ai-tools-2026
 - Prompt engineering: /blog/prompt-engineering-techniques
 - ChatGPT API 429 fix: /blog/chatgpt-api-429-fix

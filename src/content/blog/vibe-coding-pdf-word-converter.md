@@ -2,7 +2,7 @@
 title: "Vibe-Coded a PDF→Word Converter with Claude Code (227 Pages)"
 description: "A Java dev with zero PyQt experience built a PDF→Word converter in Claude Code — the pipeline that got 0% garbled text on a 227-page bank doc."
 pubDate: 2026-07-24
-category: "ai-tools"
+category: "ai-models-basics"
 tags: ["vibe coding", "pdf to word", "claude code", "pyqt6", "pdf2docx", "python-docx"]
 image: "/og-vibe-coding-pdf-word.jpg"
 imageAlt: "A macOS desktop app built with AI that converts PDF files to editable Word documents while preserving tables and heading hierarchy"

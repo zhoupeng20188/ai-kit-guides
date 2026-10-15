@@ -2,7 +2,7 @@
 title: "Codex in CI: All 7 Tests Passed. It Changed the Rule (2026)"
 description: "I asked Codex to fix a red CI build where the test and the spec disagreed. It made all 7 tests pass by editing the business rule. Three times out of three."
 pubDate: 2026-09-21
-category: "ai-tools"
+category: "java-testing-ci"
 tags: ["openai codex", "spring boot 4", "ci cd", "github actions", "maven", "ai coding agents", "java testing", "java-ai-cluster"]
 image: "/og-codex-ci-green.jpg"
 imageAlt: "A CI pipeline result showing seven tests passed, with the note that the agent changed the business rule to get there"

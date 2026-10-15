@@ -2,7 +2,7 @@
 title: "LangChain 1.x Tool Calling & Agents: GLM + MiniMax via OpenAI Endpoint"
 description: "How I wired LangChain tool calling and create_agent to GLM and MiniMax via the OpenAI-compatible endpoint — the bind_tools loop and the tool.invoke footgun."
 pubDate: 2026-07-27
-category: "ai-tools"
+category: "java-ai-tools"
 tags: ["langchain", "langchain 1.x", "tool calling", "langchain agents", "glm", "minimax", "openai compatible endpoint"]
 image: "/og-langchain-1x-tool-calling.jpg"
 imageAlt: "Wiring LangChain 1.x tool calling and agents to GLM and MiniMax through the OpenAI-compatible endpoint"

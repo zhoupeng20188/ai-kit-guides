@@ -2,7 +2,7 @@
 title: "Make Claude Code Remember Your Spring Boot Project (2026)"
 description: "How I made Claude Code remember my real Spring Boot codebase (CLAUDE.md + auto memory): the rules that stopped it breaking the build, and the traps I hit."
 pubDate: 2026-08-19
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["claude code", "spring boot", "claude code remember", "java ai tools", "claude code setup", "java-ai-cluster"]
 image: "/og-claude-code-remember-spring-boot.jpg"
 imageAlt: "Terminal showing a Spring Boot project's CLAUDE.md next to Claude Code, with auto memory notes about Java 21 and bean wiring conventions"

@@ -2,7 +2,7 @@
 title: "Claude Code Fixed My Boot 4 403 — AGENTS.md Changed the Fix (2026)"
 description: "I gave Claude Code the same broken Boot 4 upgrade twice — no context, then with an AGENTS.md. One disabled CSRF globally, one scoped it. Here is the diff."
 pubDate: 2026-09-02
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["spring boot 4", "claude code", "agents.md", "spring security csrf", "java ai tools", "java-ai-cluster"]
 image: "/og-claude-code-spring-boot-4-403.jpg"
 imageAlt: "A terminal showing Claude Code fixing a Spring Boot 4 403 next to a diff where a global csrf.disable() becomes a scoped ignoringRequestMatchers exemption"

@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>AdSense 收入测算器 · aikitguides</title>
+<style>
+  :root {
+    --bg: #f6f7f9;
+    --card: #ffffff;
+    --ink: #1a1f29;
+    --muted: #667085;
+    --line: #e4e7ec;
+    --accent: #4f46e5;
+    --accent-soft: #eef2ff;
+    --good: #15803d;
+    --warn: #b45309;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #0f1115;
+      --card: #171a21;
+      --ink: #e7eaf0;
+      --muted: #98a2b3;
+      --line: #2a2f3a;
+      --accent: #818cf8;
+      --accent-soft: #1e2233;
+      --good: #4ade80;
+      --warn: #fbbf24;
+    }
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0; padding: 24px 16px;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC", "Microsoft YaHei", sans-serif;
+    background: var(--bg); color: var(--ink); line-height: 1.6;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  .sub { color: var(--muted); font-size: 13px; margin-bottom: 20px; }
+  .card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 18px 20px; margin-bottom: 16px;
+  }
+  .presets { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 4px; }
+  .preset {
+    border: 1px solid var(--line); background: var(--accent-soft); color: var(--accent);
+    border-radius: 999px; padding: 6px 14px; font-size: 13px; cursor: pointer; font-weight: 600;
+  }
+  .preset:hover { filter: brightness(0.97); }
+  .row { display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 12px; padding: 9px 0; border-bottom: 1px dashed var(--line); }
+  .row:last-child { border-bottom: none; }
+  .row label { font-size: 14px; }
+  .row .hint { font-size: 11px; color: var(--muted); }
+  input[type=number] {
+    width: 110px; padding: 6px 8px; border: 1px solid var(--line); border-radius: 8px;
+    background: var(--bg); color: var(--ink); font-size: 14px; text-align: right;
+  }
+  input[type=range] { width: 200px; accent-color: var(--accent); }
+  .val { display: inline-block; min-width: 52px; text-align: right; font-weight: 600; }
+  .out { display: grid; grid-template-columns: repeat(2, 1fr); gap: 12px; }
+  .stat { background: var(--accent-soft); border-radius: 10px; padding: 12px 14px; }
+  .stat .k { font-size: 12px; color: var(--muted); }
+  .stat .v { font-size: 20px; font-weight: 700; color: var(--accent); margin-top: 2px; }
+  .stat.big .v { font-size: 26px; color: var(--good); }
+  .note { font-size: 12px; color: var(--muted); margin-top: 10px; }
+  .note b { color: var(--warn); }
+  footer { font-size: 11px; color: var(--muted); text-align: center; margin-top: 18px; }
+  code { background: var(--accent-soft); padding: 1px 5px; border-radius: 4px; font-size: 12px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>AdSense 收入测算器</h1>
+  <div class="sub">aikitguides.com · 基于 GSC 数据外推 · 拖动/修改任意参数实时重算</div>
+
+  <div class="card">
+    <div class="presets">
+      <button class="preset" data-p="now">当前 (7/26)</button>
+      <button class="preset" data-p="dec-base">12月底 · 基准</button>
+      <button class="preset" data-p="dec-opt">12月底 · 乐观</button>
+    </div>
+    <div class="row">
+      <label>文章数 <span class="hint">决定展示量天花板</span></label>
+      <input type="number" id="articles" value="19" min="1" step="1" />
+    </div>
+    <div class="row">
+      <label>每篇日均 GSC 展示 <span class="hint">19篇×90≈1710(当前)</span></label>
+      <input type="number" id="impPerArticle" value="90" min="1" step="5" />
+    </div>
+    <div class="row">
+      <label>点击率 CTR <span class="hint">当前卡死 0.4%</span></label>
+      <input type="number" id="ctr" value="0.4" min="0.05" max="10" step="0.1" /> %
+    </div>
+    <div class="row">
+      <label>点击→实际访问率 <span class="hint">GSC点击≠到站(Cloudflare偏低)</span></label>
+      <input type="number" id="visitFactor" value="0.6" min="0.1" max="1" step="0.05" />
+    </div>
+    <div class="row">
+      <label>每访问页面数 <span class="hint">PV/visit</span></label>
+      <input type="number" id="pvPerVisit" value="1.3" min="1" max="5" step="0.1" />
+    </div>
+    <div class="row">
+      <label>西方访客占比 (US/UK/EU) <span class="hint">拉动 RPM</span></label>
+      <input type="range" id="western" min="0" max="100" value="35" step="5" />
+      <span class="val"><span id="westernVal">35</span>%</span>
+    </div>
+    <div class="row">
+      <label>有效 RPM (每千次页面展示 $) <span class="hint">由上方占比自动估算</span></label>
+      <input type="number" id="rpm" value="4.8" min="0.5" max="20" step="0.1" /> $
+    </div>
+  </div>
+
+  <div class="card">
+    <div class="out">
+      <div class="stat"><div class="k">日均 GSC 展示</div><div class="v" id="oImp">—</div></div>
+      <div class="stat"><div class="k">日均点击 / 访问</div><div class="v" id="oVisits">—</div></div>
+      <div class="stat"><div class="k">日均页面浏览 PV</div><div class="v" id="oPv">—</div></div>
+      <div class="stat big"><div class="k">预估日收入</div><div class="v" id="oDay">—</div></div>
+      <div class="stat big"><div class="k">预估月收入 (×30)</div><div class="v" id="oMonth">—</div></div>
+      <div class="stat big"><div class="k">预估年收入 (×365)</div><div class="v" id="oYear">—</div></div>
+    </div>
+    <div class="note">
+      公式：<code>展示 = 文章数 × 每篇展示</code> → <code>访问 = 展示 × CTR × 点击→访问率</code> →
+      <code>PV = 访问 × 页面数</code> → <code>收入 = PV × RPM / 1000</code>。
+      RPM 自动估算：<code>$2 + 西方占比 × $8</code>（0%→$2，100%→$10），可手动覆盖。
+    </div>
+    <div class="note">
+      <b>现实提醒：</b>瓶颈是<b>流量与 CTR</b>，不是 AdSense 本身。把两个高展示老页标题加 <code>fix/error</code> 撬动 CTR，
+      比等域龄自然增长更高效；同流量下联盟客（单转化佣金）可能已优于 AdSense。
+    </div>
+  </div>
+
+  <footer>本测算为经验外推，非保证收入。数据锚点截至 2026-07-26 GSC。</footer>
+</div>
+
+<script>
+  const $ = id => document.getElementById(id);
+  const fmt = (n, d=2) => n.toLocaleString('en-US', {minimumFractionDigits:d, maximumFractionDigits:d});
+
+  function syncRpmFromWestern() {
+    const w = +$('western').value;
+    $('westernVal').textContent = w;
+    // only auto-set rpm if user hasn't manually overridden recently
+    if (!$('rpm').dataset.manual) {
+      $('rpm').value = (2 + w/100 * 8).toFixed(1);
+    }
+  }
+
+  function calc() {
+    const articles = +$('articles').value || 0;
+    const impPerArticle = +$('impPerArticle').value || 0;
+    const ctr = (+$('ctr').value || 0) / 100;
+    const visitFactor = +$('visitFactor').value || 0;
+    const pvPerVisit = +$('pvPerVisit').value || 0;
+    const rpm = +$('rpm').value || 0;
+
+    const imp = articles * impPerArticle;
+    const visits = imp * ctr * visitFactor;
+    const pv = visits * pvPerVisit;
+    const day = pv * rpm / 1000;
+
+    $('oImp').textContent = imp.toLocaleString('en-US');
+    $('oVisits').textContent = fmt(visits, 1);
+    $('oPv').textContent = fmt(pv, 1);
+    $('oDay').textContent = '$' + fmt(day, 2);
+    $('oMonth').textContent = '$' + fmt(day * 30, 1);
+    $('oYear').textContent = '$' + fmt(day * 365, 0);
+  }
+
+  // listeners
+  ['articles','impPerArticle','ctr','visitFactor','pvPerVisit','rpm'].forEach(id => {
+    $(id).addEventListener('input', calc);
+  });
+  $('western').addEventListener('input', () => { syncRpmFromWestern(); calc(); });
+  $('rpm').addEventListener('input', () => { $('rpm').dataset.manual = '1'; });
+
+  // presets
+  const presets = {
+    'now':      { articles:19,  impPerArticle:90,  ctr:0.4, visitFactor:0.6, pvPerVisit:1.3, western:35 },
+    'dec-base': { articles:50,  impPerArticle:90,  ctr:0.4, visitFactor:0.7, pvPerVisit:1.3, western:35 },
+    'dec-opt':  { articles:55,  impPerArticle:130, ctr:0.8, visitFactor:0.8, pvPerVisit:1.4, western:50 },
+  };
+  document.querySelectorAll('.preset').forEach(b => {
+    b.addEventListener('click', () => {
+      const p = presets[b.dataset.p];
+      $('articles').value = p.articles;
+      $('impPerArticle').value = p.impPerArticle;
+      $('ctr').value = p.ctr;
+      $('visitFactor').value = p.visitFactor;
+      $('pvPerVisit').value = p.pvPerVisit;
+      $('western').value = p.western;
+      $('rpm').dataset.manual = '';   // allow auto rpm
+      syncRpmFromWestern();
+      calc();
+    });
+  });
+
+  // init
+  syncRpmFromWestern();
+  calc();
+</script>
+</body>
+</html>

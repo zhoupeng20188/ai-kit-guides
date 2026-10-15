@@ -2,7 +2,7 @@
 title: "Claude Code Subagents & Hooks on Spring Boot: My Guardrails (2026)"
 description: "How I use Claude Code subagents and hooks on Spring Boot: real .claude configs that stop an agent from breaking the Gradle build or skipping tests."
 pubDate: 2026-08-12
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["claude code", "claude code subagents", "claude code hooks", "spring boot", "ai coding", "java-ai-cluster"]
 image: "/og-claude-code-subagents-hooks-spring-boot.jpg"
 imageAlt: "A terminal showing Claude Code running inside a Spring Boot project, with a hook log line reporting a blocked gradle change"

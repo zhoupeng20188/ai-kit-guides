@@ -2,7 +2,7 @@
 title: "Cursor with Spring Boot: A Practical Java Workflow (2026)"
 description: "How I use Cursor on a real Spring Boot codebase in 2026: project rules, the prompts that work, and the bean-wiring traps that break the build."
 pubDate: 2026-08-03
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["cursor", "spring boot", "ai coding", "java ai tools", "cursor workflow", "java-ai-cluster"]
 image: "/og-cursor-spring-boot.jpg"
 imageAlt: "Cursor editor open on a Spring Boot Java project, showing the Agent panel editing a @Service class and the Gradle build output"

@@ -2,7 +2,7 @@
 title: "Claude Code vs ArchUnit: My CI Gate Broke While Obeying Me (2026)"
 description: "Claude Code's Spring Boot code compiled and passed tests, then failed CI on ArchUnit and Spotless. One run fixed it; another reverted my fix and killed a gate."
 pubDate: 2026-09-04
-category: "ai-tools"
+category: "java-testing-ci"
 tags: ["ai code ci gate", "archunit", "spotless", "claude code", "spring boot ci", "java ci", "java-ai-cluster"]
 image: "/og-ai-code-ci-gates-archunit-spotless.jpg"
 imageAlt: "A CI terminal showing an ArchUnit rule violation next to a git checkout command that reverts the rule file"

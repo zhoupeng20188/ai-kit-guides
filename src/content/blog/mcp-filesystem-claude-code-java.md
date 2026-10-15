@@ -2,7 +2,7 @@
 title: "Filesystem MCP Server + Claude Code for Spring Boot (2026)"
 description: "How I wired the Filesystem MCP server into Claude Code for Spring Boot: scoped directories, a --read-only guardrail, and the generated-code traps I hit."
 pubDate: 2026-08-26
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["claude code", "mcp", "filesystem mcp", "spring boot", "java ai tools", "java-ai-cluster"]
 image: "/og-mcp-filesystem-claude-code-java.jpg"
 imageAlt: "Terminal showing a Spring Boot project's .mcp.json next to Claude Code, with the filesystem MCP server scoped to the src directory"

@@ -2,7 +2,7 @@
 title: "An AGENTS.md for Spring Boot That Codex Actually Understands (2026)"
 description: "A real AGENTS.md for a Spring Boot project: the layers, bean rules, and build commands I put in so Codex stops guessing. What worked and the traps I hit."
 pubDate: 2026-08-28
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["openai codex", "agents.md", "spring boot", "codex spring boot", "java ai tools", "java-ai-cluster"]
 image: "/og-codex-agents-md-spring-boot.jpg"
 imageAlt: "A Spring Boot AGENTS.md file open next to the OpenAI Codex CLI, showing layered architecture rules and Maven build commands"

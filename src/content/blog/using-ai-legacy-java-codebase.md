@@ -2,7 +2,7 @@
 title: "Using AI on a Legacy Java Codebase (What Actually Works)"
 description: "A senior Java engineer's real lessons on using AI to change legacy code: undocumented patches, shared multi-channel logic, and how to fence the AI in."
 pubDate: 2026-07-22
-category: "ai-tools"
+category: "java-ai-tools"
 tags: ["legacy java", "ai coding", "claude code", "legacy code refactoring", "java ai tools", "java-ai-cluster"]
 image: "/og-legacy-java-ai.jpg"
 imageAlt: "A senior engineer using an AI assistant to safely modify a large legacy Java codebase full of undocumented patches"

@@ -8,13 +8,13 @@ const posts = await getCollection("blog", ({ data }) => !data.draft);
 
 <MainLayout
   title="Categories"
-  description="Browse AI tool guides by category — ChatGPT, AI Tools, Prompt Engineering, AI Art, and Large Language Models."
+  description="Browse hands-on AI guides by topic — coding agents, model basics, API errors, testing and CI, and notes from using AI on real projects."
 >
   <div class="max-w-6xl mx-auto px-4 py-12">
     <header class="mb-10 text-center">
       <h1 class="text-4xl font-extrabold text-ink-900 mb-3">Categories</h1>
       <p class="text-lg text-ink-600 max-w-2xl mx-auto">
-        Explore our AI tool guides organized by topic. Whether you're getting started with ChatGPT or mastering prompt engineering, we've got you covered.
+        Every guide here was written after actually running the tool. Pick the topic that matches the problem you are hitting — no prior experience assumed.
       </p>
     </header>
 
@@ -27,10 +27,11 @@ const posts = await getCollection("blog", ({ data }) => !data.draft);
             class="group rounded-2xl border border-ink-200 p-8 hover:border-brand-400 hover:shadow-lg transition-all"
           >
             <div class="text-4xl mb-4">
-              {cat.icon === "chat" && "💬"}
-              {cat.icon === "tools" && "🔧"}
-              {cat.icon === "prompt" && "✏️"}
-              {cat.icon === "art" && "🎨"}
+              {cat.icon === "agent" && "🤖"}
+              {cat.icon === "spring" && "🍃"}
+              {cat.icon === "test" && "🧪"}
+              {cat.icon === "java" && "☕"}
+              {cat.icon === "api" && "⚡"}
               {cat.icon === "brain" && "🧠"}
             </div>
             <h2 class="text-xl font-bold text-ink-900 group-hover:text-brand-600 transition-colors mb-2">

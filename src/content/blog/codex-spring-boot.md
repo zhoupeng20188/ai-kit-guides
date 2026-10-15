@@ -2,7 +2,7 @@
 title: "OpenAI Codex with Spring Boot: A Practical Workflow (2026)"
 description: "How I use OpenAI Codex on a real Spring Boot project in 2026: AGENTS.md, approval modes, the cloud sandbox, and the habits that stop it breaking the build."
 pubDate: 2026-08-24
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["openai codex", "spring boot", "ai coding", "java ai tools", "codex cli", "java-ai-cluster"]
 image: "/og-codex-spring-boot.jpg"
 imageAlt: "Terminal running OpenAI Codex inside a Spring Boot project, showing the AGENTS.md file and a passing Maven test run"

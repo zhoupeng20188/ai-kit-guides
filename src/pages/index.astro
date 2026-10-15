@@ -18,14 +18,14 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
   <section class="bg-gradient-to-b from-brand-50 to-white border-b border-ink-100 dark:from-brand-900 dark:to-ink-50">
     <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center">
       <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-100 text-brand-700 mb-4">
-        Your guide to AI tools in 2026
+        Run first, then write — no feature lists, no hype
       </div>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink-900 leading-tight tracking-tight">
-        Master the Best AI Tools.
-        <span class="text-brand-600">Work Smarter, Not Harder.</span>
+        AI Tools That Actually Work.
+        <span class="text-brand-600">And the ones that quietly don't.</span>
       </h1>
       <p class="mt-6 text-lg text-ink-600 max-w-2xl mx-auto leading-relaxed">
-        Honest reviews, step-by-step tutorials, and head-to-head comparisons of ChatGPT, Claude, Midjourney, and dozens more AI tools — written for real people, not AI experts.
+        Hands-on guides for ChatGPT, Claude, Cursor, Codex and Copilot — each one written after running the tool on real work, not demo prompts. Much of that work is software, so there's a lot here on AI agents and Java. The failures travel though: what looks right, what quietly isn't, and how to catch it before it costs you.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a
@@ -52,7 +52,7 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
   <!-- Categories Grid -->
   <section class="max-w-6xl mx-auto px-4 py-12">
     <h2 class="text-2xl font-bold text-ink-900 mb-6">Explore by Category</h2>
-    <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+    <div class="grid grid-cols-2 md:grid-cols-3 gap-4">
       {CATEGORIES.map((cat) => {
         const count = posts.filter((p) => p.data.category === cat.slug).length;
         return (
@@ -61,10 +61,11 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
             class="group rounded-xl border border-ink-200 p-5 hover:border-brand-400 hover:shadow-md transition-all text-center"
           >
             <div class="text-3xl mb-3">
-              {cat.icon === "chat" && "💬"}
-              {cat.icon === "tools" && "🔧"}
-              {cat.icon === "prompt" && "✏️"}
-              {cat.icon === "art" && "🎨"}
+              {cat.icon === "agent" && "🤖"}
+              {cat.icon === "spring" && "🍃"}
+              {cat.icon === "test" && "🧪"}
+              {cat.icon === "java" && "☕"}
+              {cat.icon === "api" && "⚡"}
               {cat.icon === "brain" && "🧠"}
             </div>
             <h3 class="font-semibold text-ink-900 group-hover:text-brand-600 transition-colors text-sm">

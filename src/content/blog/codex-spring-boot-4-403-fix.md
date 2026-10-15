@@ -2,7 +2,7 @@
 title: "Codex Fixed My Boot 4 403 — AGENTS.md Changed the Fix (2026)"
 description: "I ran OpenAI Codex on the same broken Boot 4 upgrade twice. Without an AGENTS.md it killed CSRF app-wide; with one, the exemption stayed scoped to /api/**."
 pubDate: 2026-09-11
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["openai codex", "agents.md", "spring boot 4", "spring security csrf", "codex cli", "java-ai-cluster"]
 image: "/og-codex-spring-boot-4-403-fix.jpg"
 imageAlt: "A terminal showing Codex scoping a Spring Boot 4 CSRF exemption to /api/** next to a probe result proving a non-API path still returns 403"

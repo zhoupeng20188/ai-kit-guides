@@ -2,7 +2,7 @@
 title: "OpenClaw vs Hermes Agent: Which Open-Source AI Agent Should You Run?"
 description: "Comparing OpenClaw vs Hermes Agent, 2026's two biggest open-source AI agents. I tested both to help you choose."
 pubDate: 2026-07-10
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["openclaw", "hermes agent", "ai agents", "open source ai", "agent framework"]
 image: "/og-openclaw-vs-hermes-agent.jpg"
 imageAlt: "Side-by-side comparison of OpenClaw and Hermes Agent open-source AI agent frameworks showing their different architecture approaches"

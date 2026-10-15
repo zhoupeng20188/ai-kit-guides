@@ -2,7 +2,7 @@
 title: "Codex Upgraded My Spring Boot 4 YAML. 3 Tools, 3 Blind Spots (2026)"
 description: "Codex migrated 8 keys in my application.yml to Spring Boot 4.1.1. The 3 it missed still worked. Here are the three tools I used to find what actually broke."
 pubDate: 2026-09-28
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["openai codex", "spring boot 4", "configuration properties", "maven", "ai coding agents", "java testing", "java-ai-cluster"]
 image: "/og-codex-boot4-yml.jpg"
 imageAlt: "A table of application.yml keys after a Spring Boot 4 migration, with one key marked not bound and three diagnostics each showing a blind spot"

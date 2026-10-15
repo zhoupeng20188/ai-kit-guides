@@ -2,7 +2,7 @@
 title: "Why Does AI Make Things Up? 7 Ways to Stop AI Hallucinations"
 description: "AI chatbots invent APIs, fake libraries, and wrong code. Here are 7 practical ways I stop AI hallucinations as a developer who uses AI to write Java every day."
 pubDate: 2026-07-08
-category: "ai-tools"
+category: "ai-models-basics"
 tags: ["ai hallucination", "reduce ai hallucinations", "chatgpt make things up", "ai code hallucination", "prompt engineering"]
 image: "/og-ai-hallucination-tips.jpg"
 imageAlt: "A developer checking AI-generated code against a compiler to catch a hallucinated method call, illustrating how to stop AI hallucinations"

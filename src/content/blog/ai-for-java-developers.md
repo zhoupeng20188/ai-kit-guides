@@ -2,7 +2,7 @@
 title: "AI for Java Developers: A Practical Guide (2026)"
 description: "Senior Java engineer's honest 2026 guide to AI coding tools for Java and Spring Boot: Cursor, Claude Code, testing, code review — what actually works."
 pubDate: 2026-08-12
-category: "ai-tools"
+category: "java-ai-tools"
 tags: ["ai for java developers", "ai java", "ai coding java", "cursor java", "claude code java", "spring boot ai", "java ai tools", "java-ai-cluster"]
 clusterHub: true
 image: "/og-ai-for-java-developers.jpg"

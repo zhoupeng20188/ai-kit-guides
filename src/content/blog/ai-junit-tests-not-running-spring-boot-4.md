@@ -2,7 +2,7 @@
 title: "AI Wrote 18 Tests. Only 14 Ran: Spring Boot 4 + JUnit 6 (2026)"
 description: "Claude Code added tests to my Spring Boot 4 app and reported 14 passing. Three more never ran. Here is how Surefire hides them, and the AGENTS.md fix."
 pubDate: 2026-09-09
-category: "ai-tools"
+category: "java-testing-ci"
 tags: ["junit 6", "spring boot 4", "surefire", "ai generated tests", "claude code", "java testing", "java-ai-cluster"]
 image: "/og-ai-junit-tests-not-running-spring-boot-4.jpg"
 imageAlt: "A Maven build log showing BUILD SUCCESS next to a list of test files, three of which are greyed out and never executed"

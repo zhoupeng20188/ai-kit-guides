@@ -2,7 +2,7 @@
 title: "Flyway Checksum Mismatch: Why CI Never Sees It (2026)"
 description: "I rewrote an applied Flyway migration. The database that had already run it refused to boot. A fresh CI database migrated clean, into a different schema."
 pubDate: 2026-09-14
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["flyway", "flyway migration", "flyway checksum mismatch", "spring boot 4", "ai coding agent", "java-ai-cluster"]
 image: "/og-flyway-checksum-mismatch-ai-agent.jpg"
 imageAlt: "A terminal showing a Flyway checksum mismatch for migration version 2 next to a fresh database that migrated cleanly into a different schema"

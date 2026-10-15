@@ -2,7 +2,7 @@
 title: "I Read 2 Real Copilot Spring Boot 4 PRs. Here Is What AI Missed"
 description: "Two real Copilot Spring Boot 4 PRs, judged against my silent-failure lab: what AI migration agents catch, and what they sail straight past."
 pubDate: 2026-10-08
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["github copilot", "spring boot 4", "copilot coding agent", "ai coding agents", "java-ai-cluster", "spring boot migration"]
 image: "/og-copilot-boot4-pr.jpg"
 imageAlt: "A split view of two GitHub pull requests, one merged and one stalled, overlaid with a checklist of Spring Boot 4 silent-failure points an AI agent missed"

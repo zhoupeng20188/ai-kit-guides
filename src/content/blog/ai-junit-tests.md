@@ -2,7 +2,7 @@
 title: "I Let AI Write My JUnit Tests. Here's What Broke."
 description: "I let AI generate JUnit tests for my Java code. They passed, and proved nothing. Here's how I write tests with AI and the 5 traps I check first."
 pubDate: 2026-08-05
-category: "ai-tools"
+category: "java-testing-ci"
 tags: ["ai junit tests", "ai unit testing java", "claude code java", "ai code generation", "junit 5 ai", "java-ai-cluster"]
 image: "/og-ai-junit-tests.jpg"
 imageAlt: "Terminal showing a Maven test run where AI-generated JUnit tests pass the build but assert nothing useful"

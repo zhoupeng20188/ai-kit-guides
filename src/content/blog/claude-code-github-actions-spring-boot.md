@@ -2,7 +2,7 @@
 title: "Claude Code + GitHub Actions for Spring Boot: Auto-Review PRs (2026)"
 description: "How I wired Claude Code into GitHub Actions to auto-review Spring Boot PRs and fix failing CI builds — the real YAML, OAuth setup, and cost traps I hit."
 pubDate: 2026-08-17
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["claude code", "github actions", "spring boot", "ai coding", "ci/cd", "java-ai-cluster"]
 image: "/og-claude-code-github-actions-spring-boot.jpg"
 imageAlt: "GitHub Actions workflow running Claude Code to review a Spring Boot pull request, with an automated review comment posted on the PR"

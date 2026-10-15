@@ -2,7 +2,7 @@
 title: "Cursor Rules Tutorial: Make AI Write Code the Way You Do"
 description: "An engineer's guide to Cursor rules in 2026: why .cursorrules is dead, how .cursor/rules works, and the setup that makes AI write code like you."
 pubDate: 2026-07-15
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["cursor rules", "cursorrules", "cursor ai", "ai coding tools", "cursor tutorial"]
 image: "/og-cursor-rules-tutorial.jpg"
 imageAlt: "Cursor editor showing a .cursor/rules directory with .mdc rule files controlling how the AI writes code"

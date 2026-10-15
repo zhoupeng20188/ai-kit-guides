@@ -2,7 +2,7 @@
 title: "OpenAI Rate Limits: The 2 Different 429 Errors Explained"
 description: "Two different 429 errors share one status code and need different fixes. Here's how OpenAI's TPM, RPM, and 5 tiers really work — and how to check yours."
 pubDate: 2026-07-03
-category: "chatgpt"
+category: "ai-api-limits"
 tags: ["openai rate limits", "openai api quota", "chatgpt api tpm rpm", "api tier system", "openai developer guide"]
 image: "/og-openai-rate-limits-guide.jpg"
 imageAlt: "OpenAI API rate limits dashboard showing TPM and RPM values across different tier levels"

@@ -2,7 +2,7 @@
 title: "Cursor AI Editor: How I Switched from VS Code and Never Looked Back"
 description: "How I set up Cursor AI, what works, what annoys me, and why I pay $20/month for it. Honest review from a Java developer."
 pubDate: 2026-07-01
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["cursor ai", "ai code editor", "vs code alternative", "ai coding tools", "cursor tutorial"]
 image: "/og-cursor-ai-editor-tutorial.jpg"
 imageAlt: "Cursor AI editor interface showing agent mode sidebar with code suggestions on a dark theme"

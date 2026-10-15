@@ -2,7 +2,7 @@
 title: "GitHub Copilot with Spring Boot: Does It Actually Help in 2026?"
 description: "I ran GitHub Copilot on a real Spring Boot codebase in 2026: where it speeds Java work up, where it quietly breaks the build, and if it is worth paying for."
 pubDate: 2026-08-14
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["github copilot", "spring boot", "ai coding", "java ai tools", "copilot java", "java-ai-cluster"]
 image: "/og-github-copilot-spring-boot.jpg"
 imageAlt: "GitHub Copilot autocomplete suggestions visible inside IntelliJ on a Spring Boot Java service, showing a @Service class with inline completion"

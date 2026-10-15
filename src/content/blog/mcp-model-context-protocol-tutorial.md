@@ -2,7 +2,7 @@
 title: "MCP Tutorial: Connect Your AI to Everything (Without Getting Burned)"
 description: "MCP tutorial 2026: set up MCP servers with Claude and Cursor, and avoid the security traps that burned real users."
 pubDate: 2026-07-20
-category: "ai-tools"
+category: "java-ai-tools"
 tags: ["mcp", "model context protocol", "mcp tutorial", "mcp server", "ai tools"]
 image: "/og-mcp-tutorial.jpg"
 imageAlt: "Diagram showing MCP protocol connecting an AI assistant to external tools like filesystem, GitHub, and database"

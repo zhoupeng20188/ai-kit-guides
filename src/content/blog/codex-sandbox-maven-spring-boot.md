@@ -2,7 +2,7 @@
 title: "Codex Can't Run Maven on Spring Boot: Unknown Host Sandbox Fix (2026)"
 description: "I ran one Spring Boot build under every Codex sandbox policy. Default failed, full-auto failed on a cold repo, only one setting let Maven download."
 pubDate: 2026-09-07
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["openai codex", "codex sandbox", "codex approval modes", "maven", "spring boot", "java-ai-cluster"]
 image: "/og-codex-sandbox-maven-spring-boot.jpg"
 imageAlt: "A terminal showing Maven failing with Unknown host maven.aliyun.com next to the Codex CLI header reading sandbox workspace-write with network access enabled"

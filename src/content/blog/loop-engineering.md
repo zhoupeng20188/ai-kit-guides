@@ -2,7 +2,7 @@
 title: "Loop Engineering: Your Prompts Are the Bottleneck, Not the AI"
 description: "Tired of prompting AI agents one by one? Loop Engineering replaces you with a self-running system that iterates. Here's what it means for your work."
 pubDate: 2026-07-14
-category: "prompt-engineering"
+category: "ai-coding-agents"
 tags: ["loop engineering", "ai agents", "ai coding", "agent workflow", "peter steinberger"]
 image: "/og-loop-engineering.jpg"
 imageAlt: "Diagram showing the shift from manual Prompt Engineering to a self-running Loop Engineering system for AI agents"

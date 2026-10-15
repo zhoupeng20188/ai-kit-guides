@@ -2,7 +2,7 @@ export const SITE = {
   name: "AI Kit Guides",
   shortName: "AI Kit",
   description:
-    "AI tool tutorials, honest comparisons, and beginner-friendly guides. Helping you find and master the best AI tools — ChatGPT, Midjourney, Claude, and more.",
+    "Hands-on AI tool guides and real practice notes — ChatGPT, Claude, Cursor and Codex, tested on real work. What works, what breaks, how to fix it.",
   url: "https://aikitguides.com",
   author: "Peng Zhou",
   email: "foreverzhy1252@gmail.com",
@@ -38,33 +38,45 @@ export const ADSENSE = {
 
 export const CATEGORIES = [
   {
-    slug: "chatgpt",
-    name: "ChatGPT",
-    description: "Guides and tutorials for OpenAI ChatGPT — from basics to advanced prompting.",
-    icon: "chat",
+    slug: "ai-coding-agents",
+    name: "AI Coding Agents",
+    description:
+      "Hands-on guides for Claude Code, OpenAI Codex, Cursor and GitHub Copilot — setup, sandboxing, MCP servers, subagents and hooks.",
+    icon: "agent",
   },
   {
-    slug: "ai-tools",
-    name: "AI Tools",
-    description: "Reviews and comparisons of the best AI tools available in 2026.",
-    icon: "tools",
+    slug: "spring-boot-4",
+    name: "Spring Boot 4 Migration",
+    description:
+      "Upgrading to Spring Boot 4 and Spring Framework 7: Jakarta EE 11, Security 7, Jackson 3, and the silent behaviour changes tests catch first.",
+    icon: "spring",
   },
   {
-    slug: "prompt-engineering",
-    name: "Prompt Engineering",
-    description: "Master the art of writing effective AI prompts for better results.",
-    icon: "prompt",
+    slug: "java-testing-ci",
+    name: "Testing & CI",
+    description:
+      "JUnit 6, Maven and Gradle builds, ArchUnit, Spotless, Testcontainers and CI gates — and why AI-generated code can pass CI while running zero tests.",
+    icon: "test",
   },
   {
-    slug: "ai-art",
-    name: "AI Art & Design",
-    description: "Create stunning visuals with Midjourney, DALL-E, and other AI art tools.",
-    icon: "art",
+    slug: "java-ai-tools",
+    name: "AI on Real Code",
+    description:
+      "Pointing AI at an actual codebase: code review, legacy refactoring, LangChain agents, and the MCP filesystem server.",
+    icon: "java",
   },
   {
-    slug: "llm",
-    name: "Large Language Models",
-    description: "Deep dives into GPT, Claude, Gemini, and the future of language AI.",
+    slug: "ai-api-limits",
+    name: "AI API & Errors",
+    description:
+      "Fixing OpenAI and ChatGPT API errors: 429 rate limits, the 429001 gateway code, quota tiers, and retry strategy that holds up.",
+    icon: "api",
+  },
+  {
+    slug: "ai-models-basics",
+    name: "AI Models & Basics",
+    description:
+      "Model comparisons, prompt technique, and hallucination control — the fundamentals, in plain language and without the hype.",
     icon: "brain",
   },
 ];

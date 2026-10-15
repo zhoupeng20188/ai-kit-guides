@@ -2,7 +2,7 @@
 title: "Codex Added 12 Spring Boot 4 Dependencies. 5 Failed Silently (2026)"
 description: "I asked Codex to add 12 dependencies to a Spring Boot 4.1.1 project. One was right. Five built green and wired nothing. Here is the test that tells them apart."
 pubDate: 2026-09-18
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["openai codex", "spring boot 4", "maven", "dependency management", "ai coding agents", "java testing", "java-ai-cluster"]
 image: "/og-codex-spring-boot-4-deps.jpg"
 imageAlt: "A table of twelve Spring Boot 4 dependencies added by an AI agent, with five rows marked green build but nothing wired and one marked correct"

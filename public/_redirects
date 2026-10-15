@@ -1,3 +1,18 @@
+# 301 redirect: old category slugs → new taxonomy (2026-10-15 re-categorisation)
+# Keeps GSC / external links from returning 404 after the category rewrite
+/categories/ai-tools/  /categories/ai-coding-agents/  301
+/categories/ai-tools  /categories/ai-coding-agents/  301
+/categories/chatgpt/  /categories/ai-api-limits/  301
+/categories/chatgpt  /categories/ai-api-limits/  301
+/categories/prompt-engineering/  /categories/ai-models-basics/  301
+/categories/prompt-engineering  /categories/ai-models-basics/  301
+/categories/llm/  /categories/ai-models-basics/  301
+/categories/llm  /categories/ai-models-basics/  301
+/categories/ai-art/  /blog/  301
+/categories/ai-art  /blog/  301
+/blog/midjourney-complete-guide/  /blog/  301
+/blog/midjourney-complete-guide  /blog/  301
+
 # 301 redirect: non-trailing-slash → trailing-slash
 # Prevents GSC from indexing duplicate URLs (307 → 301 permanent)
 /about  /about/  301

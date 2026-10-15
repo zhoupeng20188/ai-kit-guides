@@ -2,7 +2,7 @@
 title: "Prompt Engineering Techniques: Your Prompts Aren't the Problem—Fix It"
 description: "Tired of vague AI answers? These 10 prompt engineering techniques—few-shot, chain-of-thought, role prompting—get better results from ChatGPT and Claude."
 pubDate: 2026-06-24
-category: "prompt-engineering"
+category: "ai-models-basics"
 tags: ["prompt-engineering", "chatgpt", "claude", "techniques"]
 image: "/og-prompt-engineering-techniques.jpg"
 imageAlt: "Prompt Engineering Techniques: 10 Proven Methods for Better AI Results"

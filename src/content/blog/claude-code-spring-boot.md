@@ -2,7 +2,7 @@
 title: "Claude Code with Spring Boot: A Practical Workflow"
 description: "How I actually use Claude Code on a Spring Boot project in 2026: setup, CLAUDE.md, running the build, and the habits that keep the AI from drifting off."
 pubDate: 2026-07-31
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["claude code", "spring boot", "ai coding", "java ai tools", "claude code workflow", "java-ai-cluster"]
 image: "/og-claude-code-spring-boot.jpg"
 imageAlt: "Terminal running Claude Code inside a Spring Boot project, showing the AI editing Java files and running the Maven build"

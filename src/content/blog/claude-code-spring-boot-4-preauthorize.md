@@ -2,7 +2,7 @@
 title: "Claude Code's Boot 4 Upgrade Silently Broke @PreAuthorize (2026)"
 description: "I let Claude Code migrate method security to Boot 4. Build green, @PreAuthorize intact — until an admin endpoint returned 200 for a normal user."
 pubDate: 2026-10-14
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["spring boot 4", "claude code", "spring security 7", "preauthorize", "java ai tools", "java-ai-cluster"]
 image: "/og-claude-code-spring-boot-4-preauthorize.jpg"
 imageAlt: "A terminal showing Claude Code migrating a Spring Security 7 config next to a test where a normal user unexpectedly reaches an admin method that should throw AccessDeniedException"

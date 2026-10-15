@@ -2,7 +2,7 @@
 title: "How I Made Cursor Understand My Spring Boot Codebase (2026)"
 description: "How I got Cursor to understand my Spring Boot monorepo: indexing, @codebase, a clean .cursorignore for build junk, and the traps that broke my bean wiring."
 pubDate: 2026-08-21
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["cursor ai", "spring boot", "cursor codebase", "java ai tools", "cursor @codebase", "java-ai-cluster"]
 image: "/og-cursor-codebase-spring-boot.jpg"
 imageAlt: "Cursor editor sidebar showing @codebase query results pointing to Spring Boot service and controller files across a multi-module project"

@@ -2,7 +2,7 @@
 title: "Cursor Background Agents on a Spring Boot Repo: 4 Gotchas (2026)"
 description: "Handed Spring Boot grunt work to Cursor's background agents, got PRs that broke bootRun. 4 cloud-vs-local gotchas and the .cursor rules that fixed them."
 pubDate: 2026-08-10
-category: "ai-tools"
+category: "ai-coding-agents"
 tags: ["cursor", "cursor background agents", "spring boot", "ai coding", "cursor cloud agents", "java-ai-cluster"]
 image: "/og-cursor-background-agents-spring-boot.jpg"
 imageAlt: "Cursor background agent panel open on a Spring Boot project, showing a completed agent task that opened a pull request while the developer worked locally"

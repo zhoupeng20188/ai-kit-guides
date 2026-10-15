@@ -2,7 +2,7 @@
 title: "OpenAI 429 Fix: How to Read Every Error Variation (2026)"
 description: "OpenAI 429 isn't one error — it's several. Here's how to read the error body and headers, tell each 429 variation apart, and apply the right fix."
 pubDate: 2026-07-17
-category: "chatgpt"
+category: "ai-api-limits"
 tags: ["openai 429", "error 429", "rate limit", "insufficient_quota", "api error fix", "python"]
 image: "/og-openai-429-fix-variations.jpg"
 imageAlt: "Terminal showing different OpenAI 429 error bodies side by side with a decision tree"

@@ -2,7 +2,7 @@
 title: "Spring Boot 4 Migration: What AI Agents Can and Can't Fix (2026)"
 description: "Boot 3.5 hit EOL in June 2026. I read Spring's Boot 4 migration guide: which breaking changes AI really automates, and which ones it quietly gets wrong."
 pubDate: 2026-08-31
-category: "ai-tools"
+category: "spring-boot-4"
 tags: ["spring boot 4", "spring boot migration", "claude code", "java ai tools", "spring security 7", "java-ai-cluster"]
 image: "/og-spring-boot-4-migration-ai-agents.jpg"
 imageAlt: "A Spring Boot 4 migration guide open beside an AI coding agent session, showing Jackson 3 package renames and a Spring Security 7 CSRF config"

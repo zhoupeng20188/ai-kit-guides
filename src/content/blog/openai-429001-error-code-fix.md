@@ -2,7 +2,7 @@
 title: "OpenAI 429001 Error: What It Means and How I Fixed It"
 description: "Got a 429001 error from the OpenAI API or a Chinese model gateway? Here's what the 429001 subcode means and the exact backoff code I used to fix it."
 pubDate: 2026-07-29
-category: "llm"
+category: "ai-api-limits"
 tags: ["openai 429001", "429001 error", "rate limit", "api gateway error", "glm", "minimax"]
 image: "/og-openai-429001-error-code-fix.jpg"
 imageAlt: "Terminal showing a 429001 rate limit error response from an OpenAI-compatible API gateway"
