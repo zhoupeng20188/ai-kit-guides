@@ -27,8 +27,8 @@ export const ANALYTICS = {
 };
 
 export const ADSENSE = {
-  client: "ca-pub-0000000000000000", // Replace with your AdSense publisher ID
-  enabled: false, // Set to true after AdSense approval
+  client: "ca-pub-2558991461210670",
+  enabled: true,
   slot: {
     inContent: "1111111111",
     sidebar: "2222222222",
