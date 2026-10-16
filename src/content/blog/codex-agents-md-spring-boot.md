@@ -137,4 +137,6 @@ It also moves the needle on problems I would not have expected it to touch. Thre
 
 One limit is worth knowing, because it decides whether writing the file is worth your time. A rules file redirects the model to evidence that is already in the repository; it does not manufacture evidence that is missing. I hit exactly this: the same three rules stopped Codex from rewriting a business rule to match a wrong test when the spec was in the code, and failed to stop it when [the spec was nowhere in the checkout](/blog/codex-ci-spring-boot-green-build/). Put the rule of record in the repo, or the file has nothing to point at.
 
+For the full file organized by failure mode, with the proof behind each rule, see [the AGENTS.md I ship in every Spring Boot 4 repo](/blog/spring-boot-4-agents-md-guide/).
+
 Want the broader picture of AI coding agents on Java? Start from the [Java + AI hub](/blog/ai-for-java-developers/), where this fits alongside the Claude Code and Cursor pieces.
