@@ -30,7 +30,7 @@ Meanwhile Spring Boot 4.0 went GA on **November 20, 2025**, together with Spring
 
 The baseline is friendlier than people assume: **Java 17 is still the minimum**, Java 21 is what I would target, and Java 25 is supported. Jakarta EE 11 underneath (Tomcat 11, Hibernate ORM 7.1, Jakarta Persistence 3.2). If you are coming from 3.x on Java 17 or 21, the JDK is not your problem. The dependency surface is.
 
-That last point matters more than any individual rename: Boot 4 pulls Spring Security 7, Spring Data 2025.1, Hibernate 7.1 and Jackson 3 all at once. You are not doing one migration. You are doing four that happen to share a version bump.
+That last point matters more than any individual rename: Boot 4 pulls Spring Security 7, Spring Data 2025.1, Hibernate 7.1 and Jackson 3 all at once. You are not doing one migration. You are doing four that happen to share a version bump. The persistence layer is exactly where Hibernate 7's silent swaps hide, and I measured the column renames and query return-type changes in [a separate write-up](/blog/spring-boot-4-hibernate-7-silent-failures/).
 
 ## Bucket One: Mechanical Renames, Where the Agent Earns Its Money
 
