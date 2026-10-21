@@ -113,4 +113,6 @@ One more failure mode belongs on that list, and it is the one I now hit most oft
 
 And the same logic turns nastier once nobody is watching. Put `codex exec` in a pipeline and it returns exit code 0 no matter what happened — [seven runs, seven zeros](/blog/codex-ci-spring-boot-green-build/), including one where it changed a business rule to agree with a test that was wrong. The fix is not a better prompt; it is gating on your build tool's exit code and asserting a test count instead of the agent's.
 
+The silent-failure habit is not unique to Codex. Claude Code does the same trick — it will generate a Spring Boot endpoint that returns any user's record by ID with no ownership check, as I showed in a [real IDOR walkthrough](/blog/claude-code-insecure-api-spring-boot/). The fix on every tool is the same: make ownership an explicit rule, not an inferred one.
+
 For the full map of how I run AI across Java and Spring Boot, every tool and every failure mode, I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

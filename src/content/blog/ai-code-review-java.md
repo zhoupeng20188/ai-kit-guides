@@ -84,4 +84,6 @@ AI code review is a genuine time saver for the mechanical stuff, and I'd never g
 If you take one thing from this: treat the green checkmark as "no obvious typos," not "safe to merge." Read the four zones yourself, give the AI context when you need its help, and keep the final read for your own eyes.
 
 
+The single highest-risk gap to look for is missing authorization. When an AI writes a CRUD endpoint that takes a record ID, check whether it verifies the caller owns that record — most don't, and it is exactly the kind of bug a green build hides. I documented a concrete [IDOR Claude Code shipped in a Spring Boot API](/blog/claude-code-insecure-api-spring-boot/) so you have a real diff to pattern-match against.
+
 If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).

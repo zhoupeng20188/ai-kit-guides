@@ -112,4 +112,6 @@ If you want the broader mindset for not trusting confident output, the habits in
 Claude Code earns its place on Spring Boot work the moment a task spans more than one file. The setup that makes it useful is small: install it, run `/init` then trim the `CLAUDE.md`, and put two rules in that file, the build command and the "only say done if tests pass" line. Drive it with explain-first, one intent per prompt, and a real `git diff` review at the end. Use Sonnet 5 for the daily work and Opus 5 for the refactors that need judgment. Do that, and it becomes a fast pair of hands that compiles its own code. Skip the discipline, and it becomes the fastest way yet to merge something that builds green and behaves wrong.
 
 
+One failure mode deserves its own writeup: Claude Code will happily add an endpoint that compiles and passes its tests while silently skipping ownership checks. I walked through a real [IDOR it shipped in a Spring Boot orders API](/blog/claude-code-insecure-api-spring-boot/) — it even flagged the bug in its own summary and shipped it anyway.
+
 If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).
