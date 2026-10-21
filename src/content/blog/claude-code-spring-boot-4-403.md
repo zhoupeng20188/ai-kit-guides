@@ -1,5 +1,5 @@
 ---
-title: "Claude Code Fixed My Boot 4 403 — AGENTS.md Changed the Fix (2026)"
+title: "Spring Boot 4 403 Forbidden: Claude Code CSRF Fix (2026)"
 description: "I gave Claude Code the same broken Boot 4 upgrade twice — no context, then with an AGENTS.md. One disabled CSRF globally, one scoped it. Here is the diff."
 pubDate: 2026-09-02
 category: "spring-boot-4"

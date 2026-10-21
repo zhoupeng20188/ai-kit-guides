@@ -1,5 +1,5 @@
 ---
-title: "I Read 2 Real Copilot Spring Boot 4 PRs. Here Is What AI Missed"
+title: "Copilot Spring Boot 4 PR Review: What AI Missed (2026)"
 description: "Two real Copilot Spring Boot 4 PRs, judged against my silent-failure lab: what AI migration agents catch, and what they sail straight past."
 pubDate: 2026-10-08
 category: "spring-boot-4"

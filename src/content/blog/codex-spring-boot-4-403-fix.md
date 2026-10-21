@@ -1,5 +1,5 @@
 ---
-title: "Codex Fixed My Boot 4 403 — AGENTS.md Changed the Fix (2026)"
+title: "Spring Boot 4 403 Forbidden: CSRF Fix With Codex (2026)"
 description: "I ran OpenAI Codex on the same broken Boot 4 upgrade twice. Without an AGENTS.md it killed CSRF app-wide; with one, the exemption stayed scoped to /api/**."
 pubDate: 2026-09-11
 category: "spring-boot-4"

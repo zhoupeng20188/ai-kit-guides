@@ -1,5 +1,5 @@
 ---
-title: "Flyway Validate Failed: Checksum Mismatch Fix (Spring Boot 4)"
+title: "Fix Flyway Checksum Mismatch: repair, revert, or V-next"
 description: "Checksum mismatch after editing an applied migration? Run mvn flyway:repair, revert, or add V-next — then see why CI still migrates into a different schema."
 pubDate: 2026-09-14
 category: "spring-boot-4"

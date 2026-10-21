@@ -1,5 +1,5 @@
 ---
-title: "AI Wrote 18 Tests. Only 14 Ran: Spring Boot 4 + JUnit 6 (2026)"
+title: "Spring Boot 4 JUnit 6 Tests Not Running: Surefire Fix (2026)"
 description: "Claude Code added tests to my Spring Boot 4 app and reported 14 passing. Three more never ran. Here is how Surefire hides them, and the AGENTS.md fix."
 pubDate: 2026-09-09
 category: "java-testing-ci"

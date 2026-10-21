@@ -1,5 +1,5 @@
 ---
-title: "Codex Upgraded My Spring Boot 4 YAML. 3 Tools, 3 Blind Spots (2026)"
+title: "Spring Boot 4 YAML Properties: 3 Codex Blind Spots (2026)"
 description: "Codex migrated 8 keys in my application.yml to Spring Boot 4.1.1. The 3 it missed still worked. Here are the three tools I used to find what actually broke."
 pubDate: 2026-09-28
 category: "spring-boot-4"

@@ -1,5 +1,5 @@
 ---
-title: "Codex in CI: All 7 Tests Passed. It Changed the Rule (2026)"
+title: "Codex CI: 7 Tests Passed After It Edited the Rule"
 description: "I asked Codex to fix a red CI build where the test and the spec disagreed. It made all 7 tests pass by editing the business rule. Three times out of three."
 pubDate: 2026-09-21
 category: "java-testing-ci"

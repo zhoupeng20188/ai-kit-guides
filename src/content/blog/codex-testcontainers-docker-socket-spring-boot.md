@@ -1,6 +1,6 @@
 ---
 title: "Codex Can't Run Testcontainers on Spring Boot: Docker Socket Fix 2026"
-description: "I ran Testcontainers under every Codex sandbox policy. One config line decides it — and when it failed, Codex disabled my test to get a green build."
+description: "Docker socket is listening — Codex's sandbox denies the connect. One permissions line fixes it, and stops Codex disabling your test for a green build."
 pubDate: 2026-09-16
 category: "java-testing-ci"
 tags: ["openai codex", "codex sandbox", "testcontainers", "docker", "spring boot 4", "codex cli", "java-ai-cluster"]

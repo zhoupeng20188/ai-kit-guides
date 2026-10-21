@@ -1,6 +1,6 @@
 ---
-title: "Spring Boot 4 Dependencies: 12 Added by Codex, 5 Silent"
-description: "Spring Boot 4 split auto-configuration: starters wire, spring-boot-* partly wire, raw flyway-core wires nothing. 12 tested — here is the check."
+title: "Spring Boot 4 Dependencies Not Found? 12 Tested, 5 Silent"
+description: "Spring Boot 4 @WebMvcTest or a starter not found? Starters wire, spring-boot-* partly wire, raw flyway-core wires nothing. 12 tested, here's the fix."
 pubDate: 2026-09-18
 category: "spring-boot-4"
 tags: ["openai codex", "spring boot 4", "maven", "dependency management", "ai coding agents", "java testing", "java-ai-cluster"]

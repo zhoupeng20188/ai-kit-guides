@@ -1,5 +1,5 @@
 ---
-title: "Vibe-Coded a PDF→Word Converter with Claude Code (227 Pages)"
+title: "Claude Code PDF to Word Converter: 227 Pages, 0% Garbled"
 description: "A Java dev with zero PyQt experience built a PDF→Word converter in Claude Code — the pipeline that got 0% garbled text on a 227-page bank doc."
 pubDate: 2026-07-24
 category: "ai-models-basics"
