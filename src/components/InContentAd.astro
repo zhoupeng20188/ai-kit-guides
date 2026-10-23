@@ -15,7 +15,7 @@ const {
   label = "Advertisement",
 } = Astro.props;
 
-const showAds = ADSENSE.enabled;
+const showAds = ADSENSE.enabled && /^\d{10}$/.test(slot);
 ---
 
 {showAds ? (
@@ -29,6 +29,9 @@ const showAds = ADSENSE.enabled;
       data-ad-format={format}
       data-full-width-responsive={responsive ? "true" : "false"}
     />
+    <script is:inline>
+      (window.adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
   </div>
 ) : (
   <Fragment />

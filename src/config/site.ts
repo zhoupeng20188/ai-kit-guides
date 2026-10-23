@@ -2,7 +2,7 @@ export const SITE = {
   name: "AI Kit Guides",
   shortName: "AI Kit",
   description:
-    "Hands-on AI tool guides and real practice notes — ChatGPT, Claude, Cursor and Codex, tested on real work. What works, what breaks, how to fix it.",
+    "Practical guides to AI tools and Java development, with source references, illustrative examples, and checks you can run in your own environment.",
   url: "https://aikitguides.com",
   author: "Peng Zhou",
   email: "foreverzhy1252@gmail.com",
@@ -30,9 +30,9 @@ export const ADSENSE = {
   client: "ca-pub-2558991461210670",
   enabled: true,
   slot: {
-    inContent: "1111111111",
-    sidebar: "2222222222",
-    header: "3333333333",
+    inContent: "",
+    sidebar: "",
+    header: "",
   },
 };
 

@@ -1,112 +1,67 @@
 ---
-title: "Make Claude Code Remember Your Spring Boot Project (2026)"
-description: "How I made Claude Code remember my real Spring Boot codebase (CLAUDE.md + auto memory): the rules that stopped it breaking the build, and the traps I hit."
+title: "Claude Code Memory for Spring Boot: Instructions and Verification"
+description: "Keep stable Spring Boot instructions separate from local setup notes and remembered observations. Check what loaded and verify facts before reusing them."
 pubDate: 2026-08-19
 category: "ai-coding-agents"
 tags: ["claude code", "spring boot", "claude code remember", "java ai tools", "claude code setup", "java-ai-cluster"]
-image: "/og-claude-code-remember-spring-boot.jpg"
-imageAlt: "Terminal showing a Spring Boot project's CLAUDE.md next to Claude Code, with auto memory notes about Java 21 and bean wiring conventions"
+image: "/og-default.jpg"
+imageAlt: "AI Kit Guides"
 keywords: ["claude code remember", "claude code spring boot", "claude code CLAUDE.md", "spring boot ai coding", "claude code setup", "claude code project context"]
-faq:
-  - question: "Does Claude Code remember my Spring Boot project between sessions?"
-    answer: "It remembers whatever you put in CLAUDE.md and whatever it saved to auto memory. The project-root CLAUDE.md is re-read from disk after every /compact, so it survives long sessions. Auto memory lives in ~/.claude/projects/<project-path>/memory/ and is plain markdown you can read, edit, or delete with the /memory command. It does not remember things you never wrote down or that it never chose to save, so do not assume it knows your bean wiring by magic."
-  - question: "Where should I put the CLAUDE.md for a Spring Boot app?"
-    answer: "Put the team-shared one at the repository root as ./CLAUDE.md (or ./.claude/CLAUDE.md) and commit it. Put personal, machine-specific notes in ~/.claude/CLAUDE.md, which applies to every project. For a multi-module build, add a nested CLAUDE.md inside each module directory; Claude Code lazy-loads those only when it reads files in that subtree."
-  - question: "Why does my CLAUDE.md say one thing but Claude Code does another?"
-    answer: "CLAUDE.md is injected as a user message after the system prompt, not as a hard rule. Claude tries to follow it but vague or conflicting instructions get ignored or picked arbitrarily. Keep each rule specific ('Use 2-space indentation', 'Do not add dependencies without asking'), avoid contradictions across files, and move anything you must enforce 100% into a hook instead of prose."
-  - question: "Can auto memory leak secrets from my Spring Boot project?"
-    answer: "It can, in theory, if you paste a real credential into a chat and Claude decides to remember it. Auto memory is just local markdown, not encrypted. I keep application.properties out of scope, tell Claude never to store secrets, and run /memory every couple of weeks to scrub anything sensitive. For shared machines you can also disable auto memory in settings."
+updatedDate: 2026-10-23
 ---
 
-A few months ago I was using Claude Code on a three-module Spring Boot monorepo and quietly losing patience. It wrote service classes that looked right and compiled in its head, then broke the build because it invented a bean that did not exist. It added a new starter to `build.gradle` instead of using the one already on the classpath. It called my DTOs `Model` when the whole team used `Dto`. None of that was a model problem. It was a memory problem: I had never told the agent how this project actually worked.
+Claude Code memory for a Spring Boot repository should reduce repeated setup without turning an old observation into a permanent fact. Build versions, profiles, and permissions can change after a note was written.
 
-I run Claude Code on Claude Sonnet 4.5 for the daily edits and switch to Opus 4.7 when I am asking it to plan a sprawling refactor. Both are sharp. But a sharp model with no project context is just a confident guesser. Once I treated memory as a first-class part of the setup, the breakage dropped off a cliff. This is how I wired it up on a real Spring Boot codebase, the rules that mattered, and the traps I walked into so you do not have to.
+This is a maintenance guide, not a report of months of personal production use. It separates instructions you own from observations that need to be checked again.
 
-## What Claude Code actually "remembers"
+## Choose the right home for a fact
 
-People talk about Claude Code memory like it is some mysterious persistent brain. It is not. Under the hood it is file injection. At the start of every session Claude Code collects a set of markdown files and drops their contents into the conversation. That is the whole trick. There is no hidden state, which is honestly a relief: every "memory" is a plain file you can open, read, and delete.
+Claude's [memory documentation](https://code.claude.com/docs/en/memory) distinguishes persistent project instructions from auto memory. The details of loading and scope depend on the installation. Check the files actually loaded when diagnosing a session.
 
-There are two layers that matter for a Spring Boot project.
+Put stable conventions in a project instruction file: the wrapper command, module boundaries, generated-code paths, and acceptance requirements. Put machine-specific setup in an appropriately excluded local file or environment configuration. Put a reproducible failure report in the issue or a versioned technical note with its date and versions.
 
-The first is `CLAUDE.md`, the file you write on purpose. It loads in full every session, no matter how long it is, though shorter files get followed more reliably. There is a hierarchy: an enterprise file at the OS level, a project file at the repo root, a user file in your home directory, and a now-deprecated local file. The project one is what your team shares through git.
+A remembered sentence saying “Docker is unavailable” should not silently become “skip integration tests forever.” Recheck availability for the current environment and report a blocked check separately.
 
-The second layer is auto memory. As you work, Claude can decide a fact is worth keeping and write it to `~/.claude/projects/<project-path>/memory/`. An index file called `MEMORY.md` gets loaded at startup (only the first 200 lines or 25KB, whichever hits first), and deeper topic files are read on demand. You can browse all of it with the `/memory` command. I will come back to why that command became part of my weekly routine.
-
-## My project-level CLAUDE.md for a Spring Boot app
-
-This is the file I wish I had written on day one. It is roughly 60 lines, which is deliberate. The official guidance says keep it under 200 lines, and in my experience the shorter it is, the more obedient Claude is. Here is a trimmed version of what sits at the root of my project:
+## Use a short project entry point
 
 ```markdown
-# Project: orders-service (Spring Boot 3.5, Java 21, Gradle)
+## Build context
+- Read the checked-in wrapper and build files for exact versions.
+- Run the documented verification task from the correct module/root.
+- Do not edit generated output or applied migrations.
 
-## Stack
-- Spring Boot 3.5, Java 21, Gradle (not Maven)
-- PostgreSQL via Spring Data JPA; use Flyway for migrations
-- Spring Security with JWT, stateless sessions only
+## Change review
+- Preserve ownership and business rules at the service boundary.
+- Record the acceptance requirement before changing an assertion.
+- Inspect executed and skipped tests, not only the final build message.
 
-## Layout
-- com.acme.orders.api       -> REST controllers, request/response DTOs
-- com.acme.orders.domain    -> entities, aggregates, domain services
-- com.acme.orders.infra     -> JPA repos, external clients, config
-- Controllers must NOT contain business logic. Put it in domain services.
-
-## Hard rules
-- DTO classes end in `Dto`. Entities end in `Entity`. No `Model` naming.
-- Do NOT add new Gradle dependencies without asking first.
-- Use Java 21 records for read-only DTOs.
-- Run `./gradlew compileJava` after any change that touches wiring.
-- Keep transactions on the domain service layer, not the controller.
-
-## Commands
-- Build: ./gradlew build
-- Run: ./gradlew bootRun
-- Tests: ./gradlew test
+## References
+- Architecture and module commands: docs/development.md
+- Environment setup: README.md
 ```
 
-Two lines do most of the heavy lifting. "Do NOT add new Gradle dependencies without asking first" killed the dependency-creep habit. "Controllers must NOT contain business logic" stopped it from bolting logic onto the first class it touched. These are not profound insights, but Claude Code only knows them once you write them down.
+The reference paths are examples: create or replace them with real project documentation. An instruction file full of dead links is worse than a concise file that points to the actual build.
 
-If you want the broader workflow this file plugs into, I wrote up my day-to-day [Claude Code + Spring Boot routine](/blog/claude-code-spring-boot/) separately.
+Avoid embedding credentials, production URLs with secret parameters, or copied customer payloads. Excluding a file from an index does not necessarily prevent a command-line tool from reading it.
 
-## The afternoon it actually saved me
+## Review what survived into a new session
 
-I want to give you a concrete moment, not a vague "it got better." Last month I asked Claude Code to add a `findAllOpenByCustomer` query to the orders module. Old me, no memory, would have gotten a method that compiled and a controller that called it, then a runtime `NoSuchBeanDefinitionException` two minutes later because the repository was never actually wired into the service.
+Ask for the loaded instruction sources and the proposed build command. Compare the answer with the repository. A correct summary of an instruction is only evidence that it was available; the final diff and checks establish whether it was followed.
 
-This time, because the CLAUDE.md spells out the layout, Claude created the JPA repository interface in `infra`, injected it into the existing `OrderService` in `domain`, and added a thin controller method in `api` that just delegates. It ran `./gradlew compileJava` itself before reporting done. The build was green. I still read the diff, because I am not reckless, but there was nothing to fix. That single afternoon probably saved me the usual twenty minutes of "why is this bean missing" Googling.
+When the agent recalls a previous migration conclusion, check the version and reproduction. A property that was inactive without a JDBC module may work after the module is added. The [Boot 4 YAML guide](/blog/codex-spring-boot-4-yml-properties/) explains why classpath and binding belong together.
 
-The honest caveat: memory does not make the code correct, only more aligned. I still caught a transaction that was opened on the wrong layer. The file tells Claude where logic should live; it does not guarantee Claude puts it there every time.
+## Resolve conflicting instructions explicitly
 
-## Auto memory is great until it isn't
+Inspect user, project, module, local, and managed configuration using the current [settings documentation](https://code.claude.com/docs/en/settings). Do not assume that every list replaces a previous list or that all tools use the same precedence rules.
 
-Auto memory sounds like free documentation, and for a while I loved it. Claude remembered that we use Java 21 records for DTOs and stopped asking. It remembered our Postgres needs a Testcontainers instance for integration tests. Handy.
+Keep a single canonical statement of a business rule. If a local note disagrees with the requirement and tests, resolve the conflict before editing code. Repeating the same wrong instruction in several files does not make it more authoritative.
 
-Then I ran `/memory` out of curiosity and found it had saved a "fact" that our auth used OAuth2. It does not. I had mentioned OAuth2 in passing as something we considered and dropped, and Claude filed it as current state. Left alone, that wrong memory would have steered future sessions. I deleted the file, told Claude explicitly not to record speculative decisions, and now I check `/memory` every couple of weeks.
+For cross-tool instructions, see [AGENTS.md scope](/blog/codex-agents-md-spring-boot/). Verify each tool's support rather than assuming a symlink shares every local override.
 
-My rule of thumb: treat auto memory like a junior's notebook. Useful, sometimes wrong, always worth a glance. If a memory looks off, it is a plain markdown file. Edit it or delete it. There is no mysterious backend to fight.
+## Maintain observations as observations
 
-One more warning that bit me once. Auto memory is local markdown, not encrypted. Do not paste real credentials into a chat and assume they stay private. I keep `application.properties` out of scope, tell Claude never to store secrets, and on shared machines I disable auto memory entirely in settings. Secrets belong in your environment or a vault, not in a file Claude reads at startup.
+A useful troubleshooting note records the symptom, environment, command, output, proposed explanation, and verification step. Keep the observed fact separate from the explanation. “Connection to this socket was denied in this profile” is narrower and more reusable than “Testcontainers is broken.”
 
-## Soft instructions are not seatbelts
+When later testing disproves an explanation, update the articles and instruction snippets that cite it. Leaving the correction only in private memory preserves the mistake for readers.
 
-Here is the part I underestimated. `CLAUDE.md` is delivered as a user message after the system prompt, not as a hard constraint. Claude tries to follow it, but vague or conflicting lines get ignored, and when two files disagree it may pick one arbitrarily. So prose alone is not enough for the things you must enforce.
-
-For the rules that really matter, I moved them into hooks, which are shell commands that fire on Claude Code lifecycle events with zero token cost. A `PostToolUse` hook compiles the project after every edit, so a broken bean wiring cannot hide. A `PreToolUse` hook on Bash blocks `git push` so the agent never ships on its own. These actually enforce behavior; `CLAUDE.md` only suggests it. My full setup, including the exact hook config for a Spring Boot build, is in my piece on [Claude Code subagents and hooks](/blog/claude-code-subagents-hooks-spring-boot/).
-
-If you take one thing from this article: use `CLAUDE.md` for guidance, use hooks for guarantees. Mixing them up is how agents quietly do the one thing you told them not to.
-
-## A tip for multi-module Spring Boot builds
-
-If your project is a single module, one root `CLAUDE.md` is enough. Mine is three modules: `api`, `worker`, and `shared`. The root file covers the shared stack, and each module has its own nested `CLAUDE.md` with module-specific rules, like "the worker module must not import web controllers." Claude Code discovers these nested files and lazy-loads them only when it reads files in that subtree, so the agent gets the right context exactly where it needs it without bloating the root file.
-
-You can also split a large root file using `@import` lines, which pull in other markdown files (up to five levels deep). I use that for the long list of Gradle commands so the main file stays short. Both tricks keep the root file under the 200-line mark where adherence stays high.
-
-## What I would do differently
-
-If I started over, I would write the `CLAUDE.md` before the first agent session, not after a week of breakage. I would also keep it shorter; my first draft was 140 lines and Claude followed maybe two-thirds of it. The trimmed 60-line version gets obeyed far more reliably.
-
-The bigger lesson is that memory is a maintenance task, not a one-time setup. Projects drift, conventions change, and auto memory quietly accumulates half-truths. Budget a few minutes every couple of weeks to run `/memory` and re-read your `CLAUDE.md`. It is the cheapest insurance against an agent that slowly drifts away from how your team actually works.
-
-## Wrapping up
-
-Claude Code memory on a Spring Boot project is not magic, and that is the point. `CLAUDE.md` tells the agent your stack, your layout, and your hard rules. Auto memory captures the small facts so you stop repeating yourself, as long as you audit it. Hooks turn the must-never rules into guarantees. Put those three together and the agent stops guessing and starts fitting in.
-
-If you are building out a Java + AI workflow, start from the [Java + AI hub](/blog/ai-for-java-developers/) where I link every article in this cluster, then come back and write your own `CLAUDE.md` today. It took me two afternoons to get right, and I have not had a mystery `NoSuchBeanDefinitionException` since.
+Use the [Claude Code workflow](/blog/claude-code-spring-boot/) for task execution, the [Boot 4 instructions](/blog/spring-boot-4-agents-md-guide/) for acceptance checks, and the [Java hub](/blog/ai-for-java-developers/) for related scenarios. Persistent context should make the next investigation easier; executable checks still establish the result.

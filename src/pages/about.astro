@@ -5,43 +5,52 @@ import { SITE } from "../config/site";
 
 <MainLayout
   title="About"
-  description="Learn about AI Kit Guides — our mission, our team, and why we created this blog to help you navigate the world of AI tools."
+  description="AI Kit Guides is Peng Zhou’s independent blog about AI tools and Java development. Read about the author, evidence, and corrections."
 >
   <div class="max-w-3xl mx-auto px-4 py-12">
     <h1 class="text-4xl font-extrabold text-ink-900 mb-6">About AI Kit Guides</h1>
 
     <div class="prose max-w-none">
-      <h2>Our Mission</h2>
+      <h2>Why I Write This Site</h2>
       <p>
-        AI Kit Guides was created with one simple goal: to help everyday people navigate the rapidly evolving world of AI tools. The AI landscape moves fast — new tools launch every week, existing ones get major updates, and it's hard to know which ones are worth your time and money.
+        AI Kit Guides is an independent blog by Peng Zhou, a Java engineer. I write about using AI tools in software work: understanding code, reviewing changes, running tests, and investigating failures that a successful build can hide.
       </p>
       <p>
-        We cut through the hype and provide honest, practical, and beginner-friendly guides. No jargon. No fluff. Just clear, actionable advice you can use today.
+        The aim is to give readers useful commands, examples, and the reasoning needed to check a result in their own environment.
       </p>
 
-      <h2>What We Cover</h2>
+      <h2>What I Cover</h2>
       <p>
-        We cover the AI tools people actually use — ChatGPT, Claude, Cursor, Codex, Copilot — and what goes wrong once you get past the demo:
+        I cover the AI tools people actually use — ChatGPT, Claude, Cursor, Codex, Copilot — and what goes wrong once you get past the demo:
       </p>
       <ul>
-        <li><strong>AI coding agents</strong> — Claude Code, OpenAI Codex, Cursor and GitHub Copilot, run on real projects</li>
+        <li><strong>AI coding agents</strong> — Claude Code, OpenAI Codex, Cursor and GitHub Copilot, including setup, repository context and verification</li>
         <li><strong>Spring Boot 4 migration</strong> — Jakarta EE 11, Security 7, Jackson 3, and the failures that compile clean</li>
         <li><strong>Testing &amp; CI</strong> — JUnit 6, Maven, Gradle, ArchUnit, Testcontainers and CI gates</li>
         <li><strong>AI API limits</strong> — 429s, quota tiers and retry strategy for OpenAI-compatible endpoints</li>
         <li><strong>AI fundamentals</strong> — model comparisons, prompt technique and hallucination control</li>
       </ul>
 
-      <h2>Our Approach</h2>
+      <h2>Reading the Evidence</h2>
       <p>
-        Every article we publish follows three principles:
+        A documented product feature, an illustrative example, and an observation from a particular run provide different kinds of evidence. Check which one supports a claim before applying it to your own project. A single agent run does not establish a general success rate.
       </p>
-      <ol>
-        <li><strong>Honesty first.</strong> If a tool isn't worth your time, we'll tell you. If a competitor is better, we'll say so.</li>
-        <li><strong>Practical over theoretical.</strong> We focus on real-world use cases, not academic discussions.</li>
-        <li><strong>Accessible to everyone.</strong> You don't need a PhD in machine learning to use AI tools effectively.</li>
-      </ol>
+      <p>
+        Earlier drafts included accounts of AI-created lab experiments without retained source projects or raw logs. Those accounts do not establish personal production experience or reproducible benchmarks. The October 2026 review removed unsupported measurements and recast those articles as technical explanations or explicitly illustrative procedures.
+      </p>
+      <p>
+        AI assistance is used in drafting and editing this site. It does not substitute for source checking or execution evidence. Synthetic fixtures and proposed evaluation procedures should be identified as examples, and must not be presented as measurements from a real run.
+      </p>
+      <p>
+        Where a new example has been executed, its evidence is limited to the stated environment and checks. The <a href="/examples/java-verification.zip">Java verification source package</a> includes its test commands and an October 23, 2026 run record. It does not reproduce the site's historical agent experiments.
+      </p>
 
-      <h2>Who We Are</h2>
+      <h2>Corrections</h2>
+      <p>
+        Substantive revisions carry an updated date. Correction notes explain material changes to technical claims or the evidence behind them. To report an error, please send the article URL, the disputed statement, and a source or reproduction through the <a href="/contact/">contact page</a>.
+      </p>
+
+      <h2>About the Author</h2>
 
       <div class="flex items-start gap-6 not-prose mb-6">
         <img
@@ -65,10 +74,10 @@ import { SITE } from "../config/site";
         Hi, I'm Peng Zhou. I'm a senior Java engineer who's been building software for over a decade — and like a lot of developers, I got curious when ChatGPT launched in late 2022. By early 2023, I was using it every day: drafting emails, debugging tricky code, and experimenting with API integrations that actually made my work faster.
       </p>
       <p>
-        Since then, AI agents have become part of how I work — drafting migrations, writing tests, reviewing pull requests. I built this blog to document what I actually ran into, with the commands and the output, for anyone who wants to use these tools without trusting them blindly.
+        This blog focuses on practical questions about AI-assisted development: how to scope a change, review generated code, and establish what a successful check really proves.
       </p>
       <p>
-        I'm not affiliated with any AI company. My reviews come from actually using the tools to build real things. Sometimes that means the tool works great. Sometimes it means I wasted three hours on a feature that didn't work as advertised — and I'll tell you about both.
+        I'm not affiliated with any AI company. Product descriptions, source-based comparisons, and executed examples are labeled according to their evidence. A comparison without recorded trials is not presented as a measured ranking.
       </p>
       <p>
         When I'm not writing about AI tools, I build and ship my own side projects — and I document the unglamorous parts (deploying to Cloudflare Pages, setting up payments, going from prototype to production) over at <a href="https://shiptocash.com" target="_blank" rel="noopener noreferrer" class="text-coral-600 hover:text-coral-700 underline">ShipToCash</a>.
@@ -79,7 +88,7 @@ import { SITE } from "../config/site";
 
       <h2>Get in Touch</h2>
       <p>
-        Have a question, suggestion, or just want to say hi? We'd love to hear from you. Visit our <a href="/contact/">contact page</a> to reach out.
+        Have a question, suggestion, or correction? I would like to hear from you. Visit our <a href="/contact/">contact page</a> to reach out.
       </p>
       <p>
         Subscribe to our <a href="/rss.xml">RSS feed</a> for the latest updates.

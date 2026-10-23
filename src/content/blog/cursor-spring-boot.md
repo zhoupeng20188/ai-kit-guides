@@ -1,104 +1,71 @@
 ---
-title: "Cursor with Spring Boot: A Practical Java Workflow (2026)"
-description: "How I use Cursor on a real Spring Boot codebase in 2026: project rules, the prompts that work, and the bean-wiring traps that break the build."
+title: "Cursor with Spring Boot: Rules, Context, and Verification"
+description: "Use Cursor on a Spring Boot repository with scoped context, project rules, authorization checks, and a build review that goes beyond compilation."
 pubDate: 2026-08-03
 category: "ai-coding-agents"
 tags: ["cursor", "spring boot", "ai coding", "java ai tools", "cursor workflow", "java-ai-cluster"]
-image: "/og-cursor-spring-boot.jpg"
-imageAlt: "Cursor editor open on a Spring Boot Java project, showing the Agent panel editing a @Service class and the Gradle build output"
+image: "/og-default.jpg"
+imageAlt: "AI Kit Guides"
 keywords: ["cursor spring boot", "cursor with spring boot", "cursor spring boot tutorial", "spring boot ai coding", "cursor java workflow"]
-faq:
-  - question: "Can Cursor handle a real Spring Boot project?"
-    answer: "Yes, as long as you let it index the codebase and give it project rules. Out of the box Cursor knows Java syntax but not your bean wiring, your layering, or your DTO conventions. Point it at the repo, write a .cursor/rules file with your stack and a couple of hard rules, and it becomes useful fast. Without the rules it produces plausible code that quietly breaks the build."
-  - question: "Is Cursor or IntelliJ better for Spring Boot?"
-    answer: "They are not either-or. I use Cursor as the daily driver for AI-assisted edits, scaffolding, and in-editor help, and I keep IntelliJ for deep refactors and tracing dependency injection by hand. Cursor's Spring Boot Tools integration is good but it does not match IntelliJ's refactoring or its bean graph. Use Cursor for speed, IntelliJ for the careful work."
-  - question: "Does Cursor write good Spring Boot tests?"
-    answer: "It writes tests that compile and pass, but they often prove nothing: an assertNotNull on the response, a happy path with no edge case, a context that loads the whole app and runs slow. Treat every AI-written test as a draft you must read, not a result you can trust. Verify the assertions actually check the behavior you care about."
-  - question: "How do I stop Cursor from adding Gradle dependencies?"
-    answer: "Put one hard rule in your .cursor/rules file: 'Do NOT add new dependencies without asking first.' Then make a habit of diffing build.gradle after every change. Cursor tends to drop in a new starter to solve a problem instead of using what is already on the classpath, and that dependency creep is easy to miss in a large diff."
+updatedDate: 2026-10-23
 ---
 
-Most "Cursor + Spring Boot" tutorials I found start the same way: install the Extension Pack for Java, open Spring Initializr, generate a fresh project. Useful, I suppose, if you have never touched Spring. But I already run a Spring Boot service in production, and the real question is what Cursor is like once it is pointed at a codebase that has been growing for years. That is the part nobody writes about.
+Cursor with Spring Boot needs the same inputs a developer needs: the actual build, related code, and the behavior the change must preserve. A repository index can help locate code; it does not prove that a Spring bean is active or that a request is authorized.
 
-I have been writing Java backend code since before Spring Boot existed, and I picked up Cursor about a year ago after years of IntelliJ plus Copilot. This is not a "Cursor replaced my job" story. It is the workflow I have settled on for real Spring Boot work: how I point it at the code, what I tell it, and the three traps that have bitten me more than once. If you want the same codebase seen through Claude Code, I wrote [that version too](/blog/claude-code-spring-boot).
+This workflow uses a hypothetical orders endpoint. It does not claim production incidents, measured completion times, or a controlled comparison with another editor.
 
-## Why Cursor, Not Just IntelliJ or Claude Code
+## Establish a working baseline
 
-I keep both Cursor and Claude Code installed, and they do different jobs. The split for me is simple: Cursor for tight, watch-it-happen edits and fast in-editor help; Claude Code for "go wander the whole repo and wire this up." Cursor's strength is that the AI sits inside the editor. Cmd+K handles a targeted change, Tab gives completions that know the surrounding method, and the chat sees the file you have open. When I am fixing a bug in one service, I do not want an agent spawning subagents. I want a smart autocomplete with a chat box.
+Open the repository root rather than a generated output directory. Check the JDK, wrapper, and documented test command in a terminal. Run the baseline before requesting a change, so an existing failure is not attributed to the patch.
 
-That said, Cursor is not IntelliJ. The Spring Boot Tools integration is decent, but it will not match IntelliJ's refactoring or its bean graph. I still open IntelliJ when I need a careful rename across forty files or have to trace a dependency injection chain by hand. Cursor is the daily driver; IntelliJ is the specialist tool I keep around.
+For a multi-module build, identify the module containing the application and the modules it depends on. The repository root, IDE workspace, Maven reactor, and agent working directory can differ. Include those details when a command works in one place and fails in another.
 
-## Getting Cursor to Actually Understand Your Project
+Use the current [Cursor documentation](https://cursor.com/docs) for your installed interface and account. Feature names, shortcuts, and available models change; record them in an evaluation rather than treating an old screenshot as the interface contract.
 
-The setup tutorials tell you to install plugins. I will skip that. The thing that matters for Spring Boot is letting Cursor index the codebase and giving it rules.
+## Add a project rule with explicit scope
 
-First, open the project and let Cursor build its index. In recent Cursor builds this uses secure codebase indexing, and for a medium Spring Boot service it takes a minute or two on first open. Do not skip it. Without the index, `@Codebase` answers are guesses, and the Agent panel reads the wrong files.
-
-Then create a project rules file. Rules live in `.cursor/rules/`. I keep one called `spring-boot.mdc`. Here is roughly what mine says for a Spring Boot 3.5 / Java 21 / Gradle app (most shops I know are still on 3.4–3.5, not the bleeding edge, and the rules are identical):
+Cursor documents project instructions in [Rules](https://cursor.com/docs/rules). A `.cursor/rules/spring-boot.mdc` can contain this example:
 
 ```markdown
 ---
-description: Spring Boot conventions for this project
-globs: ["src/main/java/**/*.java"]
+description: Java service conventions and verification
 alwaysApply: true
 ---
 
-## Stack
-- Spring Boot 3.5, Java 21, Gradle. Use the wrapper: `./gradlew`.
-- Layering: controller -> service -> repository. No business logic in controllers.
-- MapStruct for DTO mapping. Constructor injection only.
-
-## Conventions
-- Match the surrounding style. If a file uses explicit types and for-loops,
-  do not "modernize" it to streams.
-- Validation lives in the DTO via Bean Validation, never in the service.
-- Return ResponseEntity<T>; route errors through the global
-  @RestControllerAdvice, not inline try/catch.
-
-## Hard rules
-- Do NOT add new Gradle dependencies without asking me first.
-- Before editing a shared @Service or @Repository, list every caller.
-- After any change, run `./gradlew -q test` and only say done if it passes.
+- Read the wrapper and build before proposing a dependency or version change.
+- Controllers delegate to services; services enforce ownership and business rules.
+- Preserve existing DTOs, error contracts, and database migration history.
+- List callers before changing shared behavior.
+- After editing, run the documented verification task and report executed tests.
+- Do not weaken a test or skip it merely to obtain a green build.
 ```
 
-Two lines in there have saved me more times than I can count. "Do NOT add new Gradle dependencies without asking" because Cursor loves to solve a problem by dropping in a new starter instead of using what is already there. And "list every caller before editing shared logic." That one is the difference between a clean diff and a 2am production incident, and I will get to why in a second.
+This is an instruction template, not a guarantee that the tool will comply. Mandatory architecture and access controls need executable enforcement and review. Keep build commands consistent with the project rather than hard-coding a different Boot version into the rule.
 
-## The Prompt Patterns I Actually Use
+A rule saying “validate only in DTOs” is too broad: it can remove checks needed when the same service is invoked outside HTTP. Distinguish input-shape validation from business invariants.
 
-Cursor's chat is only as good as what you type. After a lot of trial and error, these four patterns are the ones I reach for constantly:
+## Supply the code the task needs
 
-1. **"Follow the existing package structure and naming. Don't create a new package."** Left alone, Cursor will happily invent `com.example.demo.featureX` because that is what the demos show. My repo has opinions; this reminds it.
-2. **"Use constructor injection and match the project's Lombok style."** Without this it slips into field injection (`@Autowired` on a field), which my team banned years ago. Now it matches.
-3. **"List every place that calls `X` before you change it."** This is the one I lean on hardest for services shared across controllers. I will expand on the trap below.
-4. **"Reuse the existing MapStruct mapper; do not write a new one."** Cursor will recreate mapping logic inline instead of using the mapper that already exists, and then the two drift apart.
+For a change to order loading, provide the controller, service, repository query, authentication principal, and nearby tests. Ask Cursor to identify which symbols and files support its explanation. Check important exact references with repository search or IDE navigation.
 
-None of these are magic. They are just the things I would tell a new teammate on day one, written down so the AI does not have to guess. If you want the deeper version of writing these rules, I covered the [Cursor rules system](/blog/cursor-rules-tutorial) separately.
+Keep generated output out of retrieval where appropriate. The [ignore-file documentation](https://cursor.com/docs/reference/ignore-file) distinguishes indexing and other tool access. An ignore file is not a complete secret boundary; terminal commands or external tools may have access independent of the index.
 
-## A Real Example: Adding a Feature End to End
+The [codebase-context guide](/blog/cursor-codebase-spring-boot/) covers how to diagnose an incorrect retrieved path. The [rules guide](/blog/cursor-rules-tutorial/) covers activation and scope.
 
-Last month I needed a "retry failed webhooks" admin endpoint on a service I had inherited. I opened Cursor's Agent panel (Cmd+I) and typed: "Add POST /admin/webhooks/retry that takes a list of ids, calls the existing `WebhookRetryService.retry(id)`, and returns a count of successes. Use the existing `WebhookRepository`, reuse the `WebhookMapper`, and write one MockMvc test that posts two ids and asserts 200 and a body count of 2."
+## Example: adding a retry endpoint
 
-About four minutes later it came back with the controller, the wiring, and a test that passed. Honestly, that is the part Cursor is great at: the mechanical scaffolding across layers. What it got wrong: it declared the request DTO as a class when my convention is records for input DTOs, and it added `spring-boot-starter-validation` to build.gradle even though validation was already on the classpath through another starter. Both showed up in the diff. Both took me a minute to fix. The dependency one I would have missed if I had not trained myself to scan build.gradle first.
+Suppose an administrator can retry selected failed webhooks. A useful brief specifies more than “POST two IDs and assert 200”:
 
-## The Three Traps
+> Reuse the existing retry service and response contract. Require the existing administrator authorization. Define handling for unknown IDs, non-retryable records, duplicates, and partial failures. Preserve the outbound idempotency key. Add tests for an administrator and an ordinary authenticated user.
 
-This is the part I wish someone had told me.
+Review the ownership or administrator check at the service boundary as well as in the controller. Confirm a repeated request cannot create an unintended duplicate external action. If these rules are absent from the repository, establish them before asking the agent to implement a plausible policy.
 
-**Trap 1: bean wiring looks fine, breaks at startup.** Cursor edited a `@Service` and referenced a helper bean that existed, but it was `@ConditionalOnProperty`-guarded and off in the profile I was running. It compiled clean and failed at `ContextLoader` startup. The fix is the "list every caller" rule plus actually running the app or a context-load test, not just `./gradlew compile`.
+## Verify startup and behavior
 
-**Trap 2: it adds dependencies.** Covered above, but it is worth repeating because it is the most common one. New starters in build.gradle "just to be safe." Always diff the build file.
+Compilation cannot establish profile-dependent bean wiring. Run an appropriate context-load or application test with the relevant profile. For persistence changes, exercise the query and representative relations, not only a mocked repository.
 
-**Trap 3: green tests that prove nothing.** Cursor's generated `@SpringBootTest` will often assert `assertNotNull(response)` and call it a day. The test passes, the build is green, and the actual behavior is unverified. I treat any AI-written test as a draft I have to read, not a result I can trust. This is the same discipline I wrote about for [legacy Java codebases](/blog/using-ai-legacy-java-codebase): the AI is fast and confident and context-blind, and you hold the business history.
+Inspect dependency changes separately. A new starter might be correct, redundant, or change auto-configuration. Check the dependency tree and the specific feature it enables. A resolving artifact is not proof of an active integration.
 
-There is also the N+1 problem, and Cursor is just as blind to it. A query that passes the test can still hammer the database in production. Unit tests do not catch that.
+Review generated assertions using the [JUnit checklist](/blog/ai-junit-tests/). For query-performance risks, use an integration check that can observe database access; do not claim that all tests either catch or miss N+1 behavior.
 
-## Review Like It's Legacy Code
-
-I will keep this short because I have said it before, but it is the whole ballgame: read the diff like a stranger wrote it, because one did. `git diff`, line by line. The agent is fast; you are the skeptic. For the deeper mindset on not trusting confident AI output, the habits in [avoiding AI hallucinations](/blog/ai-hallucination-tips) apply here too.
-
-## Summary
-
-Cursor is my daily driver for Spring Boot not because it is magic, but because it sits inside the editor and handles the mechanical 80% fast. The setup that makes it trustworthy is small: let it index, drop a `.cursor/rules/spring-boot.mdc` with your stack and two hard rules (no new deps, list callers before editing shared logic), and review every diff like legacy code. Use it for tight edits and scaffolding; reach for [Claude Code](/blog/claude-code-spring-boot) when the task spans the whole repo and needs to run the build itself. Do that, and Cursor becomes a fast pair of hands that compiles its own code. Skip the discipline and it becomes the fastest way yet to merge something that builds green and behaves wrong.
-
-
-If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).
+Finally, read the diff, rerun the project verification task, and record blocked checks. Compare this process with the [Claude Code workflow](/blog/claude-code-spring-boot/) or the [Java tool-selection worksheet](/blog/best-ai-tools-2026/) using the same acceptance criteria. The [Java hub](/blog/ai-for-java-developers/) provides the broader map.

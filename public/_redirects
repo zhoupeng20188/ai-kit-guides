@@ -1,3 +1,11 @@
+# Consolidate paired CSRF lab reports into the diagnostic guide
+/blog/codex-spring-boot-4-403-fix/  /blog/claude-code-spring-boot-4-403/  301
+/blog/codex-spring-boot-4-403-fix  /blog/claude-code-spring-boot-4-403/  301
+
+# Consolidate overlapping 429 troubleshooting articles (2026-10-23)
+/blog/openai-429-fix-variations/  /blog/chatgpt-api-429-fix/  301
+/blog/openai-429-fix-variations  /blog/chatgpt-api-429-fix/  301
+
 # 301 redirect: old category slugs → new taxonomy (2026-10-15 re-categorisation)
 # Keeps GSC / external links from returning 404 after the category rewrite
 /categories/ai-tools/  /categories/ai-coding-agents/  301

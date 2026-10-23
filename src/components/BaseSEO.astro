@@ -33,7 +33,7 @@ const {
   faqJsonLd = [],
 } = Astro.props;
 
-const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — ${SITE.description.split(".")[0]}`;
+const pageTitle = title ? `${title} | ${SITE.name}` : `${SITE.name} — AI Tools & Java Guides`;
 const canonicalURL = new URL(Astro.url.pathname, Astro.site);
 const ogImage = new URL(image, Astro.site);
 const logoUrl = new URL("/icon-512x512.png", Astro.site);
@@ -115,7 +115,7 @@ const logoUrl = new URL("/icon-512x512.png", Astro.site);
     url: SITE.url,
     logo: logoUrl.toString(),
     email: SITE.email,
-    sameAs: [SITE.social.github, SITE.social.rss].filter(Boolean),
+    sameAs: [SITE.social.github].filter(Boolean),
   })}
 />
 
@@ -128,11 +128,6 @@ const logoUrl = new URL("/icon-512x512.png", Astro.site);
       name: SITE.name,
       url: SITE.url,
       description: SITE.description,
-      potentialAction: {
-        "@type": "SearchAction",
-        target: `${SITE.url}/blog?q={search_term_string}`,
-        "query-input": "required name=search_term_string",
-      },
     })}
   />
 )}

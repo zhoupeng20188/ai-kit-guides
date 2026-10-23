@@ -1,6 +1,6 @@
 # AI Kit Guides
 
-> Honest reviews, step-by-step tutorials, and head-to-head comparisons of ChatGPT, Claude, Midjourney, and dozens more AI tools — written for real people, not AI experts.
+> Practical AI and Java development guides with source references and verifiable examples.
 
 🌐 **Live site:** [https://aikitguides.com](https://aikitguides.com)
 
@@ -10,7 +10,7 @@
 
 ## About
 
-AI Kit Guides is a personal blog by **Peng Zhou**, a senior Java engineer who has been actively using AI tools since early 2023. The site covers practical guides, real-world comparisons, and tested workflows for the most popular AI tools of 2026.
+AI Kit Guides is a personal blog by **Peng Zhou**, a Java engineer. It covers AI coding tools, Java testing, Spring Boot migration, and AI API troubleshooting. Articles distinguish documented features, illustrative procedures, and executed examples.
 
 ## Tech Stack
 
@@ -24,6 +24,7 @@ AI Kit Guides is a personal blog by **Peng Zhou**, a senior Java engineer who ha
 ## Getting Started
 
 ```bash
+# Use Node.js 22.12+ (this review used 22.23.2)
 # Install dependencies
 npm install
 
@@ -58,7 +59,10 @@ src/
 1. Create a new `.md` file in `src/content/blog/`
 2. Use the frontmatter schema from `src/content.config.ts`
 3. Run `npm run dev` to preview
-4. The project-level `ai-kit-guides-article-skill` enforces the writing conventions
+4. Follow [editorial standards](docs/editorial-standards.md); do not invent firsthand experience or measurements
+5. Keep runnable artifacts and verification records when claiming an executed result
+
+The [October 2026 audit](docs/adsense-content-audit-2026-10-23.md) covers every article and the supplied Search Console export. The [Java verification example](examples/java-verification/README.md) can be downloaded from `/examples/java-verification.zip`.
 
 ## Deployment
 

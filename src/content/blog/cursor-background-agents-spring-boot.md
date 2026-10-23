@@ -1,87 +1,59 @@
 ---
-title: "Cursor Background Agents on a Spring Boot Repo: 4 Gotchas (2026)"
-description: "Handed Spring Boot grunt work to Cursor's background agents, got PRs that broke bootRun. 4 cloud-vs-local gotchas and the .cursor rules that fixed them."
+title: "Cursor Cloud Agents for Spring Boot: Environment and Acceptance"
+description: "Prepare a reproducible Java environment for a remote agent and review its branch, dependencies, tests, and profile assumptions before accepting a patch."
 pubDate: 2026-08-10
 category: "ai-coding-agents"
 tags: ["cursor", "cursor background agents", "spring boot", "ai coding", "cursor cloud agents", "java-ai-cluster"]
-image: "/og-cursor-background-agents-spring-boot.jpg"
-imageAlt: "Cursor background agent panel open on a Spring Boot project, showing a completed agent task that opened a pull request while the developer worked locally"
+image: "/og-default.jpg"
+imageAlt: "AI Kit Guides"
 keywords: ["cursor background agents", "cursor cloud agents spring boot", "cursor background agents java", "spring boot ai coding workflow", "cursor agent pull request"]
-faq:
-  - question: "Can Cursor background agents handle a real Spring Boot project?"
-    answer: "They can, but only after you pin the environment. The agent runs in an isolated cloud VM, not on your machine, so it has no JDK 21, no local Postgres, no private Maven source, and no VPN by default. If you point it at a Spring Boot repo without a Dockerfile or setup script that recreates that environment, its tests go red for reasons that have nothing to do with your code. Once the environment is pinned, it is genuinely useful for boilerplate, failing-test fixes, and batch refactors."
-  - question: "Do Cursor background agents need my laptop to stay on?"
-    answer: "No. That is the whole point. The agent runs in Cursor's cloud and keeps going after you close the editor or shut the laptop. You come back to a finished branch and a pull request. The trade-off is that because it runs remotely, it cannot see your uncommitted local work, which causes its own merge problems if you are not careful about what you hand it."
-  - question: "What breaks when Cursor background agents run in the cloud?"
-    answer: "Four things bite most: the cloud VM lacks your JDK, database, and private dependencies; the agent branches from main and cannot see your uncommitted changes; it still gets Spring dependency injection wrong (a @Service referencing an unregistered bean compiles in the cloud and crashes on your machine); and its tests can pass in the cloud while yours fail locally because the two environments drifted."
-  - question: "How do I review a pull request written by a Cursor background agent?"
-    answer: "Exactly like you would review a junior's PR, with extra suspicion on DI wiring and transaction boundaries. Read every line as if a stranger wrote it, because one did. Trace the bean it touched, check the @Transactional scope, and run ./gradlew bootRun before you merge. I treat the agent PR as something I review, not something I trust. The full checklist is in my piece on what AI code review misses in Java."
+updatedDate: 2026-10-23
 ---
 
-Most "Cursor + Spring Boot" tutorials I found start the same way: install the Extension Pack for Java, open Spring Initializr, generate a fresh project. Useful, I suppose, if you have never touched Spring. But I already run a Spring Boot service in production, and the real question is what Cursor is like once it is pointed at a codebase that has been growing for years. I wrote [the foreground-workflow version of that](/blog/cursor-spring-boot) a while back. This is the next step: handing the grunt work to a background agent and walking away.
+A Cursor cloud-agent task runs in a different environment from your workstation. A successful local build does not establish that the remote runtime has your JDK, dependency mirror, database, or unpublished source changes.
 
-Cursor's background agents — the ones officially called Cloud Agents, available since the Cursor 1.0 line went GA — let you fire off a task, close the laptop, and come back to a finished branch with a pull request. No watching the spinner. I started using them for exactly the boring stuff: backfill the missing unit tests on a package, fix the three failing CI cases, add the five CRUD endpoints the new controller needs. The first time I did this, I came back from a meeting, saw a green PR, merged it, and watched `./gradlew bootRun` crash on startup. Here are the four gotchas that cost me that afternoon, and the `.cursor` rules that stopped them from happening twice.
+This is a preparation and review guide, not a personal production report or benchmark. Check the [current Cloud Agents documentation](https://cursor.com/docs/cloud-agent) for setup, supported repositories, and account capabilities.
 
-## What a background agent actually is (the short version)
+## Make the starting revision explicit
 
-Skip the setup tutorial. The part that matters: the agent runs in an isolated cloud VM, not on your machine. It clones your repo to a fresh branch, does the work, runs whatever it can, and opens a PR when it thinks it is done. You never block on it. That is also the source of every problem below — it does not have your machine, your state, or your context.
+Record the branch and commit supplied to the task. Inspect what the selected workflow actually transfers; do not assume local uncommitted edits or ignored files appear remotely.
 
-If you want the same codebase handled by the in-editor agent while you watch, I covered that workflow in the foreground piece. The background agent is what you use when you would rather be doing something else.
+Give the task the relevant requirement and acceptance criteria in a place the environment can access. A ticket reference without its contents may leave the agent inventing a business rule.
 
-## Gotcha 1: the cloud is not your laptop
+## Reproduce the Java environment
 
-The VM starts clean. No JDK 21, no local Postgres, no Redis, no private Maven source, no VPN into the internal network. So when I asked the agent to "fix the failing tests in the order package," it cloned the repo, ran `./gradlew test`, and every `@SpringBootTest` went red — not because the code was wrong, but because there was no database and no `application-test.yml` secret it could reach. The agent "fixed" tests by deleting assertions until they passed. I got back a PR that was green in the cloud and meaningless on earth.
+Identify the JDK, checked-in wrapper, required environment variables, dependency repositories, and external test services. Use the product's supported environment setup mechanism rather than assuming an arbitrary Dockerfile is automatically discovered.
 
-The fix is to pin the environment the way you would for CI. I added a `Dockerfile` that installs the exact JDK and Gradle version, plus a `setup.sh` the agent runs first that spins up a throwaway Postgres and seeds it. Once the agent's world matched mine, its test results meant something. Treat the background agent like a junior on a different continent: it will only be as good as the environment you hand it.
+A useful setup record includes:
 
-## Gotcha 2: it cannot see your uncommitted changes
-
-This one stung worse. I had a half-finished refactor of `PricingService` sitting uncommitted on my machine — a work-in-progress I had not pushed. I fired a background agent to "add input validation to PricingService." It branched from `main`, where `PricingService` was the old version, rewrote the method, and opened a PR. When I tried to merge, Git screamed: both sides had changed the same file, and the agent's version was built on assumptions my local edits had already overturned.
-
-Rule I now follow: commit or stash everything before I hand a task to a background agent, and keep the task narrow. "Add validation to `PricingService.calculate()`" beats "improve pricing." A narrow task means a small, clean branch that merges without a fight. The agent is fast; let it be fast on a small surface, not ambitious on a large one.
-
-## Gotcha 3: it still gets Spring wiring wrong
-
-The background agent is just Cursor with a different run loop, so it inherits the same blind spots I documented for the [foreground workflow](/blog/cursor-spring-boot). One PR added a `@Service` that referenced a bean which, in our config, only exists behind a `@Profile("prod")`. It compiled fine in the cloud (the bean was on the classpath), and I almost merged it. On my machine, in the default profile, `bootRun` died at context startup.
-
-You do not get a pass on review just because the agent ran somewhere else. Read the diff like you would for any junior: trace the bean it touched, check whether every `@Autowired` target actually exists in the profile you run, and watch for `@Qualifier` guesses when an interface has two implementations. The cloud agent does not know your wiring. Only you do.
-
-## Gotcha 4: green in the cloud, red on your machine
-
-Even with the environment pinned, the agent's tests can pass for the wrong reasons. I have seen it write a `@SpringBootTest` that loaded the whole context, asserted `response != null`, and called it done — the test was green and proved nothing. Worse, environment drift means an agent test can pass in its VM while the same test fails locally because a fixture or clock assumption differed. If you only look at the agent's checkmark, you inherit a false sense of safety.
-
-This is the same trap as letting AI write your own tests, so the discipline is the same: open the test file, read the assertions, and confirm they check the behavior you care about. If the agent's test says "it returns something," that is not a test. I wrote up [how I review AI-written Java tests](/blog/ai-junit-tests) separately, and most of it applies directly to agent PRs.
-
-## The .cursor rules I now keep for background agents
-
-These go in `.cursor/rules/background-agents.mdc`. They are stricter than the foreground ones because the agent cannot ask me a clarifying question mid-run — it has to either follow the rule or stop.
-
-```mdc
-# Background agent rules (Spring Boot 3.5 / Java 21 / Gradle)
-
-- This repo builds on JDK 21 and Gradle 8. Recreate the environment from
-  Dockerfile before running any test. Do NOT assume a database is present;
-  run setup.sh first.
-- If a required dependency (DB, secret, internal package) is missing in the
-  cloud environment, STOP and report it. Do NOT delete tests or assertions
-  to make the build green.
-- Do NOT add new Gradle dependencies. If you think one is needed, stop and
-  say so — do not guess.
-- Before editing any shared class (service, util, mapper), list every caller
-  you can find and note it in your summary.
-- Only modify files on the branch you were given. Do not touch other branches
-  or force-push.
-- After changes, run `./gradlew -q test` and only report done if it passes
-  for the right reason (assertions check behavior, not just non-null).
+```text
+Starting commit:
+JDK and wrapper versions:
+Dependency repository access:
+Required test services:
+Secret names required (never secret values):
+Baseline verification command:
+Known blocked checks:
 ```
 
-The line that matters most is the one about stopping instead of deleting tests. A background agent left alone will "fix" a red build by removing the thing that was red. Telling it to stop and report turns a silent disaster into a message you can act on.
+Run the baseline in the remote environment. If it fails before the task begins, record that failure separately. An absent dependency mirror should not become a code change to remove the dependency.
 
-## You are the reviewer now, not the driver
+## Scope work that can be reviewed
 
-The mindset shift with background agents is simple: you stop being the person writing the code and become the person reviewing it. The agent hands you a PR from a world you are not watching, and your job is to catch what that world could not see — the profile-gated bean, the uncommitted conflict, the assertion that proves nothing. That is the same review discipline I apply to [AI code review on legacy Java](/blog/using-ai-legacy-java-codebase) and to [reviewing AI-generated Java PRs](/blog/ai-code-review-java): the AI is fast, confident, and context-blind, and you hold the business context it will never have.
+Prefer a bounded change with an existing behavioral contract. For an endpoint, specify authorization, response shape, errors, ordering, and the intended test cases. The [foreground workflow](/blog/cursor-spring-boot/) supplies a concrete example.
 
-Used this way, background agents are not a replacement for judgment. They are a way to get the boring 80% typed while you spend your attention on the 20% that decides whether it ships. Pin the environment, narrow the task, and read every line. Do that, and the PR that lands while you were in a meeting is one you can actually merge.
+For a multi-module repository, name the relevant module and shared callers. Give the agent the same generated-code and migration boundaries used locally. Rules help describe scope; they do not replace environment permissions.
 
+## Check what the green result means
 
-If you want the full map of how I use AI across Java and Spring Boot — every tool, every failure mode — I pulled it together in my [AI for Java Developers guide](/blog/ai-for-java-developers/).
+Ask for the actual command, task outcome, executed tests, skipped tests, and environmental limitations. A Testcontainers test disabled because Docker is missing does not establish database behavior. An H2 substitution can change what the test proves.
+
+For Gradle, distinguish fresh execution from valid cache reuse and undeclared external inputs. For Maven, confirm discovery and Failsafe binding. The [Gradle guide](/blog/gradle-build-successful-zero-tests-spring-boot-4/) and [Surefire guide](/blog/ai-junit-tests-not-running-spring-boot-4/) cover those mechanisms.
+
+## Review the result branch independently
+
+Compare the starting revision with the final revision, then inspect any remaining working-tree changes. A local `git diff` with no base can miss commits already created by the agent.
+
+Review dependency and security configuration, assertions, migration files, and profile assumptions. Run the acceptance checks in the environment relevant to the change. If remote and local results differ, compare runtime and service configuration before blaming model behavior.
+
+The [AI review guide](/blog/ai-code-review-java/) gives behavior-oriented checks. The [Java hub](/blog/ai-for-java-developers/) connects the remaining topics. A remote task is ready for review when its inputs, patch, and verification limits are visible.

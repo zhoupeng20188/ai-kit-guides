@@ -1,131 +1,96 @@
 ---
-title: "OpenAI 429001 Error: What It Means and How I Fixed It"
-description: "Got a 429001 error from the OpenAI API or a Chinese model gateway? Here's what the 429001 subcode means and the exact backoff code I used to fix it."
+title: "429001 Errors: Identify the Gateway Before Retrying"
+description: "Trace a 429001 response to its provider, distinguish Tencent TokenHub codes from OpenAI errors, and preserve the evidence needed for a useful fix."
 pubDate: 2026-07-29
+updatedDate: 2026-10-23
 category: "ai-api-limits"
-tags: ["openai 429001", "429001 error", "rate limit", "api gateway error", "glm", "minimax"]
-image: "/og-openai-429001-error-code-fix.jpg"
-imageAlt: "Terminal showing a 429001 rate limit error response from an OpenAI-compatible API gateway"
-keywords: ["openai 429001 error", "429001 rate limit fix", "api gateway 429 subcode"]
+tags: ["429001", "api gateway", "tokenhub", "troubleshooting"]
+image: "/og-default.jpg"
+imageAlt: "AI Kit Guides"
 faq:
-  - question: "Is 429001 an official OpenAI error code?"
-    answer: "No. OpenAI returns a plain HTTP 429 with an error type like rate_limit_error. 429001 is a subcode used by OpenAI-compatible gateways and Chinese cloud providers (Tencent Cloud is the canonical example) that append a numeric code to the 429 status."
+  - question: "Is 429001 a standard OpenAI API error code?"
+    answer: "It is not listed in the linked OpenAI error-code reference. Tencent TokenHub documents 429001 in its own code scheme. Identify your endpoint and provider before applying that mapping."
+  - question: "Does a plain 429 prove I am calling OpenAI directly?"
+    answer: "No. A gateway can also return an ordinary HTTP 429. Inspect the configured base URL and request path to identify the service."
   - question: "What is the difference between 429001 and 429006?"
-    answer: "429001 means you exceeded the gateway's rate threshold. 429006 means the upstream model service is busy or at capacity. 429006 usually needs a longer backoff because the problem is on the provider side, not your request rate."
-  - question: "Does this apply if I call OpenAI directly?"
-    answer: "If you only ever see a plain '429' with no subcode, you are talking to OpenAI directly. In that case 429001 does not apply and you should follow the general ChatGPT 429 fix. The 429001 subcode appears when a gateway sits between you and the model."
-  - question: "Will retrying immediately fix a 429001 error?"
-    answer: "No. Instant retries usually make it worse because the gateway may throttle your key harder. Use exponential backoff with jitter and respect any Retry-After header the gateway returns."
+    answer: "In Tencent TokenHub's documented scheme, 429001 refers to a model request-rate threshold and 429006 to upstream capacity pressure. Other services may use different mappings."
 ---
 
-Last month I was running a LangChain batch job that called a GLM-5.2 endpoint through an OpenAI-compatible gateway. About 4,000 requests in, the whole thing died. But the error was not the plain `429` I had seen a dozen times before. It was `429001`.
+`429001` is an application error code, not an HTTP status. HTTP status codes have three digits. A service can return HTTP `429` and place `429001` in a JSON field, but the field's meaning belongs to that service.
 
-I did what anyone does: I searched "openai 429001" and found almost nothing useful. Every guide treats 429 as one generic thing, and none of them mentioned a subcode. It took me a couple of frustrating hours to figure out that `429001` is a completely different animal from a normal OpenAI 429. This article is the explanation I wish I had that night.
+The first diagnostic step is therefore to identify the service. An OpenAI-compatible request format does not make every response an OpenAI response.
 
-## What 429001 Actually Is (and Why It's Not a Normal 429)
+## Establish which endpoint answered
 
-Here is the part that confused me the most. When you call OpenAI directly and get rate limited, you get an HTTP 429 and a JSON body that looks roughly like this:
+Inspect the application's configured base URL, the failing request's hostname and path, and any proxy or gateway in between. A plain HTTP `429` does not prove a direct connection to OpenAI; a proxy can pass through or generate that same status.
 
-```json
-{
-  "error": {
-    "type": "rate_limit_error",
-    "code": "rate_limit_reached",
-    "message": "Rate limit reached for requests"
-  }
-}
+Check the configuration actually loaded by the failing process. A shell variable, SDK option, deployment secret, or LangChain client configuration can point a worker somewhere different from the endpoint used in a manual test.
+
+Create a short incident record:
+
+```text
+Timestamp: <UTC timestamp of the failed request>
+API hostname and path: <no credentials or secret query parameters>
+HTTP status: <actual three-digit response status>
+Application code: <value from the response body>
+Request ID: <provider request ID, if present>
+Provider / gateway: <confirmed service, or unknown>
+Model: <requested model or deployment ID>
 ```
 
-That is a plain 429. The status code is the only signal, and the `code` field is a string like `rate_limit_reached`.
+This is a template, not a record of a request made for this article. Keep a sanitized response body alongside it; never include an authorization header.
 
-A `429001` is different. It is an HTTP 429 **plus a three-digit provider subcode**. You see it when you are NOT talking to OpenAI directly. You are behind a gateway, a proxy, or a Chinese cloud provider that wraps the upstream model (OpenAI, or a domestic model like GLM-5.2 or MiniMax M3) and returns its own numeric error codes. Tencent Cloud's API is the canonical example. In their docs, `429001` maps to `CodeRateLimitExceeded` with the note "request rate exceeded the current model threshold."
+## A documented mapping: Tencent TokenHub
 
-So the first thing to understand: if you are seeing `429001`, you are almost certainly behind a gateway. That changes the fix, because the gateway may not pass through OpenAI's `Retry-After` header, and it may rate-limit at its own layer (per-key, account-level) rather than at the upstream.
+Tencent's [TokenHub API error reference](https://www.tencentcloud.com/document/product/1300/82348) defines the following codes for that service:
 
-## The Full 429xxx Family (Save This Table)
+| Code | Meaning in TokenHub's scheme |
+|---|---|
+| `429001` | Model request-rate threshold exceeded |
+| `429002` | Requests-per-minute limit exceeded |
+| `429003` | Tokens-per-minute limit exceeded |
+| `429004` | Tokens-per-day limit exceeded |
+| `429005` | Concurrency limit exceeded |
+| `429006` | Upstream model busy or at capacity |
 
-Once I knew `429001` was a subcode, I dug into the provider docs and found the whole family. If you are seeing any of these, this table tells you what actually happened:
-
-| Subcode | Name | What it means |
-|---------|------|---------------|
-| 429001 | CodeRateLimitExceeded | Request rate exceeded the current model threshold |
-| 429002 | CodeRPMLimitExceeded | You exceeded requests-per-minute |
-| 429003 | CodeTPMLimitExceeded | You exceeded tokens-per-minute |
-| 429004 | CodeTPDLimitExceeded | You exceeded tokens-per-day |
-| 429005 | CodeConcurrencyLimitExceeded | Too many concurrent requests |
-| 429006 | CodeUpstreamRateLimitExceeded | The upstream model is busy or at capacity |
-
-The two that matter most for day-to-day work are `429001` (the generic "slow down" code) and `429006` (the upstream is overloaded). They need different handling, which I'll get to in a second.
-
-One honest caveat: not every gateway uses this exact numbering. Some proxies invent their own subcodes, and some just return a plain 429 with a weird message. The table above is the Tencent Cloud scheme, which is the most common one I have run into when calling Chinese models through an OpenAI-compatible endpoint. If your gateway's docs disagree, trust your gateway.
-
-## How I Reproduced It (My Actual Setup)
-
-I want to be specific about my setup, because the fix only makes sense in context. I was running a LangChain 1.x pipeline that wrapped a GLM-5.2 endpoint exposed through an OpenAI-compatible gateway. The job was a batch of roughly 5,000 calls, fired with 8 concurrent workers.
-
-At around 4,000 requests, I started getting `429001` in bursts. My first instinct, like an idiot, was to retry immediately. That made it worse. Within a minute the gateway started returning `429006` as well, which I now understand meant it had flagged my key as "aggressive" and was throttling the upstream harder.
-
-The mistake was assuming the gateway behaved like raw OpenAI. It does not. A gateway almost always has its own per-key RPM that is lower than the upstream model's limit, because the gateway is multiplexing many customers onto shared upstream capacity. So even if your code is "within OpenAI's limits," the gateway can still slam you with `429001`.
-
-## The Fix — Exponential Backoff That Reads the Subcode
-
-The working fix was a retry wrapper that does three things the naive version did not: it parses the subcode, it respects `Retry-After` if present, and it treats `429006` with a longer base wait. Here is the Python version I ended up with:
+The same reference describes an `error` object with optional source and upstream details. Rate-limit codes may be strings or integers. Normalize the value before comparing it:
 
 ```python
-import time
-import random
-import requests
+def gateway_code(body):
+    if not isinstance(body, dict):
+        return None
+    error = body.get("error")
+    if not isinstance(error, dict):
+        return None
+    value = error.get("code")
+    return None if value is None else str(value)
 
-def call_with_backoff(url, headers, payload, max_retries=6):
-    base_wait = 2  # seconds
-    for attempt in range(max_retries):
-        resp = requests.post(url, headers=headers, json=payload, timeout=60)
-        if resp.status_code != 429:
-            return resp
-        # Try to read the gateway's subcode and Retry-After
-        subcode = None
-        try:
-            subcode = resp.json().get("error", {}).get("code")
-        except Exception:
-            pass
-        retry_after = resp.headers.get("Retry-After")
-        if retry_after:
-            wait = float(retry_after)
-        else:
-            # 429006 (upstream busy) needs a longer floor
-            floor = 8 if subcode == "429006" else base_wait
-            wait = floor * (2 ** attempt) + random.uniform(0, 1)
-        print(f"429{subcode or ''} on attempt {attempt}, sleeping {wait:.1f}s")
-        time.sleep(wait)
-    raise RuntimeError("Exhausted retries after 429001/429006")
+
+assert gateway_code({"error": {"code": 429001}}) == "429001"
+assert gateway_code({"error": {"code": "429001"}}) == "429001"
+assert gateway_code({"error": None}) is None
 ```
 
-The jitter (`random.uniform(0, 1)`) matters more than people think. Without it, if you have 8 workers all hitting the limit at once, they all back off for the exact same duration and then all fire again simultaneously. That is how you create a self-inflicted thundering herd. A little randomness spreads them out.
+These assertions use synthetic input. They verify normalization, not the behavior of a live gateway.
 
-I hand-rolled it instead of pulling in the `backoff` library because the gateway's subcode lives in the JSON body, not in an exception type, so a generic decorator did not catch it cleanly. If your gateway raises proper exceptions, the `backoff` library is fine too.
+Only apply the table after confirming TokenHub or another service explicitly documenting the same mapping. For a different gateway, use that gateway's reference. OpenAI's [API error guide](https://developers.openai.com/api/docs/guides/error-codes) is a separate source; it does not establish the meaning of this numeric family.
 
-If you are doing this inside LangChain, the same logic goes in a custom `RunnableRetry` or a wrapper around your `ChatOpenAI`-compatible client. The point is not the framework, it is reading the subcode before you decide how long to wait.
+## Match the change to the failing layer
 
-## Three Changes That Actually Cut My 429001 Rate
+For a confirmed request-rate limit, reduce the pace at which new requests start. For a token limit, inspect request size and output allowance. For a concurrency limit, reduce simultaneous in-flight calls. For upstream pressure, use the provider's documented retry guidance and check the incident status if the condition persists.
 
-After the backoff was in place, three more changes dropped my error rate from "constant" to "rare":
+Preserve any supplied `Retry-After` header and consult the provider's documented interpretation. Bound both retry attempts and total wait time. A server delay longer than the job's deadline is a reason to defer work, not to ignore the delay.
 
-**Lower concurrency.** I went from 8 workers to 3. This was the single biggest win. The gateway's per-key RPM was the real bottleneck, not my upstream quota.
+If failures persist even after traffic is reduced, inspect the account and service configuration. A failed first request alone does not prove exhausted credits: it can also reflect shared traffic or provider pressure. Use account information and the actual error fields to establish the cause.
 
-**Check the gateway dashboard, not your assumptions.** The gateway showed my effective RPM limit was about a third of what I expected. I had been sizing my worker pool off OpenAI's published numbers, which was wrong for the gateway layer.
+Do not infer that a key has been penalized merely because the next response has a different code. Do not assume that creating more keys expands an account-wide limit pool.
 
-**Spread across keys if the gateway allows it.** Some gateways give each API key its own limit. Splitting the batch across two or three keys (where permitted) tripled my real throughput without tripping `429001`.
+## Keep gateway failures distinct in application logs
 
-One thing that did NOT help: cramming more into a single request to "reduce call count." That just pushed me into `429003` (TPM) instead. There is no free lunch; you are trading one limit for another.
+Preserve the gateway code and, when supplied, its upstream code and status as separate fields. Replacing them all with `OpenAI rate limit` discards the information needed to locate the failure.
 
-## When 429001 Is Really a Quota Problem
+When escalating an incident, include the request ID, timestamp, endpoint, and sanitized error. State what you changed and whether the result differed. “Reduced workers from eight to three; the same code persists” is a useful observation. “The provider banned my key” needs additional evidence.
 
-Most `429001` errors are rate problems you can back off from. But there is a version that backoff will never fix: when you see it on the very first request of a brand-new key, or it persists even at one request per minute, it is usually an account quota or billing issue at the gateway, not a rate limit. The dashboard will tell you. Retrying just burns what little capacity you have.
+For direct OpenAI error classification, continue with the [429 diagnostic guide](/blog/chatgpt-api-429-fix/). For planning worker demand, use the [capacity guide](/blog/openai-rate-limits-guide/).
 
-I hit this once when a gateway wallet ran out of prepaid credits. No amount of backoff helped because the limit was "zero until you top up." Check billing before you blame your code.
-
-## Summary
-
-If you remember nothing else: `429001` is a gateway subcode, not a native OpenAI error. When you see it, you are behind a proxy or Chinese cloud provider that wraps the model. Read the subcode, back off with jitter, respect `Retry-After`, and lower your concurrency before you assume the upstream is the problem.
-
-If you are calling OpenAI directly and only ever see a plain `429` with no subcode, this whole subcode thing does not apply to you. Head to the [general ChatGPT 429 fix](/blog/chatgpt-api-429-fix) instead. And if you want the bigger picture on how the limits are structured, the [OpenAI rate limits guide](/blog/openai-rate-limits-guide) is worth a read. For the LangChain-side setup that got me into this mess in the first place, I wrote up the [LangChain 1.x tool calling approach](/blog/langchain-1x-tool-calling-agents) separately.
+**Correction, October 23, 2026:** Earlier versions treated this code family as universal, inferred direct OpenAI access from a plain 429, and presented unsupported batch-run and throughput anecdotes. The mappings here are now explicitly scoped to TokenHub, and the parsing examples are synthetic.

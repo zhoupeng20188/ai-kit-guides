@@ -1,111 +1,61 @@
 ---
-title: "Spring Boot 4 Migration: What AI Agents Can and Can't Fix (2026)"
-description: "Boot 3.5 hit EOL in June 2026. I read Spring's Boot 4 migration guide: which breaking changes AI really automates, and which ones it quietly gets wrong."
+title: "Spring Boot 4 Migration: Verify Contracts Beyond Compilation"
+description: "Plan a Boot 4 upgrade around dependency activation, JSON contracts, security, persistence, and test execution rather than an agent success summary."
 pubDate: 2026-08-31
 category: "spring-boot-4"
 tags: ["spring boot 4", "spring boot migration", "claude code", "java ai tools", "spring security 7", "java-ai-cluster"]
-image: "/og-spring-boot-4-migration-ai-agents.jpg"
-imageAlt: "A Spring Boot 4 migration guide open beside an AI coding agent session, showing Jackson 3 package renames and a Spring Security 7 CSRF config"
+image: "/og-default.jpg"
+imageAlt: "AI Kit Guides"
 keywords: ["spring boot 4 migration", "spring boot 4 breaking changes", "jackson 3 spring boot", "spring security 7 csrf 403", "ai agent spring boot migration"]
-faq:
-  - question: "When did Spring Boot 3.5 reach end of life?"
-    answer: "Spring Boot 3.5 is the final minor release of the 3.x line and its open-source support ended on June 30, 2026. After that date no further open-source security patches are published for 3.x. Commercial backports remain available through HeroDevs NES. Spring Boot 4.0 itself went GA on November 20, 2025 alongside Spring Framework 7.0, so by the time 3.5 hit EOL the 4.x line had already been generally available for about seven months."
-  - question: "Can an AI coding agent do a Spring Boot 4 migration for me?"
-    answer: "Partly. Agents are genuinely good at the mechanical half: package and class renames (com.fasterxml.jackson to tools.jackson, antMatchers to requestMatchers, hibernate-jpamodelgen to hibernate-processor) because the compiler tells them when they are wrong. They are unreliable at the silent half — behaviour changes that compile cleanly, like Jackson 3 writing dates as ISO-8601 strings instead of timestamps, or Spring Security 7 enabling CSRF for REST endpoints. Those need tests and a running app, not a code rewrite."
-  - question: "Why does my REST API return 403 after upgrading to Spring Boot 4?"
-    answer: "CSRF protection is enabled by default in Spring Security and has been for years — Boot 4 does not turn it on. The common claim that 'Spring Boot 4 enables CSRF for API endpoints' is wrong about the default; I verified the same POST returns 403 under both Boot 3.5.16 and 4.x with identical config. What an upgrade can do is surface a CSRF gap your old config masked. GET requests keep working while POST, PUT and DELETE return 403 with nothing useful in the logs. If GET passes and POST fails, that is CSRF. Confirm with logging.level.org.springframework.security.web.csrf set to DEBUG. For a stateless JWT API, scope the exemption to your API matcher rather than disabling CSRF globally."
-  - question: "Is Jackson 2 still supported in Spring Boot 4?"
-    answer: "Yes, as a deprecated stop-gap. Boot 4 provides a spring-boot-jackson2 module and a spring.jackson.use-jackson2-defaults property so you can move to 4.0 first and deal with Jackson later. Jackson 2 properties moved under the spring.jackson2 prefix. The Spring team has been explicit that this is a bridge, not a destination: Jackson 2 auto-configuration is deprecated in Boot 4 and slated for removal in a future release."
+updatedDate: 2026-10-23
 ---
 
-Let me get the awkward part out of the way first: I have not migrated my own Spring Boot services to 4.0 yet. So this is not a war story. I am not going to tell you what broke at 2 a.m. on my watch, because that did not happen.
+A Spring Boot 4 migration changes a dependency platform, not only a version string. An agent can help update code, but acceptance still needs evidence for behavior that compilation does not establish.
 
-What I did do is read the official Spring Boot 4.0 Migration Guide end to end, cross-check it against the Spring team's own commentary, and sort every breaking change into two buckets: the ones a coding agent can genuinely grind through for you, and the ones it will sail straight past while your tests stay green. That split is the actual useful output here, and it is the part nobody writes about. Most Boot 4 content is either a changelog rewrite or a "here is my security config" post. Almost nothing tells you where to trust the agent and where to stop trusting it.
+This guide is a migration map based on primary documentation and reconstructed teaching scenarios. It does not claim a measured ranking of coding agents. Earlier unsupported support-deadline claims and model success rates have been removed; check the [Spring Boot project](https://spring.io/projects/spring-boot) for current support policy.
 
-## The Clock Already Ran Out
+## Establish a reproducible baseline
 
-Spring Boot 3.5 is the last minor release of the 3.x line, and its open-source support ended on **June 30, 2026**. No more free security patches for 3.x. Commercial backports still exist through HeroDevs if you want to buy time, but the free ride is over.
+Record the starting commit, Java version, wrapper, resolved Boot and framework versions, active profiles, and external services. Run the existing verification task and save fresh test reports before editing.
 
-Meanwhile Spring Boot 4.0 went GA on **November 20, 2025**, together with Spring Framework 7.0. By the time 3.5 hit EOL, 4.x had been generally available for roughly seven months. That is not a bleeding-edge release you would be reckless to adopt. It is a settled one.
+Use the [official Boot 4 migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide) for the exact target line. Inspect dependency management instead of assuming every Boot 4 release carries the same Hibernate, Jackson, or JUnit patch version.
 
-The baseline is friendlier than people assume: **Java 17 is still the minimum**, Java 21 is what I would target, and Java 25 is supported. Jakarta EE 11 underneath (Tomcat 11, Hibernate ORM 7.1, Jakarta Persistence 3.2). If you are coming from 3.x on Java 17 or 21, the JDK is not your problem. The dependency surface is.
+Keep the migration patch separate from unrelated refactoring. A smaller diff makes changed behavior easier to attribute and review.
 
-That last point matters more than any individual rename: Boot 4 pulls Spring Security 7, Spring Data 2025.1, Hibernate 7.1 and Jackson 3 all at once. You are not doing one migration. You are doing four that happen to share a version bump. The persistence layer is exactly where Hibernate 7's silent swaps hide, and I measured the column renames and query return-type changes in [a separate write-up](/blog/spring-boot-4-hibernate-7-silent-failures/).
+## Separate resolution, compilation, and activation
 
-## Bucket One: Mechanical Renames, Where the Agent Earns Its Money
+A dependency may resolve without activating the integration you need. Boot's modularization places integration in focused modules; the correct test is whether the intended feature is configured and works.
 
-These changes are loud. The compiler yells, the agent fixes, the compiler confirms. This is the category where handing the work to Claude Code or Codex is not just faster, it is arguably more reliable than a human doing it by hand across four hundred files.
+For Flyway, verify migration execution against a database with history. For HTTP clients, check the required builder and configuration. For web tests, verify the needed annotation and module. The [dependency diagnostic guide](/blog/codex-spring-boot-4-dependencies-silent-failures/) provides a feature-oriented investigation.
 
-The Jackson 3 move is the biggest one. The group ID and package change from `com.fasterxml.jackson` to `tools.jackson`, with one deliberate exception: `jackson-annotations` keeps the old `com.fasterxml.jackson.core` group ID and `com.fasterxml.jackson.annotation` package, so `@JsonProperty` and friends are untouched. Several classes got renamed for consistency too:
+A compiler error is useful feedback, but it does not validate every semantic replacement. Some old APIs or properties already changed before Boot 4; do not label every inherited migration issue as a new Boot 4 default.
 
-- `ObjectMapper` → `JsonMapper` as the recommended entry point
-- `Jackson2ObjectMapperBuilderCustomizer` → `JsonMapperBuilderCustomizer`
-- `@JsonComponent` → `@JacksonComponent`
-- `@JsonMixin` → `@JacksonMixin`
-- `JsonObjectSerializer` → `ObjectValueSerializer`
-- `SerializerProvider` → `SerializationContext`
+## Compare JSON as a client contract
 
-Then there is the rest of the mechanical pile: `antMatchers()` became `requestMatchers()`, `authorizeRequests()` became `authorizeHttpRequests()`, `spring-boot-starter-aop` became `spring-boot-starter-aspectj`, and `hibernate-jpamodelgen` became `hibernate-processor`.
+Exercise actual request and response payloads before and after the upgrade. Check date/time representation, property names, null inclusion, ordering where it is contractual, custom serializers, and exception handling.
 
-I used to assume this pile was the safe part to hand over, because every item on it is compiler-verified. Then I measured it: given twelve ordinary "add this dependency" requests on a Boot 4.1.1 project, [Codex chose the right coordinate once](/blog/codex-spring-boot-4-dependencies-silent-failures/). Five of the wrong answers built green and wired nothing at all — the BOM still manages the old library coordinates, so `flyway-core` resolves, boots, and runs zero migrations without a word. Starter renames look mechanical and are not. Configuration properties have the same property from the other direction: 2,936 advertised properties on Boot 3.5.8 became 1,161 after the move, because metadata now ships with each module, and [which keys still get bound](/blog/codex-spring-boot-4-yml-properties/) depends on what is in your POM.
+Jackson package migration has exceptions, including annotations; avoid replacing every `com.fasterxml.jackson` string indiscriminately. Use the migration guide and the exact dependency tree. A mapper that works in a plain unit test may differ from the one auto-configured in the application.
 
-Why agents do well here is worth understanding, because it tells you when to delegate. These renames are **compiler-verified**. The agent does not need to understand your domain to fix them, the pattern is uniform, and a `./mvnw compile` gives it a hard yes or no. Give it the whole module, let it iterate on the error output, and verify with grep afterwards:
+Save representative synthetic payloads and expected results in tests. Do not infer compatibility from a successful application startup.
 
-```bash
-grep -r "com.fasterxml.jackson" src/main/java --include="*.java" -l
-grep -r "antMatchers" src/main/java --include="*.java" -l
-```
+## Test security through the real chain
 
-One caveat I would hold onto: an agent will happily invent a Boot 4 API that does not exist. Its training data is dominated by Boot 3 patterns, so when it is unsure it interpolates. Every rename it produces should be greppable in the official migration guide. If it cannot point at a documented rename, treat it as a guess.
+Spring Security's CSRF protection predates Boot 4. A GET succeeding while a POST fails is a reason to inspect CSRF, authentication, and authorization; it is not a diagnosis by itself.
 
-## Bucket Two: Silent Behaviour Changes, Where the Agent Will Burn You
+The earlier claim that a real HTTP Basic CSRF rejection necessarily becomes 401 was incorrect. Confirm the failing filter and handler. Also check that MockMvc actually applies the security chain; an unsecured test harness can produce a false success. Use the [CSRF diagnostic guide](/blog/claude-code-spring-boot-4-403/).
 
-This is the bucket that actually costs weekends, and it is exactly the bucket an agent is structurally bad at. These changes compile cleanly. Some of them even pass a shallow test suite. They just quietly alter what your application does at runtime.
+Verify method security and record ownership separately. An annotation in the source is not proof that the corresponding interceptor is active; the [method-security guide](/blog/claude-code-spring-boot-4-preauthorize/) covers that check.
 
-**Jackson 3 flipped two serialization defaults.** Dates no longer serialize as Unix timestamps — `WRITE_DATES_AS_TIMESTAMPS` now defaults to false, so your `LocalDateTime` fields turn into ISO-8601 strings. And `SORT_PROPERTIES_ALPHABETICALLY` now defaults to true, so JSON properties come out alphabetised. Both are defensible choices. Both will break any client or snapshot test that assumed the old shape.
+## Exercise persisted state
 
-**Jackson 3 changed the exception hierarchy.** `JsonProcessingException` extended `IOException`; `JacksonException` extends `RuntimeException`. If you have `catch (IOException e)` blocks that were incidentally swallowing Jackson errors, they no longer catch anything, and a serialisation failure that used to become a handled error response now propagates as an unhandled one. No compile error. Nothing in your build.
+Test an upgrade against representative existing schema and data, not only a fresh schema generated from new entities. Review naming strategies, native-query mappings, temporal values, and migrations. Schema validation catches some structural mismatches; it does not prove timezone semantics, query result types, or performance.
 
-**CSRF protection has been on by default in Spring Security for years — Boot 4 does not turn it on.** This is the standout trap, and the most misreported one. The claim you will see repeated — "Spring Boot 4 enables CSRF for API endpoints" — is wrong about the default. I confirmed it directly: a minimal REST `SecurityConfig` with no CSRF bean fails on POST under **both** Boot 3.5.16 and 4.1.1. The status code you get back depends on the harness, though — a pre-authenticated test request answers 403, while a real HTTP Basic client with no session answers **401**, because `CsrfFilter` runs before `BasicAuthenticationFilter` and the principal is still anonymous when the check fails. I untangled that split in [the Codex follow-up](/blog/codex-spring-boot-4-403-fix/), and it matters for how you grep for this bug. So if you meet a new 403 after upgrading, do not assume Boot 4 flipped a switch. The default was already there; your old config may have masked the gap, or your Boot 3 setup handled it in a way the rewrite dropped. The tell is simple: if GET succeeds and POST fails with the same credentials, it is CSRF. Confirm it with:
+Use the [Hibernate guide](/blog/spring-boot-4-hibernate-7-silent-failures/) and [Flyway guide](/blog/flyway-checksum-mismatch-ai-agent/) to separate these checks.
 
-```yaml
-logging:
-  level:
-    org.springframework.security.web.csrf: DEBUG
-```
+## Prove the intended tests execute
 
-The lazy fix is a global `csrf(csrf -> csrf.disable())`. Please do not. For a stateless JWT API, scope the exemption instead — match on `/api/**`, set `SessionCreationPolicy.STATELESS`, and exempt only that matcher. If you run session or cookie auth, keep CSRF on and wire up `CookieCsrfTokenRepository` with the `X-XSRF-TOKEN` header. An agent asked to "fix the 403" will reach for the global disable almost every time, because that is the shortest path to a green test.
+Inspect discovery, skipped tests, and fresh reports. Parameterized tests, nested cases, and helper classes make source-file count an invalid proxy for test execution. Running `verify` only executes integrations that the build actually configures.
 
-**Liveness and readiness probes are now enabled by default**, so the health endpoint exposes those groups without you asking. Disable with `management.endpoint.health.probes.enabled` if you do not want them.
+The [walkthrough](/blog/claude-code-spring-boot-4-migration-walkthrough/) supplies an ordered investigation; the [Surefire guide](/blog/ai-junit-tests-not-running-spring-boot-4/) covers discovery and the [YAML guide](/blog/codex-spring-boot-4-yml-properties/) covers binding.
 
-Notice the pattern across all four: no compiler signal, no obvious test failure, and no way for an agent to detect the problem by reading code. An agent predicts what code *should* do. It cannot observe what your running app *actually* does. That gap is where migrations go wrong.
-
-## Where the Agent Actively Makes Things Worse
-
-Two failure modes I would watch for specifically.
-
-The first is **confident fabrication**. Ask an agent to migrate a Boot 3 config class and it will occasionally produce a Boot 4 API that reads plausibly and does not exist. This is worse than a compile error, because a compile error is information. A fabricated API looks like progress.
-
-The second is **mixed-generation code**. Agents drift between Boot 3 and Boot 4 idioms within a single file, especially on long migrations where the context window has rolled over. You end up with `spring.jackson.read.*` in one place and `spring.jackson.json.read` in another, both looking reasonable in isolation. The official guidance is blunt about this for library authors: supporting Boot 3 and Boot 4 inside one artifact is strongly discouraged.
-
-## The Workflow I Would Actually Run
-
-If I were starting my own migration tomorrow, this is the order I would do it in, and the agent's role changes at each step.
-
-1. **OpenRewrite first, agent second.** Let the recipe handle the mechanical renames. It is AST-based, so it is safer than string replacement and it catches type references in inheritance chains the agent will miss. Then let the agent handle what the recipe did not cover.
-2. **Give the agent the migration guide as context, not just the error output.** Paste the relevant section. An agent that can see the documented rename table hallucinates far less than one inferring from training data. This is the same reason I keep a [project rules file for the agent](/blog/claude-code-remember-spring-boot/) — the agent performs against the context you hand it, not against what it remembers, and the [AGENTS.md I ship in every Boot 4 repo](/blog/spring-boot-4-agents-md-guide/) collects those rules by the failure mode they stop.
-3. **Write tests for the silent changes before you upgrade, not after.** Assert on your actual JSON date format and property order. Assert that a POST returns 200 and not 403. Also assert that a method guarded by `@PreAuthorize` actually rejects a non-admin user — method security is the silent one here, and [Claude Code's Boot 4 upgrade silently broke @PreAuthorize](/blog/claude-code-spring-boot-4-preauthorize/) is the lab that proves it. These are cheap to write now and they are the only thing that will catch bucket two.
-4. **Migrate the domain module first.** In a multi-module build, everything else has to finish the namespace and dependency move together anyway, so starting with the leaves just means more merge pain.
-5. **Run the app and click through it.** Not optional. Every change in bucket two is invisible to static analysis.
-
-For anything touching an older service, I would also reread what I wrote about [pointing AI at a legacy Java codebase](/blog/using-ai-legacy-java-codebase/) — the failure modes compound when the code is old and the tests are thin.
-
-## What I Would Tell My Team
-
-Do not ask an agent to "migrate us to Spring Boot 4." That prompt guarantees it optimises for the compiler going quiet, which is precisely the wrong target here. Ask it to do the renames, one module at a time, with the migration guide open beside it. Then take the silent changes yourself and write tests for them, because those are judgement calls about your API contract, not mechanical edits. Then check that those tests actually execute: on Spring Boot 4 with JUnit 6 I ended up with [agent-written tests that never ran](/blog/ai-junit-tests-not-running-spring-boot-4/) while the build stayed green, which is the same silent failure one layer further down.
-
-The honest summary: the agent is excellent at the 80% that is tedious and compiler-verified, and it is close to useless at the 20% that will actually page you. Knowing which is which is the whole job. Real agent PRs land on exactly that line: I read two Copilot Spring Boot 4 migrations — a tight Camunda module set it finished, a 68-POM Azure effort it stalled on — and the split was the codebase's blast radius, not the model. [Read the teardown](/blog/copilot-spring-boot-4-pr-teardown/).
-
-There is a third category neither bucket covers, and it is the one I would lose sleep over: a change that is loud in one environment and completely silent in another. A rewritten Flyway migration behaves exactly like that. The database that already executed it refuses to start, while a fresh database — which is every database your CI provisions — migrates cleanly and ends up with [a different schema while reporting success](/blog/flyway-checksum-mismatch-ai-agent/).
-
-Want the broader picture of AI coding agents on Java? Start from the [Java + AI hub](/blog/ai-for-java-developers/), where this sits alongside the Claude Code, Cursor, and Codex pieces.
+Accept the migration using a record of the requirements, final diff, verification commands, reports, and blockers. The [Boot 4 instruction template](/blog/spring-boot-4-agents-md-guide/) encodes that expectation. The [Java hub](/blog/ai-for-java-developers/) connects the broader agent workflow.

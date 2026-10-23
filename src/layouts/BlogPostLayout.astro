@@ -8,7 +8,7 @@ import RelatedPosts from "../components/RelatedPosts.astro";
 import SocialShare from "../components/SocialShare.astro";
 import InContentAd from "../components/InContentAd.astro";
 import ClusterList from "../components/ClusterList.astro";
-import { SITE, getCategoryBySlug } from "../config/site";
+import { SITE, ADSENSE, getCategoryBySlug } from "../config/site";
 import "../styles/global.css";
 
 interface Props {
@@ -160,7 +160,7 @@ const shareUrl = new URL(Astro.url.pathname, Astro.site).toString();
             <div class="hidden lg:block w-64 flex-shrink-0">
               <div class="sticky top-24 space-y-6">
                 <TableOfContents headings={headings} />
-                <InContentAd slot="2222222222" label="Advertisement" />
+                <InContentAd slot={ADSENSE.slot.sidebar} label="Advertisement" />
               </div>
             </div>
           </div>
