@@ -53,7 +53,7 @@ Instructions guide behavior; the actual tool environment enforces access. A sent
 
 Compilation catches some wrong APIs and types. It does not prove that a security chain rejects another user's request, an intended property changes behavior, a migration handles old rows, or a test suite discovered its critical cases.
 
-The small [Java verification source download](/examples/java-verification.zip) demonstrates three limited checks: an inclusive pricing boundary, owner-scoped lookup, and an architecture rule that rejects a deliberately bad fixture. It also contains a deliberately failing test outside Surefire's default naming patterns. Its README records what was run. This is not a full Spring Boot application or a comparison of AI products.
+The small [Java verification source repository](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) demonstrates three limited checks: an inclusive pricing boundary, owner-scoped lookup, and an architecture rule that rejects a deliberately bad fixture. It also contains a deliberately failing test outside Surefire's default naming patterns. Its README records what was run. This is not a full Spring Boot application or a comparison of AI products.
 
 For your application, match every important requirement with an observable check at the appropriate layer. A mocked service test cannot establish the behavior of a real database, security filter chain, or transaction boundary.
 

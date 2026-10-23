@@ -23,7 +23,7 @@ These are historical comparison releases, not a recommendation about the latest 
 
 ## Run the project and inspect the evidence
 
-Extract [the ZIP](/examples/boot4-verification-lab.zip), enter its directory, and check that Maven uses JDK 17 or later:
+Clone or download the [Boot verification project on GitHub](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/boot4-verification-lab), enter its directory, and check that Maven uses JDK 17 or later:
 
 ```bash
 java -version

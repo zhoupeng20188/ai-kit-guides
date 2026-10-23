@@ -107,7 +107,7 @@ GSC 列为“网页”维度的点击 / 展示。横线表示导出没有该精�
 
 ## 新增可运行材料
 
-[Java 验证项目](../examples/java-verification/README.md)，[公开下载 ZIP](../public/examples/java-verification.zip)。这是新建教学示例，不能充当历史 AI 实验的证据。
+[Java 验证项目](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification)，站点仍保留[公开下载 ZIP](../public/examples/java-verification.zip)。这是新建教学示例，不能充当历史 AI 实验的证据。
 
 环境：macOS 15.5 arm64、Amazon Corretto Java 17.0.19、Maven 3.9.11。项目固定 JUnit 6.0.3、ArchUnit 1.5.0、Surefire 3.5.6。
 

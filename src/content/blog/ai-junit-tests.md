@@ -12,7 +12,7 @@ updatedDate: 2026-10-23
 
 An AI-generated JUnit test is useful when its assertions distinguish the required behavior from a realistic mistake. Coverage and a green run do not establish that distinction on their own.
 
-The earlier version claimed a specific coverage jump and a personal debugging incident without retained evidence. This revision uses an inspectable [Java verification sample](/examples/java-verification.zip) instead. Its source, build, commands, and verification limits are included in the download.
+The earlier version claimed a specific coverage jump and a personal debugging incident without retained evidence. This revision uses an inspectable [Java verification sample](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) instead. Its source, build, commands, and verification limits are included in the repository.
 
 ## Write the requirement before the assertion
 

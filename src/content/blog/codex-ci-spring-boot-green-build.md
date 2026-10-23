@@ -18,7 +18,7 @@ Earlier versions presented a seven-run score as a general property of the CLI. T
 
 Suppose a discount begins at 100.00 **inclusive**. The implementation uses `>=`, while a failing test incorrectly expects no discount at exactly 100.00. Changing the implementation to `>` can produce a green test and a wrong product.
 
-The [downloadable Java sample](/examples/java-verification.zip) includes the inclusive rule and boundary assertions. Its purpose is to make the contract inspectable, not to reproduce a historical model response.
+The [Java verification sample](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) includes the inclusive rule and boundary assertions. Its purpose is to make the contract inspectable, not to reproduce a historical model response.
 
 When tests and prose disagree, identify the authoritative requirement before editing either. Require the completion summary to name whether production behavior, a test, or a documented contract changed. Do not write conflicting instructions such as “the test is always truth” and “never change code to match a wrong test.”
 

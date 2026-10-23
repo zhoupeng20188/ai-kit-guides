@@ -12,7 +12,7 @@ updatedDate: 2026-10-23
 
 Spring Boot 4 tests can compile without being selected by the Maven test runner. Diagnose discovery separately from compilation, skips, and failed assertions. The build's final success line does not enumerate everything that was eligible to run.
 
-This article uses documented runner behavior and a [downloadable Java sample](/examples/java-verification.zip). Earlier model-run totals and claims that source-file count must equal execution count have been removed.
+This article uses documented runner behavior and a [Java verification sample](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification). Earlier model-run totals and claims that source-file count must equal execution count have been removed.
 
 ## Check the selected runner and engine
 

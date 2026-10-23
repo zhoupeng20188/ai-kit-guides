@@ -48,7 +48,7 @@ Do not put secrets into the context merely because the task needs a network conn
 
 A command returning zero is useful only if it ran the relevant check. Confirm test discovery and examine the assertions. For the order example, an owner-only success test misses the defect: the meaningful negative case requests the same order as another authenticated user.
 
-The [downloadable Java verification project](/examples/java-verification.zip) contains a small owner-scoped lookup and negative tests. It is an educational fixture, not a Spring Security application. Its README states the versions and observed results. Use it to inspect what a check establishes, then add the appropriate HTTP and persistence tests to your actual service.
+The [Java verification project](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) contains a small owner-scoped lookup and negative tests. It is an educational fixture, not a Spring Security application. Its README states the versions and observed results. Use it to inspect what a check establishes, then add the appropriate HTTP and persistence tests to your actual service.
 
 Independent CI should obtain the changed revision and run its own checks. Require review for changes to tests and gate configuration, since an agent able to edit a gate can also weaken it. Keep expected behavior outside the agent's success summary; see [test and architecture gates](/blog/ai-code-ci-gates-archunit-spotless/).
 

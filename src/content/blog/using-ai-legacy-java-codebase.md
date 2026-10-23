@@ -36,7 +36,7 @@ A comment is evidence of intent, not proof of actual behavior. Inspect code and 
 
 Characterization tests record the current behavior of a selected seam. Use them to protect the path you intend to preserve, then write a failing test for the specific change requested. Keep these purposes distinct so a generated test does not merely encode the new implementation.
 
-Useful examples include an exact discount boundary, a missing order, an existing null value, a timestamp around a time-zone transition, and a downstream exception. The right cases come from the contract, not from a demand for a particular test count. The [Java verification download](/examples/java-verification.zip) contains a small inclusive discount boundary and owner-scoped lookup; it is a teaching project, not a characterization of your application.
+Useful examples include an exact discount boundary, a missing order, an existing null value, a timestamp around a time-zone transition, and a downstream exception. The right cases come from the contract, not from a demand for a particular test count. The [Java verification project](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) contains a small inclusive discount boundary and owner-scoped lookup; it is a teaching project, not a characterization of your application.
 
 Run the selected tests against the original code where feasible, save the result, and then make the targeted change. If a test never fails when the defect is present, examine whether it reaches the real code. [JUnit discovery checks](/blog/ai-junit-tests-not-running-spring-boot-4/) help distinguish an absent test from a passing assertion.
 

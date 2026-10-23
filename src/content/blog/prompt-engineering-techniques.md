@@ -31,7 +31,7 @@ The model still needs review. An answer in the requested format can contain inco
 
 A few examples can show an output shape or a boundary. Include a contrasting case when it distinguishes the rule. For a discount beginning at 100.00, values below, at, and above the threshold matter more than three similar happy-path inputs.
 
-The [JUnit guide](/blog/ai-junit-tests/) and [downloadable fixture](/examples/java-verification.zip) make that boundary executable. Do not describe invented examples as production measurements.
+The [JUnit guide](/blog/ai-junit-tests/) and [Java verification project](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) make that boundary executable. Do not describe invented examples as production measurements.
 
 ## Separate source material from instructions
 

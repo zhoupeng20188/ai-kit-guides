@@ -33,7 +33,7 @@ List<AppOrder> findByOwnerUsernameAndOrderNumberContaining(
 
 These are interface fragments, assuming matching entity properties. The service should pass the authenticated identity and map entities to the application's response DTO rather than exposing every entity field by default.
 
-The [downloadable Java fixture](/examples/java-verification.zip) demonstrates the ownership predicate and rejected access in memory. It does not verify Spring Security filters, HTTP responses, or database queries.
+The [Java verification fixture](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) demonstrates the ownership predicate and rejected access in memory. It does not verify Spring Security filters, HTTP responses, or database queries.
 
 ## Cover listing and search too
 

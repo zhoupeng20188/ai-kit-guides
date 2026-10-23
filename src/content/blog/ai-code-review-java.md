@@ -30,7 +30,7 @@ For every record lookup, ask who may access the record. Authentication establish
 
 The [ownership example](/blog/claude-code-insecure-api-spring-boot/) uses an authenticated principal to scope lookup. Test owner access, another authenticated user, missing records, and anonymous access. A parameterized SQL query prevents a different class of problem; it does not add an ownership predicate.
 
-A [downloadable Java verification sample](/examples/java-verification.zip) includes an owner-scoped in-memory lookup and negative assertions. It is a small teaching fixture, not proof that a Spring Security configuration is correct.
+A [Java verification sample](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) includes an owner-scoped in-memory lookup and negative assertions. It is a small teaching fixture, not proof that a Spring Security configuration is correct.
 
 ## Bean wiring and query behavior need runtime context
 

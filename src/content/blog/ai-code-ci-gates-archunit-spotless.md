@@ -36,7 +36,7 @@ When using a string-based API, check its documented name semantics. A passing ne
 
 ## Use a violating fixture and a clean fixture
 
-The [downloadable verification sample](/examples/java-verification.zip) contains an analogous rule against `Deprecated.class`, avoiding a Spring dependency in the small teaching project. One fixture has an annotated field and must trigger an assertion failure. A second has a normal field and must pass.
+The [Java verification sample](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) contains an analogous rule against `Deprecated.class`, avoiding a Spring dependency in the small teaching project. One fixture has an annotated field and must trigger an assertion failure. A second has a normal field and must pass.
 
 The test around the violating fixture asserts that the rule throws; the overall suite is supposed to pass because the gate detected the deliberately bad fixture. This is different from weakening the rule to make bad production code acceptable.
 

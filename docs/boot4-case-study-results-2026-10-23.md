@@ -5,6 +5,7 @@
 ## 新增材料
 
 - [完整 Java 项目](../examples/boot4-verification-lab/README.md)：Java 17、Maven、Boot 3.5.7 / 4.0.0 两个 profile；内存 H2，无需 Docker。
+- [GitHub 源码与脱敏证据](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/boot4-verification-lab)。
 - [源码与证据 ZIP](../public/examples/boot4-verification-lab.zip)，包含 30 个文件。
 - [结果清单](../examples/boot4-verification-lab/evidence/results.json)：实际依赖版本、命令、退出码、执行数量和 POM / 应用及测试源码摘要。
 - [在线材料页源码](../src/pages/examples/boot4-verification-lab.astro)：下载、运行步骤、版本表、日志、源码地图与验证边界；站点路径 `/examples/boot4-verification-lab/`。

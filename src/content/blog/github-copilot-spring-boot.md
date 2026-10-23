@@ -20,7 +20,7 @@ For completion, inspect a small method against its requirement. For a repository
 
 A useful Spring example is an owner-scoped order lookup. The acceptance contract includes owner access, rejection of another authenticated user, missing records, and the response policy. Merely generating a controller and an HTTP 200 test does not cover that contract.
 
-Use the [ownership guide](/blog/claude-code-insecure-api-spring-boot/) or [downloadable fixture](/examples/java-verification.zip) for a small starting point. The fixture is a teaching example, not a comparison of assistant products.
+Use the [ownership guide](/blog/claude-code-insecure-api-spring-boot/) or [Java verification fixture](https://github.com/zhoupeng20188/ai-kit-guides-verification-labs/tree/main/java-verification) for a small starting point. The fixture is a teaching example, not a comparison of assistant products.
 
 ## Supply repository conventions
 
