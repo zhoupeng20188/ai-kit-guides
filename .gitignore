@@ -38,6 +38,10 @@ pnpm-debug.log*
 .temp/
 *.log
 
+# Published, sanitized evidence for the runnable Spring Boot teaching lab
+!/examples/boot4-verification-lab/evidence/*.log
+!/public/examples/boot4-verification/*.log
+
 # workbuddy project memory
 .workbuddy/
 

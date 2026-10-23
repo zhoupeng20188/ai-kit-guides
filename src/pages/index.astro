@@ -1,7 +1,6 @@
 ---
 import MainLayout from "../layouts/MainLayout.astro";
 import ArticleCard from "../components/ArticleCard.astro";
-import InContentAd from "../components/InContentAd.astro";
 import { getCollection } from "astro:content";
 import { CATEGORIES } from "../config/site";
 
@@ -11,6 +10,29 @@ const sortedPosts = posts.sort(
 );
 const featuredPost = sortedPosts.find((p) => p.data.featured) ?? sortedPosts[0];
 const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0, 6);
+const learningPath = [
+  {
+    step: "01",
+    title: "Set up an agent",
+    description: "Start with the repository, JDK, permissions, and a task you can verify.",
+    href: "/blog/ai-for-java-developers/",
+    label: "Java developer guide",
+  },
+  {
+    step: "02",
+    title: "Check what actually ran",
+    description: "Inspect test discovery, assertions, and the security filters behind a green result.",
+    href: "/blog/ai-junit-tests-not-running-spring-boot-4/",
+    label: "Test discovery guide",
+  },
+  {
+    step: "03",
+    title: "Plan an upgrade",
+    description: "Map the JSON, security, configuration, and database contracts your migration must preserve.",
+    href: "/blog/spring-boot-4-migration-ai-agents/",
+    label: "Spring Boot migration map",
+  },
+];
 ---
 
 <MainLayout>
@@ -18,35 +40,60 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
   <section class="bg-gradient-to-b from-brand-50 to-white border-b border-ink-100 dark:from-brand-900 dark:to-ink-50">
     <div class="max-w-6xl mx-auto px-4 py-16 md:py-24 text-center">
       <div class="inline-flex items-center px-3 py-1 rounded-full text-xs font-medium bg-brand-100 text-brand-700 mb-4">
-        AI tools and Java development, with checks you can inspect
+        AI-assisted Java development · Source, checks, and evidence
       </div>
       <h1 class="text-4xl md:text-5xl lg:text-6xl font-extrabold text-ink-900 leading-tight tracking-tight">
-        AI Tools That Actually Work.
-        <span class="text-brand-600">And the ones that quietly don't.</span>
+        AI for Java Developers.
+        <span class="text-brand-600">Start with a runnable case.</span>
       </h1>
       <p class="mt-6 text-lg text-ink-600 max-w-2xl mx-auto leading-relaxed">
-        Practical guides for ChatGPT, Claude, Cursor, Codex and Copilot, with a focus on Java and Spring Boot. Follow source references, work through clearly labeled examples, and use targeted checks to verify code, configuration, security, and migrations in your own environment.
+        Use coding agents with clear requirements and checks you can inspect. Work through a Spring Boot case study, download its source and run records, and learn how to verify tests, HTTP security, and database migrations.
       </p>
       <div class="mt-8 flex flex-wrap items-center justify-center gap-4">
         <a
-          href="/blog/"
+          href="/blog/ai-for-java-developers/"
           class="inline-flex items-center px-6 py-3 rounded-lg bg-brand-600 text-white font-medium hover:bg-brand-700 transition-colors"
         >
-          Browse All Articles
+          Start the Java Guide
         </a>
         <a
-          href="/categories/"
+          href="/examples/boot4-verification-lab/"
           class="inline-flex items-center px-6 py-3 rounded-lg border border-ink-300 text-ink-700 font-medium hover:border-brand-400 hover:text-brand-600 transition-colors"
         >
-          Explore Categories
+          Explore the Runnable Lab
         </a>
       </div>
     </div>
   </section>
 
-  <!-- Homepage Top Ad -->
-  <section class="max-w-6xl mx-auto px-4 pt-8">
-    <InContentAd label="Advertisement" />
+  <section class="max-w-6xl mx-auto px-4 py-12" aria-labelledby="case-study-heading">
+    <div class="rounded-2xl border border-brand-200 bg-brand-50 p-6 md:p-8 dark:bg-ink-50">
+      <p class="text-sm font-semibold text-brand-600 mb-3">SOURCE INCLUDED · SYNTHETIC TEACHING PROJECT</p>
+      <h2 id="case-study-heading" class="text-2xl md:text-3xl font-bold text-ink-900 mb-4">One project. Two Spring Boot versions. Inspectable results.</h2>
+      <p class="text-ink-600 max-w-3xl leading-relaxed">
+        Follow the same contracts from Boot 3.5.7 to 4.0.0: a POST rejected for a missing CSRF token, a test harness that omits security filters, and a Flyway repair that changes history while leaving schemas different.
+      </p>
+      <p class="text-sm text-ink-500 mt-4">Java 17 · Maven · Disposable H2 databases · No Docker required</p>
+      <div class="flex flex-wrap gap-x-6 gap-y-3 mt-6 text-sm font-semibold">
+        <a href="/blog/claude-code-spring-boot-4-migration-walkthrough/" class="text-brand-600 hover:underline">Read the worked case &rarr;</a>
+        <a href="/examples/boot4-verification-lab/" class="text-brand-600 hover:underline">Inspect the source and run record &rarr;</a>
+      </div>
+      <p class="text-xs text-ink-500 mt-5 leading-relaxed">A bounded compatibility exercise using MockMvc, loopback HTTP, and H2. Results apply to the included fixture and pinned versions; they do not benchmark an AI agent or a production database.</p>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 pb-12" aria-labelledby="learning-path-heading">
+    <h2 id="learning-path-heading" class="text-2xl font-bold text-ink-900 mb-6">Choose your next step</h2>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-5">
+      {learningPath.map((item) => (
+        <a href={item.href} class="group rounded-xl border border-ink-200 p-6 hover:border-brand-400 hover:shadow-md transition-all">
+          <span class="text-sm font-semibold text-brand-600">{item.step}</span>
+          <h3 class="text-lg font-bold text-ink-900 mt-3 mb-2">{item.title}</h3>
+          <p class="text-sm text-ink-600 leading-relaxed mb-4">{item.description}</p>
+          <span class="text-sm font-medium text-brand-600 group-hover:underline">{item.label} &rarr;</span>
+        </a>
+      ))}
+    </div>
   </section>
 
   <!-- Categories Grid -->
@@ -78,14 +125,6 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
     </div>
   </section>
 
-  <!-- Featured Article -->
-  {featuredPost && (
-    <section class="max-w-6xl mx-auto px-4 py-8">
-      <h2 class="text-2xl font-bold text-ink-900 mb-6">Featured Article</h2>
-      <ArticleCard post={featuredPost} featured={true} />
-    </section>
-  )}
-
   <!-- Recent Articles -->
   {recentPosts.length > 0 && (
     <section class="max-w-6xl mx-auto px-4 py-12">
@@ -103,17 +142,12 @@ const recentPosts = sortedPosts.filter((p) => p.id !== featuredPost?.id).slice(0
     </section>
   )}
 
-  <!-- Homepage Bottom Ad -->
-  <section class="max-w-6xl mx-auto px-4 py-8">
-    <InContentAd label="Advertisement" />
-  </section>
-
   <!-- CTA Section -->
   <section class="bg-ink-900 text-white dark:bg-brand-900">
     <div class="max-w-4xl mx-auto px-4 py-16 text-center">
-      <h2 class="text-3xl font-bold mb-4">Never Miss an AI Tool Review</h2>
+      <h2 class="text-3xl font-bold mb-4">Follow the Java and AI Guides</h2>
       <p class="text-ink-300 max-w-xl mx-auto mb-8 dark:text-brand-200">
-        Subscribe to our RSS feed for the latest AI tool tutorials, comparisons, and industry insights.
+        Subscribe for new Java examples, coding-agent workflows, and revisions to the verification guides.
       </p>
       <div class="flex flex-wrap items-center justify-center gap-4">
         <a

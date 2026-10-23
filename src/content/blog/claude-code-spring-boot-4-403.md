@@ -39,6 +39,14 @@ mockMvc.perform(post("/orders").with(user("alice")).with(csrf()))
 
 The created-status expectation assumes that the valid handler is designed to return 201. Test the actual application's contract. This fragment is not a complete lab or evidence of a run against a specific Boot version.
 
+## Recorded case: an error dispatch can mask the initial status
+
+The new [Boot verification lab](/examples/boot4-verification-lab/) supplies the complete source and run records for a narrower claim. Its normal configuration keeps CSRF enabled and permits the servlet's internal `ERROR` dispatcher type to render errors. Direct requests to `/error` still require authentication.
+
+In both pinned profiles, the secured MockMvc POST without a token returns 403. The separate loopback HTTP test also observes 403 with valid Basic credentials. Removing only the fixture's error-dispatch permission produces a real HTTP 401 in the Boot 4 fault run. The [retained trace](/examples/boot4-verification/error-dispatch.log) first shows the CSRF filter rejecting with 403, then a POST error dispatch reaching the authentication entry point.
+
+This is why the final status alone is insufficient. The test preserves its expected 403 assertion and fails under that fault; no CSRF exemption is added to obtain a green build. See Spring's [dispatcher-type authorization](https://docs.spring.io/spring-security/reference/servlet/authorization/authorize-http-requests.html#_matching_by_dispatcher_type) and the [worked case](/blog/claude-code-spring-boot-4-migration-walkthrough/) for commands and scope. These newly retained observations do not establish what happened in the old unpublished experiments.
+
 ## Do not equate stateless with CSRF-safe
 
 A stateless session policy does not establish that a browser cannot send credentials automatically. Spring's [stateless-browser discussion](https://docs.spring.io/spring-security/reference/7.0/features/exploits/csrf.html#csrf-and-stateless-browser-applications) specifically covers HTTP Basic.

@@ -57,6 +57,20 @@ These tests answer different questions. Neither replaces a deployment plan for a
 
 If Flyway never runs after a Boot upgrade, investigate application integration separately: effective dependencies, auto-configuration conditions, configuration, and startup logs. An absent migration run is not a checksum error. The [Boot 4 dependency guide](/blog/codex-spring-boot-4-dependencies-silent-failures/) covers that distinction.
 
+## Inspect a complete runnable history exercise
+
+The [Boot verification lab](/examples/boot4-verification-lab/) contains `FlywayHistoryTest`, executed under both dependency profiles. It writes synthetic migration files into a temporary directory and creates independent H2 databases. The normal suites pass because their assertions detect the deliberately introduced differences.
+
+| Fixture state | Existing database | Fresh database |
+| --- | --- | --- |
+| V2 changed after application | Checksum validation fails | Edited V2 can install |
+| History repaired against edited V2 | `tag` remains nullable; the existing row has null | `tag` is non-nullable; the row has `new` |
+| Original V2 restored, then corrective V3 applied | Checked nullability and row value agree | Checked nullability and row value agree |
+
+The [Boot 4 log](/examples/boot4-verification/boot4.log) records `existing_nullable=YES fresh_nullable=NO` after repair and `NO` for both after the forward migration. Source, JUnit reports, versions and digests are in the download. This proves the included H2 scenario; it is not a production repair recipe or a cross-version persistent-database upgrade.
+
+One detail from running the case matters to the command sequence: standalone validation can report a newly added but unapplied V3. The fixture validates restored applied history before creating V3, then runs migration and validates the completed state. A pending migration is a different finding from a checksum mismatch.
+
 ## Give agents a verifiable boundary
 
 Tell the agent to preserve applied versioned migrations, propose new versions, and report which upgrade tests ran. Enforce historical-file review in CI against a known release baseline, allowing explicitly reviewed exceptions. [CI review gates](/blog/ai-code-ci-gates-archunit-spotless/) are more useful than assuming any agent always respects a paragraph of instructions.

@@ -15,6 +15,14 @@ AI-assisted Java development works best when a task has a clear boundary and a r
 
 Use the path that matches your immediate problem. The linked guides distinguish documented product behavior, illustrative code, and observations that have runnable artifacts. A successful teaching example establishes its own narrow result, not a general agent success rate.
 
+## Start with one complete public case
+
+The [Boot 3.5 to 4 verification case](/blog/claude-code-spring-boot-4-migration-walkthrough/) includes a full project, not just code fragments. Run the same eleven checks in two profiles, inspect real HTTP and MockMvc outcomes, compare old and fresh Flyway schemas, and explicitly select an undiscovered failing test.
+
+The [source and evidence page](/examples/boot4-verification-lab/) provides the download, actual dependency versions, named results and logs. Two deliberate fault commands must fail for their expected assertions. The fixture was newly created with AI assistance and executed during the October 2026 review; it is not a reconstruction of missing historical agent transcripts.
+
+Use this case to learn the verification pattern, then select the guide below that matches your repository. Its H2 results and small HTTP surface establish only the stated fixture behavior.
+
 ## Start with the problem you need to solve
 
 | Your situation | Start here | Evidence to seek |

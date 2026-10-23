@@ -2,7 +2,7 @@ export const SITE = {
   name: "AI Kit Guides",
   shortName: "AI Kit",
   description:
-    "Practical guides to AI tools and Java development, with source references, illustrative examples, and checks you can run in your own environment.",
+    "AI-assisted Java and Spring Boot guides, with runnable case studies, source references, and inspectable verification records.",
   url: "https://aikitguides.com",
   author: "Peng Zhou",
   email: "foreverzhy1252@gmail.com",

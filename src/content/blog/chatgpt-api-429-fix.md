@@ -7,7 +7,7 @@ category: "ai-api-limits"
 tags: ["openai api", "error 429", "rate limit", "python", "troubleshooting"]
 image: "/og-default.jpg"
 imageAlt: "AI Kit Guides"
-featured: true
+featured: false
 faq:
   - question: "Should I retry every OpenAI API 429?"
     answer: "No. Temporary throttling can justify bounded retries. Exhausted credits, spend caps, and usage limits require account action. Inspect the response body before choosing a recovery action."

@@ -1,0 +1,96 @@
+---
+import MainLayout from "../../layouts/MainLayout.astro";
+import record from "../../../examples/boot4-verification-lab/evidence/results.json";
+
+const profiles = [record.results.boot3, record.results.boot4];
+const runDate = new Intl.DateTimeFormat("en-US", {
+  year: "numeric", month: "long", day: "numeric", timeZone: "Asia/Shanghai",
+}).format(new Date(record.executed_at_utc));
+const sourceFiles = [
+  ["pom.xml", "Two pinned dependency profiles and an explicit test runner."],
+  ["SecurityConfiguration.java", "Authenticated requests, CSRF protection, and the error-dispatch teaching switch."],
+  ["SecurityContractTest.java", "Six MockMvc cases, including an intentionally unsecured harness."],
+  ["NetworkContractTest.java", "Real loopback HTTP checks with Basic authentication and a protected direct /error request."],
+  ["DatabaseActivationTest.java", "A Flyway bean and the row its startup migration inserts."],
+  ["FlywayHistoryTest.java", "Edited migration history, metadata repair, and a forward corrective migration."],
+  ["UndiscoveredShould.java", "The deliberately failing test outside default discovery patterns."],
+  ["verify.py", "Commands, expected failures, named reports, redaction and source digests."],
+];
+---
+
+<MainLayout
+  title="Spring Boot 3.5 to 4 Verification Lab"
+  description="Download a Java 17 lab with two Boot profiles, real HTTP and CSRF checks, Flyway history exercises, source digests and recorded test results."
+>
+  <div class="max-w-4xl mx-auto px-4 py-12">
+    <p class="text-sm font-semibold text-brand-600 mb-3">RUNNABLE EXAMPLE · SOURCE AND RUN EVIDENCE</p>
+    <h1 class="text-3xl md:text-4xl font-extrabold text-ink-900 mb-5">Spring Boot 3.5 to 4 Verification Lab</h1>
+    <p class="text-lg text-ink-600 leading-relaxed mb-6">
+      Run the same application contracts on two pinned Spring Boot versions. Inspect HTTP security, an error dispatch that masks a CSRF rejection, a migration repair that leaves schemas different, and a test the default runner omits.
+    </p>
+    <div class="flex flex-wrap gap-4 mb-8">
+      <a href="/examples/boot4-verification-lab.zip" class="inline-flex items-center px-5 py-3 rounded-lg bg-brand-600 text-white font-semibold hover:bg-brand-700 transition-colors">Download source and evidence (.zip)</a>
+      <a href="/blog/claude-code-spring-boot-4-migration-walkthrough/" class="inline-flex items-center px-5 py-3 rounded-lg border border-ink-300 text-ink-700 hover:border-brand-400 transition-colors">Read the worked case</a>
+    </div>
+
+    <div class="prose max-w-none">
+      <p>
+        This is a synthetic teaching project created with AI assistance and executed during the site's October 2026 revision. It contains new source and observations; it does not recover earlier experiments or report a production incident. Recorded run: <strong>{runDate}</strong>, Java 17.0.19, Maven 3.9.11, macOS arm64.
+      </p>
+
+      <h2>Run it locally</h2>
+      <p>Use JDK 17 or later, Maven and Python 3. The first build needs Maven repository access. No Docker or external database is required. Extract the ZIP and run these commands from its directory:</p>
+      <pre><code>{`java -version
+mvn -version
+python3 verify.py`}</code></pre>
+      <p>The script runs two passing suites and two fault demonstrations. It checks the failing test identity and assertion, so an infrastructure failure cannot count as a reproduced fault. Your raw logs go to <code>verification-output/</code>; the published evidence snapshot stays intact.</p>
+
+      <h2>Recorded normal runs</h2>
+      <div class="overflow-x-auto">
+        <table>
+          <thead><tr><th>Boot</th><th>Security</th><th>Flyway</th><th>H2</th><th>JUnit</th><th>Tests / failures / errors / skipped</th></tr></thead>
+          <tbody>
+            {profiles.map((run) => <tr>
+              <td>{run.versions["spring-boot"]}</td>
+              <td>{run.versions["spring-security-core"]}</td>
+              <td>{run.versions["flyway-core"]}</td>
+              <td>{run.versions.h2}</td>
+              <td>{run.versions["junit-jupiter-api"]}</td>
+              <td>{run.tests} / {run.failures} / {run.errors} / {run.skipped}</td>
+            </tr>)}
+          </tbody>
+        </table>
+      </div>
+      <p>Each normal command exited 0. These are the same eleven cases executed twice. The dependency profiles select historical comparison releases; they are not a recommendation about today's production patch.</p>
+
+      <h2>Two failures the verifier requires</h2>
+      <ul>
+        <li><strong>Discovery:</strong> explicit selection runs <code>UndiscoveredShould</code> and fails with <code>DISCOVERY_SENTINEL</code>. The two normal suites omit that class because its name is outside default patterns.</li>
+        <li><strong>Error dispatch:</strong> disabling the fixture's permission for the servlet <code>ERROR</code> dispatcher produces real HTTP 401 where the network contract expects 403. The trace records the CSRF filter first rejecting with 403, then error authorization reaching the authentication entry point. Normal runs keep the narrow dispatcher permission and still require authentication for direct requests to <code>/error</code>.</li>
+      </ul>
+      <p>Both fault commands executed one test, failed one assertion, and exited 1. CSRF stays enabled. The purpose is to demonstrate a detectable defect and its evidence, not to remove a test until Maven reports success.</p>
+
+      <h2>Inspect the evidence before trusting the summary</h2>
+      <ul>
+        <li><a href="/examples/boot4-verification/results.json">Results, resolved versions, commands and source SHA-256 digests</a></li>
+        <li><a href="/examples/boot4-verification/boot3.log">Boot 3.5.7 execution log</a></li>
+        <li><a href="/examples/boot4-verification/boot4.log">Boot 4.0.0 execution log</a></li>
+        <li><a href="/examples/boot4-verification/discovery.log">Expected discovery failure log</a></li>
+        <li><a href="/examples/boot4-verification/error-dispatch.log">Expected error-dispatch failure and filter trace</a></li>
+        <li><a href="/examples/boot4-verification/environment.txt">Recorded Java and Maven environment</a></li>
+      </ul>
+      <p>The ZIP includes named JUnit XML reports. Machine paths and the local account name were redacted, and JUnit system properties were removed. Test identities, observed values and failures remain inspectable. The source digests cover the POM and application/test source; the record is not a third-party certification.</p>
+
+      <h2>Source map</h2>
+      <div class="overflow-x-auto"><table>
+        <thead><tr><th>File</th><th>What to inspect</th></tr></thead>
+        <tbody>{sourceFiles.map(([file, purpose]) => <tr><td><code>{file}</code></td><td>{purpose}</td></tr>)}</tbody>
+      </table></div>
+
+      <h2>What these results cover</h2>
+      <p>The fixture uses MockMvc, a real embedded server bound to loopback, and disposable H2 databases. The notes counter and database marker are intentionally small. Test users are synthetic; a separate network case exercises the public fixture credentials through HTTP Basic.</p>
+      <p>H2 results do not establish PostgreSQL/MySQL SQL semantics, locking, or production migration safety. The two profile runs use separate JVMs; they do not carry a persistent database across engine versions. The tests verify selected contracts, not every Boot 4 integration, an AI agent's performance, or an arbitrary application's upgrade.</p>
+      <p>Use the <a href="/blog/spring-boot-4-migration-ai-agents/">migration map</a> to choose additional checks for your application, or return to the <a href="/blog/ai-for-java-developers/">Java developer guide</a>.</p>
+    </div>
+  </div>
+</MainLayout>

@@ -131,7 +131,7 @@
     if (existing) {
       // Apply stored consent on page load
       if (existing === 'granted') {
-        gtag('consent', 'update', {
+        window.gtag('consent', 'update', {
           'ad_storage': 'granted',
           'ad_user_data': 'granted',
           'ad_personalization': 'granted',
@@ -152,7 +152,7 @@
 
     function handleAccept() {
       localStorage.setItem(CONSENT_KEY, 'granted');
-      gtag('consent', 'update', {
+      window.gtag('consent', 'update', {
         'ad_storage': 'granted',
         'ad_user_data': 'granted',
         'ad_personalization': 'granted',
@@ -166,7 +166,7 @@
 
     function handleReject() {
       localStorage.setItem(CONSENT_KEY, 'denied');
-      gtag('consent', 'update', {
+      window.gtag('consent', 'update', {
         'ad_storage': 'denied',
         'ad_user_data': 'denied',
         'ad_personalization': 'denied',

@@ -41,6 +41,14 @@ Run that command in the extracted sample directory. It is intended to fail. A fa
 
 Do not generalize this to “Maven silently ignores an explicitly requested nonexistent test.” Surefire has a separate `failIfNoSpecifiedTests` setting, and explicit-selection failures depend on that configuration.
 
+## Repeat the discovery check inside a Boot application
+
+The [complete Boot lab](/examples/boot4-verification-lab/) runs the same source against Boot 3.5.7 with JUnit 5.12.2 and Boot 4.0.0 with JUnit 6.0.1. Each normal run executes eleven cases with no failures, errors or skips. Both omit the intentionally failing `UndiscoveredShould` class.
+
+Selecting that class in the Boot 4 profile executes one test and fails with `DISCOVERY_SENTINEL`. The [failure log](/examples/boot4-verification/discovery.log) and named XML in the source package establish which assertion ran. `verify.py` requires that identity and failure, so a broken download or compiler error cannot count as reproduction.
+
+The shared naming behavior is evidence about this Surefire configuration, not a new rule introduced by Boot 4. The [walkthrough](/blog/claude-code-spring-boot-4-migration-walkthrough/) explains the eleven selected checks and the actual HTTP/database checks that make this more than a test-count comparison.
+
 ## Wire integration tests deliberately
 
 If the project uses Failsafe for integration tests, bind its `integration-test` and `verify` goals. Running `mvn verify` alone does not add a plugin execution. Follow the [Failsafe usage guide](https://maven.apache.org/surefire/maven-failsafe-plugin/usage.html) and inspect the resulting reports.

@@ -64,6 +64,8 @@ src/
 
 The [October 2026 audit](docs/adsense-content-audit-2026-10-23.md) covers every article and the supplied Search Console export. The [Java verification example](examples/java-verification/README.md) can be downloaded from `/examples/java-verification.zip`.
 
+The [Boot 3.5 to 4 case study](examples/boot4-verification-lab/README.md) adds two pinned application profiles, real HTTP and MockMvc checks, H2 history exercises, and sanitized evidence. Run `python3 examples/boot4-verification-lab/verify.py` with JDK 17 selected; package a verified snapshot with `python3 scripts/package_boot4_lab.py`.
+
 ## Deployment
 
 This site is deployed via Cloudflare Pages (native Git integration):
