@@ -32,6 +32,7 @@ Use this case to learn the verification pattern, then select the guide below tha
 | Editing through an IDE | [Cursor with Spring Boot](/blog/cursor-spring-boot/) | Resolved context and a reviewed diff |
 | Tests look green suspiciously quickly | [JUnit tests not running](/blog/ai-junit-tests-not-running-spring-boot-4/) | Named test reports and an intentional failure check |
 | Upgrading the framework | [Boot 4 migration](/blog/spring-boot-4-migration-ai-agents/) | Dependency, binding, HTTP and persistence behavior |
+| Want the build to fail on a leftover config key | [Migrator gate measurements](/blog/spring-boot-4-2-properties-migrator-silent-gaps/) | A non-zero exit on the key being migrated, not a log line |
 | Working in poorly documented code | [Legacy Java workflow](/blog/using-ai-legacy-java-codebase/) | Caller contracts and characterization tests |
 | Moving checks into automation | [CI gates](/blog/ai-code-ci-gates-archunit-spotless/) | Independent execution on the changed revision |
 

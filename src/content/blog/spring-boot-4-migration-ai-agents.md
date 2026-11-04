@@ -55,6 +55,6 @@ The [CSRF diagnosis guide](/blog/claude-code-spring-boot-4-403/) links a concret
 
 Keep the starting revision, versions, requirement, focused diff, exact commands, fresh reports and remaining blockers. Give recurring expectations to the agent through the [Boot 4 instruction template](/blog/spring-boot-4-agents-md-guide/), then enforce independent checks in CI.
 
-A successful process and a green test summary provide limited observations. The [discovery guide](/blog/ai-junit-tests-not-running-spring-boot-4/) explains undiscovered cases; the [configuration guide](/blog/codex-spring-boot-4-yml-properties/) explains the difference between metadata and actual binding.
+A successful process and a green test summary provide limited observations. The [discovery guide](/blog/ai-junit-tests-not-running-spring-boot-4/) explains undiscovered cases; the [configuration guide](/blog/codex-spring-boot-4-yml-properties/) explains the difference between metadata and actual binding. When a build should fail instead of logging, the [migrator gate measurements](/blog/spring-boot-4-2-properties-migrator-silent-gaps/) show which key categories can be turned into a non-zero exit and which cannot.
 
 Use this map to decide what your application needs, and the [worked case](/blog/claude-code-spring-boot-4-migration-walkthrough/) to see the evidence format. Current support and release information belongs in the [Spring Boot project documentation](https://spring.io/projects/spring-boot/); this article does not impose a universal upgrade deadline or rank agents by unrecorded trials.

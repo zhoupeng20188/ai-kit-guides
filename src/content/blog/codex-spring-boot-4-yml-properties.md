@@ -32,7 +32,7 @@ The [dependency guide](/blog/codex-spring-boot-4-dependencies-silent-failures/) 
 
 Use `spring-boot-properties-migrator` according to the target release's [migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide), then remove the temporary migration aid when appropriate. It cannot establish every runtime contract.
 
-Read messages for renamed, unsupported, or incompatible values. A warning or error log level is not necessarily the process exit status. An absent message is not proof that a key works.
+Read messages for renamed, unsupported, or incompatible values. A warning or error log level is not necessarily the process exit status. An absent message is not proof that a key works. The 4.2 line adds a property that turns some of those messages into a failed startup; the [measured behaviour table](/blog/spring-boot-4-2-properties-migrator-silent-gaps/) records which key categories it stops and which ones it never reports.
 
 Check property type changes and map-key semantics against the exact framework version. Avoid carrying a Jackson serialization flag from one generation into another by guessing its new spelling.
 

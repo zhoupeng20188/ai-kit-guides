@@ -22,6 +22,8 @@ Spring's [modularization article](https://spring.io/blog/2025/10/28/modularizing
 
 Do not turn this into a ban on direct library dependencies. They can be intentional. The issue is whether the task requires Boot integration and whether the selected dependency graph supplies it.
 
+The same split appears one level down, in configuration keys. A key can be present in the metadata and still have nothing on the classpath to bind it, which is why a key-name checker reports a clean run either way; the [migrator measurements](/blog/spring-boot-4-2-properties-migrator-silent-gaps/) include that case as one of the silent categories.
+
 ## Worked investigation: migrations absent
 
 Suppose the application has migration scripts and a datasource, but no migration ran. Check whether Flyway is invoked, not only whether `flyway-core` is on the classpath.
