@@ -156,7 +156,7 @@ Then remove the migrator. That last step is in the migration guide for a reason,
 
 The wider point is the one that shows up in every Spring Boot 4 investigation: the changes a compiler catches and the changes that only appear as different behaviour at runtime are two different problems. A renamed key is mechanical, and a tool can handle it. A key that is silently no longer read is a behavioural change wearing the same clothes, and no amount of metadata comparison finds it. The [migration overview](/blog/spring-boot-4-migration-ai-agents/) keeps the two lists separate for that reason.
 
-If you are working through this with an agent, the useful instruction is not "fix the warnings". It is "make the process exit non-zero on the key we are migrating, and show me the run where it does" — a request whose result can be checked, rather than a claim that the migration is clean. The [hub page](/blog/ai-for-java-developers/) collects the other verification-first walkthroughs for this stack.
+If you are working through this with an agent, the useful instruction is not "fix the warnings". It is "make the process exit non-zero on the key we are migrating, and show me the run where it does" — a request whose result can be checked, rather than a claim that the migration is clean. The [hub page](/blog/ai-for-java-developers/) collects the other verification-first walkthroughs for this stack. A [Redis database case](/blog/spring-boot-4-2-redis-database-silent-fallback/) shows a correctly spelled, correctly bound key that no key-comparison tool can flag: `spring.data.redis.database=5` binds, but the master/replica connection is built for db0 on 4.1.2.
 
 ## Reproduce it, and what it does not prove
 

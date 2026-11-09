@@ -27,7 +27,7 @@ Start with the application's entry points, clients, integrations and existing da
 | Configuration | Intended values actually influence the consumer | Active profile, binding assertion and a behavior check |
 | Build and tests | The required cases execute and detect a defect | Fresh named reports and a controlled failing case |
 
-This is a selection framework, not a universal test count. Identify the requirement and the failure each check should detect. A generated test that only agrees with the new implementation has not established preservation of the old contract.
+This is a selection framework, not a universal test count. Identify the requirement and the failure each check should detect. A generated test that only agrees with the new implementation has not established preservation of the old contract. The [Spring Boot 4.2 Redis database case](/blog/spring-boot-4-2-redis-database-silent-fallback/) is an example where the configuration file stays unchanged across the upgrade and the connection target moves anyway.
 
 ## Resolve dependencies against the exact target
 

@@ -26,7 +26,7 @@ Configuration metadata helps tooling describe properties associated with availab
 
 Conversely, an advertised property can exist while its configuration is inactive. Do not label a key “dead” solely because a metadata string search failed, or “bound” solely because it matched a name.
 
-The [dependency guide](/blog/codex-spring-boot-4-dependencies-silent-failures/) explains why classpath changes and activation belong in this investigation.
+The [dependency guide](/blog/codex-spring-boot-4-dependencies-silent-failures/) explains why classpath changes and activation belong in this investigation. A [Redis database probe](/blog/spring-boot-4-2-redis-database-silent-fallback/) shows the same split inside one object: on Boot 4.1.2 the property binds to `5` while the master/replica connection factory is built for `0`.
 
 ## Treat a migrator as a migration aid
 
