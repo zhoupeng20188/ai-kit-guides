@@ -63,6 +63,8 @@ Create a fresh verification run and inspect the expected suites in `target/suref
 
 `failIfNoTests` can reject a wholly empty suite; it does not prove every intended class was selected. Coverage is also supplementary evidence, not an inventory of all required tests.
 
+A receipt built from those reports inherits the same blind spot. In my ten [trustbut 0.7.0 Maven cases](/blog/trustbut-maven-junit-6-receipt-pass/), a `PriceShould` class that Surefire never selected produced a PASS with `Findings: None` and no record of the new test at all.
+
 ## Check Boot-specific test wiring
 
 When moving from Boot 3 to Boot 4, verify changed test annotations, packages, and modules against the [migration guide](https://github.com/spring-projects/spring-boot/wiki/Spring-Boot-4.0-Migration-Guide). Use Spring Framework's `@MockitoBean` where the removed Boot `@MockBean` API must be replaced.

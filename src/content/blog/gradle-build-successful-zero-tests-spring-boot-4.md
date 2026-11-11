@@ -66,6 +66,8 @@ Maven Surefire's default naming patterns can omit a class; Gradle reuse can avoi
 
 An explicitly requested nonexistent Maven test need not silently pass; check Surefire's selection-failure settings. Use the [Maven discovery guide](/blog/ai-junit-tests-not-running-spring-boot-4/) for that investigation.
 
+A verification receipt is a third, separate layer: it reports the cases the runner executed. The [trustbut Maven receipts](/blog/trustbut-maven-junit-6-receipt-pass/) return PASS both for a test Surefire never discovered and for a new test whose only assertion is `assertTrue(true)`.
+
 ## Require an honest completion record
 
 When an agent runs the build, ask which task executed and which outcome was reused. If the acceptance requirement calls for fresh external-service verification, request that explicitly and record environmental blockers.

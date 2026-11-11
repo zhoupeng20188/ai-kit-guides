@@ -57,4 +57,6 @@ Keep privileges appropriate to trusted code and the runner. Consult the [current
 
 Keep the starting revision, requirement, patch, tool version, selected model, verification command, fresh report totals, and remaining blockers. That record lets another reviewer distinguish “agent stopped,” “build passed,” and “behavior accepted.”
 
+An independent verification receipt is still evidence about what ran, not proof that a test constrains the change. I measured ten [trustbut Maven receipt cases](/blog/trustbut-maven-junit-6-receipt-pass/) where a no-op JUnit 6 test returned PASS while a real fix with no test returned WARN. Read the proof line, not just the verdict.
+
 Put the recurring expectations in the [Boot 4 instruction template](/blog/spring-boot-4-agents-md-guide/). The [Java hub](/blog/ai-for-java-developers/) connects the broader workflow. A short reviewable record is more useful than an unsupported success ratio.
